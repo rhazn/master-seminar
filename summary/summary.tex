@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage[document]{ragged2e}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage[final]{pdfpages}
+\usepackage[parfill]{parskip}
+\usepackage{listings}
+
+\newcommand\erfequiv{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily erf}}}{\equiv}}}
+
+\begin{document}
+
+\title{Seminar 1901 - Darstellung und Verarbeitung unsicheren Wissens mit logikbasierten Methoden}
+\author{
+	Heltweg, Philip
+}
+\maketitle
+
+\begin{tabular}{l l}
+Matrikelnummer: & 3230880\\
+\\
+Name, Vorname: & Heltweg, Philip\\
+\\
+Strasse, Nr.: & Kerpener Straße 10\\
+\\
+Auslandskennzeichen, PLZ, Wohnort: & D 50937 Köln\\
+\\
+\end{tabular}
+
+\newpage
+
+\section{Concepts}
+\begin{itemize}
+    \item belief revision, iterated belief revision, non-prioritised revision
+    \begin{itemize}
+        \item 1, 7, 12, 20, 21, 22, 23, 24, 34
+        \item \textbf{C. Alchourrón, P. Gärdenfors, and D. Makinson. On the logic of theory change: Partial meet contrac- tion and revision functions. Journal of Symbolic Logic, 50(2):510–530, 1985.}
+        \begin{itemize}
+            \item "AGM postulates for belief revision"
+        \end{itemize}
+        \item R. Booth and T. Meyer. Admissible and restrained revision. Journal of Artificial Intelligence Research (JAIR), 26:127–151, 2006.
+        \item \textbf{A. Darwiche and J. Pearl. On the logic of iterated belief revision. Artificial Intelligence, 89:1–29, 1997.}
+        \begin{itemize}
+            \item "reformulated the AGM postulates for belief revision to be compatible with their suggested approach to iterated revision"
+        \end{itemize}
+        \item A. Grove. Two modelings for theory change. Journal of Philosophical Logic, 17:157–170, 1988.
+        \item S. O. Hansson, E. Ferme ́, J. Cantwell, and M. Falappa. Credibility-limited revision. Journal of Sym- bolic Logic, 66(4):1581–1596, 2001.
+        \item S.O. Hansson. A survey of non-prioritized belief revision. Erkenntnis, 50(2):413–427, 1999.
+        \item Y. Jin and M. Thielscher. Iterated belief revision, revised. Artificial Intelligence, 171(1):1–18, 2007.
+        \item H. Katsuno and A. O. Mendelzon. Propositional knowledge base revision and minimal change. Artif. Intell., 52(3):263–294, 1991.
+        \item A. Nayak, M. Pagnucco, and P. Peppas. Dynamic belief revision operators. Artificial Intelligence,
+146:193–228, 2003.
+    \end{itemize}
+    \item agent
+    \item sound and complete properties
+    \begin{itemize}
+        \item Wikipedia: "Informally, a soundness theorem for a deductive system expresses that all provable sentences are true. Completeness states that all true sentences are provable." -> Vollständig und Korrekt
+    \end{itemize}
+    \item total preorder
+    \item strict preference hierarchies
+    \item interval orderings
+    \begin{itemize}
+        \item 2, 15, 32
+        \item J.F. Allen. Maintaining knowledge about temporal intervals. Communications of the ACM, 26(11):832–843, 1983.
+        \begin{itemize}
+            \item "such interval orders have been studied in the context of temporal reasoning"
+        \end{itemize}
+        \item P.C. Fishburn. Interval orders and interval graphs. Wiley, New York, 1985.
+        \begin{itemize}
+            \item "the question of how our work fits into the more general use of interval orderings"
+        \end{itemize}
+        \item \textbf{M. Öztürk, A. Tsoukia`s, and P. Vincke. Preference modelling. In Multiple Criteria Decision Analysis: State of the Art Surveys, volume 78, pages 27–71. Springer, 2005.}
+        \begin{itemize}
+            \item "such interval orders have been studied in the context of [...] preference modelling"
+            \item "in a similar vein, there seems to be a close connection between our work and the work on preference modelling using interval orderings by Öztürk et al
+        \end{itemize}
+    \end{itemize}
+    \item preference aggregation
+    \begin{itemize}
+        \item 3, 19
+        \item K. Arrow. Social Choice and Individual Values. John Wiley & Sons, 1963.
+        \item S.M. Glaister. Symmetry and belief revision. Erkenntnis, 49(1):21–56, 1998.
+        \begin{itemize}
+            \item "for more discussion on social choice-like conditions and their relevance to tpo-revision we refer the reader..."
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\section{Ausführliche Inhaltsgliederung}
+Bis zu diesem Zeitpunkt erwarten wir von Ihnen eine Kurzfassung Ihres Vortrages, die  Folgendes enthalten sollte: ausführliche Inhaltsgliederung, Angabe der Schwerpunkte, Kommentierung der von Ihnen gewählten Stoffauswahl, Zusammenfassung. Umfang: ca. 4-5 Seiten. Danach werden wir uns wieder an Sie wenden. Bitte schicken Sie uns Ihre Kurzfassung per E-Mail im PDF-Format zu.
+\section{Angabe der Schwerpunkte}
+\section{Kommentierung der Stoffauswahl}
+\section{Zusammenfassung}
+
+\newpage
+
+\section{Erklärung}
+Ich erkläre, dass ich die schriftliche Ausarbeitung zum Seminar selbstständig und ohne unzulässige Inanspruchnahme Dritter verfasst habe. Ich habe dabei nur die angegebenen Quellen und Hilfsmittel verwendet und die aus diesen wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht. Die Versicherung selbstständiger Arbeit gilt auch für enthaltene Zeichnungen, Skizzen oder graphische Darstellungen. Die Ausarbeitung wurde bisher in gleicher oder Ähnlicher Form weder derselben noch einer anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht. Mit der Abgabe der elektronischen Fassung der endgültigen Version der Ausarbeitung nehme ich zur Kenntnis, dass diese mit Hilfe eines Plagiatserkennungsdienstes auf enthaltene Plagiate geprüft werden kann und ausschließlich für Prüfungszwecke gespeichert wird.
+
+\end{document}
