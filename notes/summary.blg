@@ -1,0 +1,17 @@
+[0] Config.pm:312> INFO - This is Biber 2.15
+[0] Config.pm:315> INFO - Logfile is '/Users/pheltweg/Documents/master/1901/summary/summary.blg'
+[76] biber-darwin:330> INFO - === Thu Nov  5, 2020, 12:01:00
+[95] Biber.pm:415> INFO - Reading '/Users/pheltweg/Documents/master/1901/summary/summary.bcf'
+[189] Biber.pm:952> INFO - Found 3 citekeys in bib section 0
+[202] Biber.pm:4334> INFO - Processing section 0
+[215] Biber.pm:4523> INFO - Looking for bibtex format file 'references.bib' for section 0
+[216] bibtex.pm:1682> INFO - LaTeX decoding ...
+[220] bibtex.pm:1494> INFO - Found BibTeX data source 'references.bib'
+[244] Utils.pm:395> WARN - month field 'Mar' in entry 'webeck_2018' is not an integer - this will probably not sort properly.
+[254] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[254] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[254] Biber.pm:4162> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[254] Biber.pm:4168> INFO - No sort tailoring available for locale 'en-US'
+[264] bbl.pm:651> INFO - Writing '/Users/pheltweg/Documents/master/1901/summary/summary.bbl' with encoding 'UTF-8'
+[265] bbl.pm:754> INFO - Output to /Users/pheltweg/Documents/master/1901/summary/summary.bbl
+[265] Biber.pm:128> INFO - WARNINGS: 1
