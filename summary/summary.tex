@@ -2,6 +2,7 @@
 \usepackage[document]{ragged2e}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage[parfill]{parskip}
 \usepackage{listings}
 \usepackage[acronym]{glossaries}
@@ -12,11 +13,13 @@
 \newglossaryentry{principle of minimal change}
 {
     name=principle of minimal change,
+    % TODO more detail
     description={todo \cite{Darwiche1997}}
 }
 \newglossaryentry{total preorder}
 {
     name=total preorder,
+    % TODO more detail
     description={todo}
 }
 \newglossaryentry{non-priotised revision}
@@ -48,12 +51,19 @@
 
 \section{Presentation agenda}
 \subsection{Introduction}
+\subsubsection{Birds eye view}
+\begin{itemize}
+% TODO more detail
+    \item Very high level view of the main idea of an ordering on a list of worlds as plausibility ordering for conditional beliefs, retrieving a belief set from it (e.g. using the set of sentences true in all minimal models) as a way of representing belief, relating it to defensive deduction in Poolscher default logic (???), why iterated belief change and finally the idea behind +/- worlds.
+\end{itemize}
 \subsubsection{Preview}
 \subsection{Research Context and definitions}
 \begin{itemize}
     \item Introduction of the research area of belief change and major sub-areas according to \cite{Darwiche1997}: nonmonotonic logic, probabilistic reasoning and belief revision and placing of \cite{Booth2011} in the area of belief revision.
     \item Belief revision as operator based approach that concerns itself with the definition of constrains (so called postulates) on operators that transitions between held beliefs when new information arrives \cite{Darwiche1997}.
     \item \cite{Alchourron1985} as seminal paper for one-step belief revision on belief sets. Definitions of belief sets and difference between propositional beliefs and conditional beliefs. Adherence to the principle of minimal change for currently held beliefs only nearly no constrains on conditional beliefs.
+    % TODO grove two modellings for theory change in here as introduction for worlds?
+    % TODO build this from AGM 25 years?
     \item \cite{Darwiche1997} discussion of iterated belief revision and the definition and need for epistemic states instead of belief sets for handling conditional beliefs. Introduction of tpos as plausibility orderings to represent conditional beliefs.
     \item \cite{Booth2011} discusses a framework for tpo-revision that enriches an epistemic state with a framework to create a new tpo for a revision step on the basis of interval orderings between positive and negative representations of possible worlds. Motivation of tpo-revision as "context" as introduced in \cite{Booth2007}.
     \item Therefor \cite{Booth2011} as work in iterated belief revision, closer placement of \cite{Booth2011} as non-priotised revision on the belief set level.
@@ -62,22 +72,44 @@
 \textbf{Section Goal:} Overview of the research area and placement of \cite{Booth2011} as work on iterated belief revision. Rough overview of the background for the work in \cite{Booth2011}. Shared understanding of: belief revision (and the difference between one-step- and iterated belief revision), belief sets and epistemic states, conditional beliefs in contrast to propositional beliefs, tpos as plausibility orderings, motivation and definition of tpo-revision as tool for iterated belief revision.
 
 \subsection{Summary}
+% TODO add overall goal here "Sound and complete axiomatisation for revision operators" + example?
+\subsubsection{Enriched epistemic state and $\leq$-faithful tpos}
+\begin{itemize}
+    \item Notation basics.
+    \item Definition of the DP-AGM postulates and what modifications are made to them for the paper (to always be able to get a belief set from the tpo). Show how a belief set can be extracted from an epistemic state. Introduction of the notation of $\leq$ as tpo, $\ast$ as the revision operator for $\leq$ returning a new tpo $\leq^{\ast}_{\alpha}$. 
+    \item Notation of the enriched epistemic state $W^{\pm}$, $\preceq$ and conditions on it as well as it's relation to $\leq$. Visual examples using sticks (\cite{Booth2011} and ranks \cite{Booth2006}. Definition of a $\leq$-faithful tpo over $W^{\pm}$.
+\end{itemize}
+\textbf{Section Goal:} Notation and introducing the concept of a $\leq$-faithful tpo over $W^{\pm}$ and how to visualise it.
+\subsubsection{tpo-revision operators: Revision of $\leq$ with $\preceq$}
+% TODO more detail
+\textbf{Section Goal:} Definition of $\ast_{\preceq}$ as example + visualisation, properties of the family of revision operators shown, Theorem 1. Introduction sentinential level (what is it?), properties in that view, overruling/strictly overruling, why? -> Disj1/2, falls into three categories depending on overruling
+\subsubsection{Strict preference}
+% TODO more detail
+% TODO is interdefinable inference relations relevant? %
+\textbf{Section Goal:} Introduction of $\lll$, $\ll$ and $<$ with example visuals. interdefinable inference relations for them (???). Limiting cases and their problems (??? relevant?) to show that here proposed general family solves these correctly (also the issue presentes is reference to \cite{Darwiche1997}. Subclass $\ll$ = $\lll$, relevant? Improvement operators and how they relate to $\lll$, $\ll$, $<$, relevant? Maybe whole section of limiting cases and improvement operators as "did not talk about but related to other work here and here"
+
+\subsubsection{Strict preference hierarchies / Interval orderings}
+% TODO more detail
+\textbf{Section Goal:} Introduction of SPHs and that it can be extracted from $\preceq$, showing that the class of structures described by SPHs and $\preceq$ is equal. Mention of related research (\cite{allen1983maintaining} / \cite{Oeztuerk2005}). Definition of SPH by a tpo (theorem 3). Summary: SPHs and $\leq$-faithful tpo over $W^{\pm}$ as equivalent ways to describe the structure to revise a tpo, showing $\ast$ can be described with SPH only. Since defining a way to revise one will be equivalent to the other we can choose, choosing SPHs because it is easier to express desirable properties with it.
+
+\subsubsection{SPH revision}
+\subsubsubsection{Properties of SPH revision}
+% TODO more detail
+\textbf{Section Goal:}  Properties for admissible SPH revision in reference to \cite{Booth2006a}. Some additional properties that seem desirable and how they relate to admissible SPH revision.
+\subsubsubsection{A concrete revision operator}
+% TODO more detail
+\textbf{Section Goal:} Concrete operator explained
+
+\subsection{Relation to other areas}
+\subsubsection{Preference Aggregation and Social Choice Theory}
+% TODO more detail
+\textbf{Section Goal:}
+\subsubsection{Preference modelling using interval orderings}
+% TODO more detail
+\textbf{Section Goal:} 
+
 \subsection{Outlook}
 \subsection{Sources}
-
-\section{Research context}
-\begin{itemize}
-    \item Main Area: Belief change
-    \item Sub-areas according to \cite{Darwiche1997}
-    \begin{itemize}
-        \item Belief revision ('belief changes can be characterized by a set of constraints (called postulates) on an operator $\circ$ which modifies the set $\psi$ of currently held beliefs to produce a new belief set $\psi \circ \mu$ implying the new information $\mu$', 'operator based framework')
-        \item Nonmonotonic logic ('belief change is viewed as a byproduct of extending a database containing new facts in accordance with a set of extension-construction rules called defaults') 
-        \item Probabilistic reasoning ('belief change is viewed as a byproduct of conditioning a probability function (or some qualitative abstraction thereof) on new evidence, according to bayes rule')
-    \end{itemize}
-    \item \cite{Booth2011} as work in belief revision
-    \item 'On the belief set level: \gls{non-priotised revision} in contrast to most works in iterated belief change that are given in priotised revision' \cite{Booth2011}
-    \item In the area of \gls{iterated belief revision} \cite{Booth2011}
-\end{itemize}
 
 \section{Literature}
 \begin{itemize}
@@ -92,8 +124,6 @@
 
 \setglossarystyle{listgroup}
 \printglossaries
-
-\newpage
 
 \bibliographystyle{alpha}
 \bibliography{references}
