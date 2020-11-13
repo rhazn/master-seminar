@@ -47,11 +47,15 @@
 
 \section{Presentation agenda}
 \subsection{Introduction}
-\subsubsection{Birds eye view}
+\subsubsection{Agenda}
 \begin{itemize}
-% TODO more detail
-    \item Very high level view of the main idea of an ordering on a list of worlds as plausibility ordering for conditional beliefs, retrieving a belief set from it (e.g. using the set of sentences true in all minimal models) as a way of representing belief, relating it to defensive deduction in Poolscher default logic (???), why iterated belief change and finally the idea behind +/- worlds.
+    \item Motivation and example.
+    \item Notation and idea of preference ordering worlds with tpos and positive/negative contexts for conditional beliefs.
+    \item Introduction of tpo-revision using an operator defined from a new structure $\preceq$, moving iterated belief revision problem 'one step up' to this structure
+    \item Finding an equivalent structure to $\preceq$ in SPHs that has easier to discuss properties.
+    \item Showing how to revise SPHs (theoretically and by example) therefor solving the problem of revising from earlier.
 \end{itemize}
+
 \subsubsection{Preview}
 \textbf{Section Goal:} Motivation for the upcoming talk: Show of a complete, short example of a two step revision using the example SPH-revision operator $\circledast$ given in the paper. Mostly using stick visualisation.
 
@@ -59,22 +63,22 @@
 \begin{itemize}
     % TODO build this from AGM 25 years?
     \item Introduction of the research area of belief change and major sub-areas according to \cite{Darwiche1997}: nonmonotonic logic, probabilistic reasoning and belief revision and placing of \cite{Booth2011} in the area of belief revision. Belief revision as operator based approach that concerns itself with the definition of constrains (so called postulates) on operators that transitions between held beliefs when new information arrives \cite{Darwiche1997}.
-    \item \cite{Alchourron1985} as seminal paper for one-step belief revision on belief sets. Definitions of belief sets and difference between propositional beliefs and conditional beliefs. Adherence to the principle of minimal change for currently held beliefs only nearly no constrains on conditional beliefs.
-    \item \cite{Grove1988} introducing an ordered worlds / spheres approach instead of working on a set of held beliefs with \cite{Booth2004} using preorders as partitions into equivalence classes on ordered worlds with multiple orders and iterated belief change as outlook.
+    \item \cite{Alchourron1985} as seminal paper for one-step belief revision on belief sets. Definitions of belief sets and difference between propositional beliefs and conditional beliefs. Adherence to the principle of minimal change for currently held beliefs only; nearly no constrains on conditional beliefs.
+    \item \cite{Grove1988} introducing an ordered worlds / spheres approach instead of working on a set of held beliefs. \cite{Booth2004} understanding preorders as partitions into equivalence classes on ordered worlds (and using multiple orders). Iterated belief change as outlook.
     \item \cite{Darwiche1997} discussion of \gls{iterated belief revision} and the definition and need for epistemic states instead of belief sets for handling conditional beliefs. \Gls{total preorder}s as plausibility orderings to represent conditional beliefs.
-    \item \cite{Booth2011} discusses a framework for tpo-revision that enriches an epistemic state with a framework to create a new tpo for a revision step on the basis of interval orderings between positive and negative representations of possible worlds. Motivation of tpo-revision as "context" as introduced in \cite{Booth2007}.
+    \item \cite{Booth2011} discusses a framework for tpo-revision that enriches an epistemic state with a framework to create a new tpo for a revision step on the basis of interval orderings between positive and negative representations of possible worlds. Motivation of tpo-revision as 'context' as introduced in \cite{Booth2007}.
     \item Therefor \cite{Booth2011} as work in iterated belief revision, closer placement of \cite{Booth2011} as \gls{non-priotised revision} on the belief set level.
     \item Related areas to the framework established \cite{Booth2011} with preference aggregation and relation to research in interval orderings.
 \end{itemize}
-\textbf{Section Goal:} Overview of the research area and placement of \cite{Booth2011} as work on iterated belief revision. Rough overview of the background for the work in \cite{Booth2011}. Shared understanding of: belief revision (and the difference between one-step- and iterated belief revision), belief sets and epistemic states, conditional beliefs in contrast to propositional beliefs, tpos as plausibility orderings, motivation and definition of tpo-revision as tool for iterated belief revision.
+\textbf{Section Goal:} Overview of the research area and placement of \cite{Booth2011} as work on iterated belief revision. Rough overview of the background for the work in \cite{Booth2011}. Shared understanding of: belief revision (and the difference between one-step- and iterated belief revision), belief sets and epistemic states, conditional beliefs in contrast to propositional beliefs, tpos as plausibility orderings, motivation and definition of tpo-revision as tool for iterated belief revision. Section will need to be discussed with the seminar on \cite{Darwiche1997} and reduced depending on how much is shown in their presentation.
 
 \subsection{Summary}
 \begin{itemize}
     \item Enriched epistemic state for tpo-revision using best-case/worst-case worldviews using using $\preceq$ without revising $\preceq$ itself (moving the problem of iterated revision one step up).
-    \item Establishing an example revision operator and a sound and complete axiomatisation for the family of revision operators considered.
+    \item Establishing an example revision operator and a 'sound and complete axiomatisation for the family of revision operators considered' \cite{Booth2011}.
     \item Discussion of their properties from different viewpoints, especially how they relate to preference of worlds.
-    \item Introduction of SPHs $\mathds{S}$ as equivalent structure to $\preceq$ that will be easier to revise.
-    \item Definition of revision for $\mathds{S}$ and example revision operator, therefor solving the problem from the start. 
+    \item Introduction of SPHs $\mathds{S}$ as equivalent structure to $\preceq$ that will be easier to discuss.
+    \item Definition of revision for $\mathds{S}$ and example SPH-revision operator, therefor solving the problem from the start. 
 \end{itemize}
 \textbf{Section Goal:} Very high level outline of the goal of the paper and the steps to get there.
 
@@ -82,15 +86,15 @@
 \begin{itemize}
     \item Notation basics.
     \item Definition of the DP-AGM postulates and what modifications are made to them for the paper (to always be able to get a belief set from the tpo). Show how a belief set can be extracted from an epistemic state. Introduction of the notation of $\leq$ as tpo, $\ast$ as the revision operator for $\leq$ returning a new tpo $\leq^{\ast}_{\alpha}$. 
-    \item Notation of the enriched epistemic state $W^{\pm}$, $\preceq$ and conditions on it as well as it's relation to $\leq$. Visual examples using sticks (\cite{Booth2011} and ranks (and mentioning that tpos can be represented as linearly ordered set of ranks) \cite{Booth2006}. Definition of a $\leq$-faithful tpo over $W^{\pm}$.
+    \item Notation of the enriched epistemic state $W^{\pm}$, $\preceq$ and conditions on it as well as it's relation to $\leq$. Visual examples using sticks \cite{Booth2011} and ranks (and mentioning that tpos can be represented as linearly ordered set of ranks) \cite{Booth2006}. Definition of a $\leq$-faithful tpo over $W^{\pm}$.
 \end{itemize}
 \textbf{Section Goal:} Notation and introducing the concept of a $\leq$-faithful tpo over $W^{\pm}$ and how to visualise it.
 
 \subsubsection{tpo-revision operators: Revision of $\leq$ with $\preceq$}
 \begin{itemize}
     \item Introduction of $\ast$ as revision operator for $\leq$ and definition of $\ast_{\preceq}$ as example with visualisation.
-    \item Properties of $\ast_{\preceq}$, their explanation and Theorem 1 as axiomatisation of the family of revision operators considered in the paper.
-    \item Explanation of sentinential view (and distinction to semantic level), definition of $\leq' \circ \beta $ and how it relates to conditional beliefs, mention of $\leq' \circ \top $ as belief set. Show of properties for the family of revision operators using sentinental view. Explanation of Disj1/Disj2 as properties that are easy to show in the sentinental view but not in the semantic formulation.
+    \item Properties of $\ast_{\preceq}$, their explanation and theorem 1 as axiomatisation of the family of revision operators considered in the paper.
+    \item Explanation of sentinential view (and distinction to semantic level), definition of $\leq' \circ \beta $ and how it relates to conditional beliefs, mention of $\leq' \circ \top $ as belief set. Show of properties for the family of revision operators using sentinential view. Explanation of Disj1/Disj2 as properties that are easy to show in the sentinential view but not in the semantic formulation.
 \end{itemize}
 \textbf{Section Goal:} Definition of $\ast_{\preceq}$ as example revision operator and visualisation of it. Show of axiomatic definition of the family of operators in semantic and sentinential view. Establishing theorem 1.
 
@@ -99,15 +103,16 @@
     \item Overruling and strict overruling in the sentinential view.
     \item Extracting $\lll$, $\ll$ and $<$ from $\preceq$ and their interpretation as core and weakly protected preferences with visualisations as well as how they relate to overruling.
     % TODO relevant?
-    \item Inference relations from them (is this relevant?)
-    \item Limiting cases and their counterintuitive results, Theorem 2, relation to \cite{Darwiche1997} (is this relevant?)
-    \item Improvement operators (is this relevant?)
+    \item Don't talk about: Inference relations from them (is this relevant?)
+    \item Don't talk about: Limiting cases and their counterintuitive results, theorem 2, relation to \cite{Darwiche1997} (is this relevant?)
+    \item Don't talk about: Improvement operators (is this relevant?)
 \end{itemize}
 \textbf{Section Goal:} Short discussion of what overruling is and introduction of $\lll$, $\ll$ and $<$ to use in the next section.
 
 \subsubsection{Strict preference hierarchies / Interval orderings}
 \begin{itemize}
-    \item Definition of $\mathds{S}$ and SPHs, Theorem 3 and motivating the introduction as an equivalent description of the same structure as $\preceq$ that will be easier to show desirable properties for revision with it. Show that the revision operator $\ast$ from the start can be described using $\mathds{S}$. Mentioning the initial problem of moving the iterated belief revision problem 'one step up'.
+    \item Definition of $\mathds{S}$ and SPHs, theorem 3 and motivating the introduction as an equivalent description of the same structure as $\preceq$ that will be easier to show desirable properties for and discuss.
+    \item Show that the revision operator $\ast$ from the start can be described using $\mathds{S}$. Mentioning the initial problem of moving the iterated belief revision problem 'one step up'.
 \end{itemize}
 \textbf{Section Goal:} Definition of $\mathds{S}$ and SPHs and motivation for doing so.
 
@@ -117,16 +122,14 @@
     \item $\circledast$ as SPH-revision operator and fundamental properties.
     \item Admissible according to \cite{Booth2006a}, properties for $\circledast$ to be considered admissible.
     \item Short discussion of additional properties and if they hold for admissible SPH-revision operators.
+    \item Presentation of the concrete SPH-revision operator $\circledast$ shown in the paper with example.
 \end{itemize}
-\textbf{Section Goal:} Concept of a SPH-revision operator and it's properties.
-
-\paragraph{A concrete revision operator}
-\textbf{Section Goal:} Presentation of the concrete SPH-revision operator $\circledast$ shown in the paper with example. Circling back to initial preview.
+\textbf{Section Goal:} Concept of a SPH-revision operator and it's properties. Showing a concrete example and circling back to initial preview.
 
 \subsection{Relation to other areas}
 \begin{itemize}
     % TODO more detail, see 4.1 in paper
-    \item Preference Aggregation and Social Choice Theory
+    \item Preference aggregation and social choice theory
     % TODO more detail
     \item Preference modelling using interval orderings
 \end{itemize}
@@ -134,19 +137,30 @@
 
 \subsection{Outlook}
 % TODO more detail
+\textbf{Section Goal:} Mention of future research discussed in the paper.
 
 \subsection{Sources}
 \begin{itemize}
     \item Literature
 \end{itemize}
 
-\section{Literature}
+\section{Literature used so far}
 \begin{itemize}
-    \item The 'AGM Paper' \cite{Alchourron1985} introduced 'AGM postulates' for belief revision. Works on a \textbf{belief set} of currently held beliefs and with one step revision. Does adhere to the \gls{principle of minimal change} for beliefs but not for conditional beliefs.
+    \item The 'AGM Paper' \cite{Alchourron1985} introduced 'AGM postulates' for belief revision. Works on a belief set of currently held beliefs and with one step revision. Does adhere to the \gls{principle of minimal change} for beliefs but not for conditional beliefs.
     \item \cite{Darwiche1997} introduces iterated belief revision and reformulates the AGM postulates to be compatible with their approach. Works on 'epistemic states' of agents, not belief sets. Expands the operator based approach to those states.
     \item \cite{Grove1988} introduces an ordered worlds / spheres approach instead of working on a set of held beliefs.
     \item \cite{Booth2004} preorders as partitions into equivalence classes, ordered worlds with multiple orders $\leq$, $\preceq$, iterated belief change as outlook.
     \item The original research paper \cite{Booth2011} which is a combined and extended version of \cite{Booth2006} and \cite{Booth2007}. Most papers use a one step revision operator. Here: Framework for multi-step revision by introducing meta info in the epistemic state for revision over a preference of worlds, then revision over that meta info structure. Using \gls{tpos}
+    \item \cite{Ferme2011} as overview article for the field of belief revision.
+    \item Planning to look into \cite{Allen1983} for interval orderings, \cite{Oeztuerk2005} for preference modelling and \cite{Arrow1963}, \cite{Glaister1998} for preference aggregation and social choice theory.
+    \item Planning to look into \cite{Booth2006a} for admissible revision.
+\end{itemize}
+
+\section{Questions}
+\begin{itemize}
+    \item Is it fundamentally correct that the paper (and much of the research area) are concerning themselves with defining axioms about a family of operators and looking at their properties given their definitions? E.g. the goal is not finding the operators that are given by the problem domain but defining a set of axioms that describe a family of operators the author deems reasonable?
+    \item The sentinential belief set definition of sentences true in all minimal worlds reminds me a lot of the sceptic inference in the default logic of Poole (inference of sentences true in all extensions), does that make sense?
+    \item Are there formal requirements for the written part of the seminar (for example number of words/pages)?
 \end{itemize}
 
 \newpage
@@ -155,13 +169,12 @@
 \printglossaries
 
 \typeout{}
-\nocite{*}
 \bibliographystyle{plain}
 \bibliography{references}
 
-\newpage
-
-\section{Erklärung}
-Ich erkläre, dass ich die schriftliche Ausarbeitung zum Seminar selbstständig und ohne unzulässige Inanspruchnahme Dritter verfasst habe. Ich habe dabei nur die angegebenen Quellen und Hilfsmittel verwendet und die aus diesen wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht. Die Versicherung selbstständiger Arbeit gilt auch für enthaltene Zeichnungen, Skizzen oder graphische Darstellungen. Die Ausarbeitung wurde bisher in gleicher oder Ähnlicher Form weder derselben noch einer anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht. Mit der Abgabe der elektronischen Fassung der endgültigen Version der Ausarbeitung nehme ich zur Kenntnis, dass diese mit Hilfe eines Plagiatserkennungsdienstes auf enthaltene Plagiate geprüft werden kann und ausschließlich für Prüfungszwecke gespeichert wird.
+%\newpage
+%
+%\section{Erklärung}
+%Ich erkläre, dass ich die schriftliche Ausarbeitung zum Seminar selbstständig und ohne unzulässige Inanspruchnahme Dritter verfasst habe. Ich habe dabei nur die angegebenen Quellen und Hilfsmittel verwendet und die aus diesen wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht. Die Versicherung selbstständiger Arbeit gilt auch für enthaltene Zeichnungen, Skizzen oder graphische Darstellungen. Die Ausarbeitung wurde bisher in gleicher oder Ähnlicher Form weder derselben noch einer anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht. Mit der Abgabe der elektronischen Fassung der endgültigen Version der Ausarbeitung nehme ich zur Kenntnis, dass diese mit Hilfe eines Plagiatserkennungsdienstes auf enthaltene Plagiate geprüft werden kann und ausschließlich für Prüfungszwecke gespeichert wird.
 
 \end{document}
