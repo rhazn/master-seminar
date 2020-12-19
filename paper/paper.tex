@@ -1,8 +1,13 @@
 \documentclass[11pt]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{dsfont}
+
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
 
 \begin{document}
 
@@ -28,6 +33,11 @@
 
 % TODO write introduction, make WAY SHORTER, inspire by kai
 \section{Introduction}
+
+% goal of paper: interested in function * for getting new tpo
+
+% roten faden des reports beschreiben
+
 \subsection{Research context}
 A core process for an agent dealing with uncertain knowledge is updating their worldview when new information becomes available, also called belief change. As an agent can be human or a machine work in belief change has impact on both philosophy and artificial intelligence \cite{Ferme2011}. Different approaches to handling belief change have been discussed with notable approaches including nonmonotonic logic, probabilistic reasoning and belief revision \cite{Darwiche1997}.
 
@@ -59,7 +69,7 @@ A common tool used to encode plausibility assumptions of an agent about possible
 \subsection{Propositional Logic} % Aussagenlogik
 Notation follows as used in \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables, lower case greek letters for formulas in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\vdash$ as classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulas in $L$.
 
-$W$ is the set of propositional worlds and given a $\alpha \in L$ the set of worlds that satisfy $\alpha$ is denoted by $[\alpha]$.
+$W$ is the set of propositional worlds (also called propositional interpretations in classical logic \cite{Kai2020}). Given a $\alpha \in L$ the set of worlds that satisfy $\alpha$ is denoted by $[\alpha]$.
 
 For any set of worlds $S \subseteq W$ of worlds, $Th(S)$ is the set of sentences true in all worlds in $S$.
 
@@ -68,43 +78,66 @@ A total preorder is a binary relation $\leq$ (here over the set of propositional
 
 The symbol $<$ is used to denote the strict part of $\leq$ while $\sim$ represents the symmetric closure of $\leq$ (i.e. $x \sim y$ iff $x \leq y$ and $y \leq x$).
 
-A helpful visualisation for tpos is used in \cite{Booth2006}. It uses the fact that tpos can be represented as a linearly ordered set of ranks. Each rank of a tpo $\leq$ is defined as the equivalence classes modulo the symetric closure of $\leq$: $[[x]]_{\sim} = \{y \vert y \sim x\}$. These equivalence classes are then ordered by the relation $[[x]] \leq [[y]]$ iff $x \leq y$
+A helpful visualisation for tpos is shown in \cite{Booth2006}. It uses the fact that tpos can be represented as a linearly ordered set of ranks. Each rank of a tpo $\leq$ is defined as the equivalence classes modulo the symmetric closure of $\leq$: $[[x]]_{\sim} = \{y \vert y \sim x\}$. These equivalence classes are then ordered by the relation $[[x]] \leq [[y]]$ iff $x \leq y$
 
-As an example consider a set of propositional worlds $W = \{ x_{1}, x_{2}, x_{3}, x_{4}\}$ and the a tpo $\leq$ with $x_{1} < x_{2} \sim x_{4} < x_{3}$. The equivalent representation as a linearly ordered set of ranks is shown in \ref{tab:visualising-a-tpo-example}.
+\begin{example}
+    \label{example:example-introduction}
+    As an accompanying example consider the following situation, closely aligned to \cite{Booth2011} and \cite{Darwiche1997}: 
+    
+    Our agent is a judge in a murder trial. John and Mary are suspects. $p$ represents "John is the murderer", $q$ represents "Mary is the murderer" and $r$ represents "the victim is an alien". Possible propositional worlds will be denoted as triplets of 0s and 1s denoting $p$, $q$ and $r$ to be true or false, e.g. the $101$-world stands for John being the murderer and the victim being an alien.
+    
+    To start the agent believes it is reasonable to assume the murderer acted alone (but are not ruling out both of the accused conspiring). In addition it would be extremely surprising (but not impossible) if the victim was an alien. Tpos are a common tool to handle preference orderings like these.
+    
+    
+    Consider the propositional worlds $W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$. A tpo representing the judges assumptions would be $\leq$ with $010 \sim 100 < 000 \sim 110 < 011 \sim 101 < 001 \sim 111$. The equivalent representation as a linearly ordered set of ranks is shown in \ref{tab:visualising-a-tpo-example}.
 
-\begin{table}[h]
-\centering
-\begin{tabular}{lll}
-$R_{1}$                      & $R_{2}$                                                                   & $R_{3}$                      \\ \hline
-\multicolumn{1}{|l|}{$x_{1}$} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$x_{2}$\\ $x_{4}$\end{tabular}} & \multicolumn{1}{l|}{$x_{3}$} \\ \hline
-\end{tabular}
-\caption{Visualising a tpo as a linearly ordered set of ranks}
-\label{tab:visualising-a-tpo-example}
-\end{table}
+    \begin{table}[h]
+         \centering
+        \begin{tabular}{llll}
+        $R_{1}$                      & $R_{2}$                                                                   & $R_{3}$ & $R_{4}$                      \\ \hline
+        \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
+            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}} \\ \hline
+        \end{tabular}
+        \caption{Visualising a tpo as a linearly ordered set of ranks as done in \cite{Booth2006}}
+        \label{tab:visualising-a-tpo-example}
+    \end{table}
+\end{example}
 
-% belief set
-% belief revision
-% conditional beliefs, evidence/new information
 
 % TODO write chapter
-\section{Epistemic states and belief sets}
+\subsection{Belief sets and epistemic states}
+A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. AGM theory \cite{Alchourron1985} defines postulates for belief sets and their contraction, revision or expansion with new evidence.
 
-%why epistemic states? difference between conditional and propositional belief sets
-%To understand the requirements imposed by iterated revision we should start by
-%recalling the distinction between belief sets and epistemic states. A belief set $ characterizes the set of propositions to which an agent is committed at any given time.
-%An epistemic state contains, in addition to @, the entire information needed for coherent reasoning, including, in particular, the very strategy of belief revision which the
-%agent wishes to employ at that given time. Any such strategy encodes, and is equivalent to, a set of “conditional beliefs”, that is, beliefs that one is prepared to adopt
-%conditioned on any hypothetical evidence [ 2,3,15,16,19,20]. To fully specify behavior under successive observations, one must encode, not merely how beliefs are to be
-%revised (this is enough for the first stage only) but also how the revision strategy
-%itself is to be modified by each new evidence. This amounts, in turns, to specifying
-%which conditional beliefs are to be retained and which ones deleted with each piece of
-%evidence. 
+Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is not expressive enough for satisfying results in iterated belief revision. They make the distinction between propositional beliefs (i.e. beliefs the agent accepts and are part of the belief set) and conditional beliefs (i.e. beliefs the agent is prepared to adopt with new evidence).
+
+While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they place little restrictions on preserving conditional beliefs. In their paper Darwiche and Pearl use epistemic states, abstract entities that contain all information an agent needs for it's reasoning, especially their strategy for belief revision. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering multiple new information \cite{Darwiche1997}.
+
+Belief sets can be extracted from epistemic states (the belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$).
+
+\begin{example}
+    Continuing example \ref{example:example-introduction} it is possible to model an epistemic state $\mathbb{E}$ with the tpo $\leq_{\mathbb{E}}$.
+    
+    A belief set can be extracted from it by considering the lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $min(\top, \leq_{\mathbb{E}})$ is the belief set associated with $\mathbb{E}$.
+\end{example}
+
+%Katsuno and Mendelzon [17] propose that an epistemic state Ψ
+%should be equipped with an ordering ≤Ψ of the worlds (interpretations), where the compatibility with Bel(Ψ) is ensured by the socalled faithfulness.
+%Definition 1 (Faithful Assignment [17]) A function Ψ 
+%→≤Ψ that
+%maps each epistemic state to a total preorder on interpretations is
+%said to be a faithful assignment if and only if:
+%(FA1) if ω1 ∈ Ψ and ω2 ∈ Ψ, then ω1 Ψ ω2
+%(FA2) if ω1 ∈ Ψ and ω2 ∈  / Ψ, then ω1 <Ψ ω2
+%Intuitively, ≤Ψ orders the worlds by plausibility, such that the minimal worlds with respect to ≤Ψ are the most plausible worlds.
 
 
 %Definition of the DP-AGM postulates and what modifications are made to them for the paper (to always be able to get a belief set from the tpo). Show how a belief set can be extracted from an epistemic state. Introduction of the notation of $\leq$ as tpo, $\ast$ as the revision operator for $\leq$ returning a new tpo $\leq^{\ast}_{\alpha}$.
 
 % TODO write chapter
 \section{Enriched epistemic states and $\leq$-faithful tpos}
+% recal table 1 with visualisation exampple
+
+
 %\begin{itemize}
 %    \item Notation of the enriched epistemic state $W^{\pm}$, $\preceq$ and conditions on it as well as it's relation to $\leq$. Visual examples using sticks \cite{Booth2011} and ranks (and mentioning that tpos can be represented as linearly ordered set of ranks) \cite{Booth2006}. Definition of a $\leq$-faithful tpo over $W^{\pm}$.
 %\end{itemize}
