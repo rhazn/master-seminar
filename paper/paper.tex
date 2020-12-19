@@ -43,31 +43,36 @@ A core process for an agent dealing with uncertain knowledge is updating their w
 
 In belief revision, belief change is modelled using an operator that produces an updated set of beliefs from the state of an agent and new evidence. Research in this area discusses appropriate formalisations of agent state and constrains on individual or families of operators. Depending on if the suggested operator handles only one new evidence or multiple new evidences the approaches are called one-step or iterated belief revision.
 
+%Consider a knowledge base (KB) represented by a set of sentences in a
+%language L. As our perception of the world described by the knowledge base
+%changes, the knowledge base must be modified. G~irdenfors [9] distinguishes
+%several kinds of modifications. If we simply acquire additional knowledge
+%about the world, and the new knowledge does not conflict with the current
+%beliefs t of the KB, we expand the KB. If, however, the new knowledge is
+%inconsistent with the old beliefs, and we want the KB to be always consistent,
+%we must resolve the conflict somehow; this operation will be called revision. A
+%* Part of this work was performed while this author was visiting the University of Toronto.
+%** This author is partially supported by the Natural Science and Engineering Research Council
+%of Canada.
+%1 We use the terms belief and knowledge interchangeably in this paper.
+%0004-3702/91/$03.50 © 1991 -- Elsevier Science Publishers B.V. All rights reserved 
+%264 H. Katsuno, A.O. Mendelzon
+%different kind of change occurs when a sentence previously believed becomes
+%questionable and has to be given up; the operation that makes this change is a
+%contraction
+
 A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (shortened as tpos) \cite{Booth2011}. The primary article for this report, 'How to Revise a Total Preorder' discusses how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps and therefor places the article in the field of iterated belief revision.
 %1.2 Ich sehe hier die Gefahr, dass das zu Ausführlich wird.
 %Keine große Diskussion von AGM, Darwiche and Pearl und so weiter.
 %Keine Beziehung zur Allen und co herstellen ;)
 %Kurz und Prägnant präsentieren, was benötgigt wird um zu Verstehen was
 %in dem Primärartikel neu ist.
-%
-%\begin{itemize}
-%    \item Introduction of the research area of belief change and major sub-areas according to \cite{Darwiche1997}: nonmonotonic logic, probabilistic reasoning and belief revision and placing of \cite{Booth2011} in the area of belief revision. Belief revision as operator based approach that concerns itself with the definition of constrains (so called postulates) on operators that transitions between held beliefs when new information arrives \cite{Darwiche1997}.
-%    \item \cite{Alchourron1985} as seminal paper for one-step belief revision on belief sets. Definitions of belief sets and difference between propositional beliefs and conditional beliefs. Adherence to the principle of minimal change for currently held beliefs only; nearly no constrains on conditional beliefs.
-%    \item \cite{Grove1988} introducing an ordered worlds / spheres approach instead of working on a set of held beliefs. \cite{Booth2004} understanding preorders as partitions into equivalence classes on ordered worlds (and using multiple orders). Iterated belief change as outlook.
-%    \item \cite{Darwiche1997} discussion of iterated belief revision and the definition and need for epistemic states instead of belief sets for handling conditional beliefs. total preorders as plausibility orderings to represent conditional beliefs.
-%    \item \cite{Booth2011} discusses a framework for tpo-revision that enriches an epistemic state with a framework to create a new tpo for a revision step on the basis of interval orderings between positive and negative representations of possible worlds. Motivation of tpo-revision as 'context' as introduced in \cite{Booth2007}.
-%    \item Therefor \cite{Booth2011} as work in iterated belief revision, closer placement of \cite{Booth2011} as non-priotised revision on the belief set level.
-%    \item Related areas to the framework established \cite{Booth2011} with preference aggregation and relation to research in interval orderings.
-%\end{itemize}
-%\textbf{Section Goal:} Overview of the research area and placement of \cite{Booth2011} as work on iterated belief revision. Rough overview of the background for the work in \cite{Booth2011}. Shared understanding of: belief revision (and the difference between one-step- and iterated belief revision), belief sets and epistemic states, conditional beliefs in contrast to propositional beliefs, tpos as plausibility orderings, motivation and definition of tpo-revision as tool for iterated belief revision. Section will need to be discussed with the seminar on \cite{Darwiche1997} and reduced depending on how much is shown in their presentation.<
-%
-%see \cite{Kai2020} for inspiration
 
 % TODO write formal background
 \section{Formal background}
 
 \subsection{Propositional Logic} % Aussagenlogik
-Notation follows as used in \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables, lower case greek letters for formulas in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\vdash$ as classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulas in $L$.
+Notation follows as used in \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables, lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\vdash$ as classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
 
 $W$ is the set of propositional worlds (also called propositional interpretations in classical logic \cite{Kai2020}). Given a $\alpha \in L$ the set of worlds that satisfy $\alpha$ is denoted by $[\alpha]$.
 
@@ -112,14 +117,15 @@ Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is no
 
 While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they place little restrictions on preserving conditional beliefs. In their paper Darwiche and Pearl use epistemic states, abstract entities that contain all information an agent needs for it's reasoning, especially their strategy for belief revision. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering multiple new information \cite{Darwiche1997}.
 
-Belief sets can be extracted from epistemic states (the belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$).
+Belief sets can be extracted from epistemic states (the belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$). When modelled with a tpo, extraction is done by considering the lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is assumed to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$.
 
 \begin{example}
     Continuing example \ref{example:example-introduction} it is possible to model an epistemic state $\mathbb{E}$ with the tpo $\leq_{\mathbb{E}}$.
     
-    A belief set can be extracted from it by considering the lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $min(\top, \leq_{\mathbb{E}}) = \{ 010, 100\}$ is the belief set associated with $\mathbb{E}$.
+    $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $[B(\mathbb{E})] = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
 \end{example}
 
+% do we need to discuss this in ore detail? faithful assignment here:
 %Katsuno and Mendelzon [17] propose that an epistemic state Ψ
 %should be equipped with an ordering ≤Ψ of the worlds (interpretations), where the compatibility with Bel(Ψ) is ensured by the socalled faithfulness.
 %Definition 1 (Faithful Assignment [17]) A function Ψ 
@@ -130,7 +136,7 @@ Belief sets can be extracted from epistemic states (the belief set extracted fro
 %(FA2) if ω1 ∈ Ψ and ω2 ∈  / Ψ, then ω1 <Ψ ω2
 %Intuitively, ≤Ψ orders the worlds by plausibility, such that the minimal worlds with respect to ≤Ψ are the most plausible worlds.
 
-
+\subsection{DP-AGM postulates}
 %Definition of the DP-AGM postulates and what modifications are made to them for the paper (to always be able to get a belief set from the tpo). Show how a belief set can be extracted from an epistemic state. Introduction of the notation of $\leq$ as tpo, $\ast$ as the revision operator for $\leq$ returning a new tpo $\leq^{\ast}_{\alpha}$.
 
 % TODO write chapter
