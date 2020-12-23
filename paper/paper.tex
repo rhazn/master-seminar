@@ -117,7 +117,7 @@ Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is no
 
 While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they place little restrictions on preserving conditional beliefs. In their paper Darwiche and Pearl use epistemic states, abstract entities that contain all information an agent needs for it's reasoning, especially their strategy for belief revision. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering multiple new information \cite{Darwiche1997}.
 
-Belief sets can be extracted from epistemic states (the belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$). When modelled with a tpo, extraction is done by considering the lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is assumed to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$.
+Belief sets can be extracted from epistemic states (the belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$). Darwiche and Pearl show that their version of revision of epistemic states can be modelled with a tpo $\leq_{\mathbb{E}}$ associated with $\mathbb{E}$. Extraction of $B(\mathbb{E})$ is done by considering the lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is assumed to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$.
 
 \begin{example}
     Continuing example \ref{example:example-introduction} it is possible to model an epistemic state $\mathbb{E}$ with the tpo $\leq_{\mathbb{E}}$.
@@ -137,10 +137,58 @@ Belief sets can be extracted from epistemic states (the belief set extracted fro
 %Intuitively, ≤Ψ orders the worlds by plausibility, such that the minimal worlds with respect to ≤Ψ are the most plausible worlds.
 
 \subsection{DP-AGM postulates}
-%Definition of the DP-AGM postulates and what modifications are made to them for the paper (to always be able to get a belief set from the tpo). Show how a belief set can be extracted from an epistemic state. Introduction of the notation of $\leq$ as tpo, $\ast$ as the revision operator for $\leq$ returning a new tpo $\leq^{\ast}_{\alpha}$.
+The postulates first introduced by \cite{Alchourron1985} and reformulated for iterated belief revision on epistemic states by \cite{Darwiche1997} are repeated here. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ it's associated belief set, $B(\mathbb{E}) + \alpha$ the expansion of $B(\mathbb{E})$ by $\alpha$ and $\ast$ being a belief change operator on epistemic states. 
+
+\begin{equation*}
+\begin{aligned}
+    (\mathbb{E}\ast1) \qquad & B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha)) \\
+    (\mathbb{E}\ast2) \qquad &  \alpha \in B(\mathbb{E}\ast\alpha) \\
+    (\mathbb{E}\ast3) \qquad & B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha \\
+    (\mathbb{E}\ast4) \qquad & \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha) \\
+    (\mathbb{E}\ast5) \qquad & \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta) \\
+    (\mathbb{E}\ast6) \qquad & \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \vdash \neg \alpha \\
+    (\mathbb{E}\ast7) \qquad & B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta \\
+    (\mathbb{E}\ast8) \qquad & \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta)) \\
+\end{aligned}
+\end{equation*}
+
+To guarantee the ability to extract unique belief sets from epistemic states after a revision by $\alpha$ the Booth and Meyer \cite{Booth2011} modify these postulates by requiring consistent epistemic inputs. That requirement means dropping $(\mathbb{E}\ast6)$ and considering only $(\mathbb{E}\ast1)$-$(\mathbb{E}\ast5)$ and $(\mathbb{E}\ast7)$-$(\mathbb{E}\ast8)$ as DP-AGM.
+
+While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $min(\alpha, \leq_{\mathbb{E}})$), Darwiche and Pearl also define postulates that restrict the rest of the new ordering. Because the focus of this report is on the revision of tpos the semantic (i.e. in terms of how the ordering of worlds undergoes change) versions are shown here, for more details and sentential versions refer to \cite{Darwiche1997}.
+
+\begin{equation*}
+\begin{aligned}
+    (CR1) \qquad & \textrm{If } v\in [\alpha], w \in [\alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w\\
+    (CR2) \qquad & \textrm{If } v\in [\neg \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w\\
+    (CR3) \qquad & \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v <_{\mathbb{E}} w \textrm{ only if } v <_{\mathbb{E\ast\alpha}} w\\
+    (CR4) \qquad & \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ only if } v \leq_{\mathbb{E\ast\alpha}} w\\
+\end{aligned}
+\end{equation*}
+
+$(CR1)$ and $(CR2)$ mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$ or $\neg\alpha$ worlds. $(CR3)$ and $(CR4)$ require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after a $\alpha$-revision.
+
+% TODO: QUESTION: do we need C1-C4 here? 
+%\begin{equation*}
+%\begin{aligned}
+%    (C1) \qquad & \textrm{If } \beta \vdash \alpha \textrm{ then } B(\mathbb{E}\ast\alpha\ast\beta)=B(\mathbb{E}\ast\beta) \\
+%    (C2) \qquad & \textrm{If } \beta \vdash \neg  \alpha \textrm{ then } B(\mathbb{E}\ast\alpha\ast\beta)=B(\mathbb{E}\ast\beta) \\
+%    (C3) \qquad & \textrm{If } \alpha \in B(\mathbb{E}\ast\beta) \textrm{ then } \alpha \in B(\mathbb{E}\ast\alpha\ast\beta) \\
+%    (C4) \qquad & \textrm{If } \neg \alpha \notin B(\mathbb{E}\ast\beta) \textrm{ then } \neg \alpha \notin B(\mathbb{E}\ast\alpha\ast\beta) \\
+%\end{aligned}
+%\end{equation*}
+
 
 % TODO write chapter
 \section{Enriched epistemic states and $\leq$-faithful tpos}
+%INTRO from dpm-agm
+%For the rest of the paper we assume a fixed but arbitrary initial tpo ≤ over W
+%which we wish to revise. This tpo plays the role of the plausibility ordering over
+%worlds introduced by Darwiche and Pearl into epistemic states. < will denote
+%the strict part of ≤, and ∼ the symmetric closure of ≤ (i.e. x ∼ y iff both x ≤ y
+%and y ≤ x). We are interested in functions ∗ which, for each α ∈ L, return a
+%new ordering ≤∗
+%α, and we will refer to any such ∗ as a revision operator for ≤.
+
 % recal table 1 with visualisation exampple
 
 
