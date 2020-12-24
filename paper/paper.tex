@@ -11,6 +11,10 @@
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\renewcommand{\thedefinition}{\arabic{definition}}
+
 \begin{document}
 
 % TODO better title
@@ -177,18 +181,20 @@ While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $
 
 
 % TODO write chapter
-\section{Enriched epistemic states and $\leq$-faithful tpos}
+\section{Additional metadata for tpo revision}
+\subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$ Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of the paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. Functions $\ast$ that can be used for iterated revision in that way are refered to as revision operators for $\leq$.
 
-Booth and Meyers \cite{Booth2011} approach is to add additional metadata to every world $w \in W$. This new structure is denoted as $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$. In this notation a world $w \in W$ is represented twice: When new evidence $\alpha$ arrives that makes $w$ more plausible (because $w \in [\alpha]$) the agent can assume it's rank as $w^{+} \in W^{\pm}$. In contrast if the new evidence makes $w$ less plausible ($w \notin [\alpha]$) than $w^{-} \in W^{\pm}$ is $w$'s rank. The pair $(w^{+}, w^{-})$ represents an abstract interval representing metadata about plausibility assumptions about $w$.
+Booth and Meyers \cite{Booth2011} approach is to add additional metadata to every world $w \in W$. This new structure is denoted as $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$. In this notation a world $w \in W$ is represented twice: When new evidence $\alpha$ arrives that makes $w$ more plausible (because $w \in [\alpha]$) the agent can assume it's rank as $w^{+} \in W^{\pm}$. In contrast if the new evidence makes $w$ less plausible ($w \notin [\alpha]$) than $w^{-} \in W^{\pm}$ is $w$'s rank. In their paper \cite{Booth2011} Booth and Meyer call the pair $(w^{+}, w^{-})$ the positive/negative representation of the world $w$. It represents an abstract interval representing metadata about plausibility assumptions about $w$.
 
+\subsection{$\leq$-faithful tpos}
 For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation $\preceq$ over $W^{\pm}$ that is added to the epistemic state of an agent.
 
 \begin{example}
     \label{example:example-stick}
-    Recall that tpos can be equivalently thought of as a linearly ordere set of ranks (Example \ref{example:example-introduction}) and therefor a tpo over $W$ can be visualised by ordering every $w \in W$ in a table of ranks (Table \ref{tab:visualising-a-tpo-example}). To visualise the interval ordering introduced by $\preceq$ Booth and Meyer use a "stick" with the endpoints defined as $w^{+}$/$w^{-}$ respectively, first introduced in \cite{Booth2007}. 
-    
-    \begin{figure}
+    Recall that tpos can be equivalently thought of as a linearly ordere set of ranks (Example \ref{example:example-introduction}, page \pageref{example:example-introduction}) and therefor a tpo over $W$ can be visualised by ordering every $w \in W$ in a table of ranks (Table \ref{tab:visualising-a-tpo-example}, page \pageref{tab:visualising-a-tpo-example}). To visualise the interval ordering introduced by $\preceq$ Booth and Meyer use a "stick" with the endpoints defined as $w^{+}$/$w^{-}$ respectively, first introduced in \cite{Booth2007} and shown in Figure \ref{fig:example-visualisation-scatterplot}.
+        
+    \begin{figure}[h]
         \centering
         \begin{tikzpicture}[scale=1.2]
             \begin{axis}[
@@ -215,8 +221,8 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation $\p
                     5 1 empty $x_{4}^{+}$
                     7 1 empty $x_{4}^{-}$
                                         
-                    2 2 empty $x_{3}^{+}$
-                    4 2 empty $x_{3}^{-}$
+                    3 2 empty $x_{3}^{+}$
+                    5 2 empty $x_{3}^{-}$
                     
                     2 3 empty $x_{2}^{+}$
                     4 3 empty $x_{2}^{-}$
@@ -226,15 +232,29 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation $\p
                     };
             \end{axis}
         \end{tikzpicture}
-        \label{plot:example-visualisation-scatterplot}
+        \label{fig:example-visualisation-scatterplot}
             \caption{Representation of $\preceq$ over $W^{\pm}$ using sticks}
     \end{figure}
+    
+    In this visualisation the worlds on lower ranks (more on the left) are preferred and therefor assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{2}^{+}$ and $x_{3}^{-} \sim x_{4}^{+}$ Note that while all sticks have the same length in this example that is not required.
 \end{example}
 
-%\begin{itemize}
-%    \item Notation of the enriched epistemic state $W^{\pm}$, $\preceq$ and conditions on it as well as it's relation to $\leq$. Visual examples using sticks \cite{Booth2011} and ranks (and mentioning that tpos can be represented as linearly ordered set of ranks) \cite{Booth2006}. Definition of a $\leq$-faithful tpo over $W^{\pm}$.
-%\end{itemize}
-%\textbf{Section Goal:} Notation and introducing the concept of a $\leq$-faithful tpo over $W^{\pm}$ and how to visualise it.
+To define the relations between $\preceq$ and $\leq$ Booth and Meyer define a list of conditions.
+
+\begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\preceq\arabic*$)]
+    \item\label{PREQ1} $\qquad \preceq \textrm{ is a tpo over } W^{\pm}$
+    \item\label{PREQ2} $\qquad x^{+} \preceq y^{+} \textrm{ iff } x \leq y$
+    \item\label{PREQ3} $\qquad x^{-} \preceq y^{-} \textrm{ iff } x \leq y$
+    \item\label{PREQ4} $\qquad x^{+} \prec x^{-}$
+\end{enumerate}
+
+The choice between positive or negative representations of two worlds should be the same as under $\leq$ (due to \ref{PREQ2}, \ref{PREQ3}). According to \ref{PREQ4} there has to be a difference between to ranks of a positive representation and a negative representation of the same world and given the choice between both the positive representation has to be chosen.
+
+\begin{definition}[$\leq$-faithful tpo over $W^{\pm}$ taken directly from \cite{Booth2011}]
+Let $\preceq \in W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4} we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
+\end{definition}
+
+Because of \ref{PREQ2} and \ref{PREQ3} it is sufficient to only include $\preceq$ in the epistemic state. The tpo $\leq$ over $W$ can be determined from $\preceq$ by restricting to only $\{ x^{+} \mid x \in W\}$ or $\{ x^{-} \mid x \in W\}$ respectively.
 
 % TODO write chapter
 % booth: "on a semantic level, i.e., in terms of how the ordering of individual worlds x, y undergo change"
