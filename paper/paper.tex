@@ -190,31 +190,39 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation $\p
     
     \begin{figure}
         \centering
-        \begin{tikzpicture}
+        \begin{tikzpicture}[scale=1.2]
             \begin{axis}[
                   yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
                   xticklabels={,,},
                   ytick style={draw=none},
                   xtick style={draw=none},
-                  axis line style={draw=none},
-            scatter/classes={
-                empty={mark=o,draw=black}}]
-                    \addplot[scatter,
-                        scatter src=explicit symbolic]
-                        table [meta=label] {
-                    x y label
+                  axis line style={draw=none}
+            ]
+            \addplot[
+                scatter,
+                scatter src=explicit symbolic,
+                mark size=3,
+                scatter/classes={
+                    empty={mark=o, draw=black},
+                    filled={mark=x, draw=black}
+                },
+                nodes near coords*={\Label},
+                visualization depends on={value \thisrow{label} \as \Label}
+            ]
+            table [meta=class] {
+                    x y class label
                     
-                    5 1 empty
-                    7 1 empty
+                    5 1 empty $x_{4}^{+}$
+                    7 1 empty $x_{4}^{-}$
+                                        
+                    2 2 empty $x_{3}^{+}$
+                    4 2 empty $x_{3}^{-}$
                     
-                    2 2 empty
-                    4 2 empty
+                    2 3 empty $x_{2}^{+}$
+                    4 3 empty $x_{2}^{-}$
                     
-                    2 3 empty
-                    4 3 empty
-                    
-                    1 4 empty
-                    3 4 empty
+                    1 4 empty $x_{1}^{+}$
+                    3 4 empty $x_{1}^{-}$
                     };
             \end{axis}
         \end{tikzpicture}
