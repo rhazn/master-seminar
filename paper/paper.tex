@@ -4,7 +4,9 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{dsfont}
-
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
 
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
@@ -83,7 +85,7 @@ A total preorder is a binary relation $\leq$ (here over the set of propositional
 
 The symbol $<$ is used to denote the strict part of $\leq$ while $\sim$ represents the symmetric closure of $\leq$ (i.e. $x \sim y$ iff $x \leq y$ and $y \leq x$).
 
-A helpful visualisation for tpos is shown in \cite{Booth2006}. It uses the fact that tpos can be represented as a linearly ordered set of ranks. Each rank of a tpo $\leq$ is defined as the equivalence classes modulo the symmetric closure of $\leq$: $[[x]]_{\sim} = \{y \vert y \sim x\}$. These equivalence classes are then ordered by the relation $[[x]] \leq [[y]]$ iff $x \leq y$
+A helpful visualisation for tpos is shown in \cite{Booth2006}. It uses the fact that tpos can be represented as a linearly ordered set of ranks. Each rank of a tpo $\leq$ is defined as the equivalence classes modulo the symmetric closure of $\leq$: $[[x]]_{\sim} = \{y \mid y \sim x\}$. These equivalence classes are then ordered by the relation $[[x]] \leq [[y]]$ iff $x \leq y$
 
 \begin{example}
     \label{example:example-introduction}
@@ -139,33 +141,29 @@ Belief sets can be extracted from epistemic states (the belief set extracted fro
 \subsection{DP-AGM postulates}
 The postulates first introduced by \cite{Alchourron1985} and reformulated for iterated belief revision on epistemic states by \cite{Darwiche1997} are repeated here. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ it's associated belief set, $B(\mathbb{E}) + \alpha$ the expansion of $B(\mathbb{E})$ by $\alpha$ and $\ast$ being a belief change operator on epistemic states. 
 
-\begin{equation*}
-\begin{aligned}
-    (\mathbb{E}\ast1) \qquad & B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha)) \\
-    (\mathbb{E}\ast2) \qquad &  \alpha \in B(\mathbb{E}\ast\alpha) \\
-    (\mathbb{E}\ast3) \qquad & B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha \\
-    (\mathbb{E}\ast4) \qquad & \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha) \\
-    (\mathbb{E}\ast5) \qquad & \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta) \\
-    (\mathbb{E}\ast6) \qquad & \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \vdash \neg \alpha \\
-    (\mathbb{E}\ast7) \qquad & B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta \\
-    (\mathbb{E}\ast8) \qquad & \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta)) \\
-\end{aligned}
-\end{equation*}
+\begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
+    \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
+    \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
+    \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
+    \item\label{E4} $\qquad \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
+    \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
+    \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \vdash \neg \alpha$
+    \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
+    \item\label{E8} $\qquad \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta))$
+\end{enumerate}
 
-To guarantee the ability to extract unique belief sets from epistemic states after a revision by $\alpha$ the Booth and Meyer \cite{Booth2011} modify these postulates by requiring consistent epistemic inputs. That requirement means dropping $(\mathbb{E}\ast6)$ and considering only $(\mathbb{E}\ast1)$-$(\mathbb{E}\ast5)$ and $(\mathbb{E}\ast7)$-$(\mathbb{E}\ast8)$ as DP-AGM.
+To guarantee the ability to extract unique belief sets from epistemic states after a revision by $\alpha$ the Booth and Meyer \cite{Booth2011} modify these postulates by requiring consistent epistemic inputs. That requirement means dropping \ref{E6} and considering only \ref{E1}-\ref{E5} and \ref{E7}-\ref{E8} as DP-AGM.
 
 While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $min(\alpha, \leq_{\mathbb{E}})$), Darwiche and Pearl also define postulates that restrict the rest of the new ordering. Because the focus of this report is on the revision of tpos the semantic (i.e. in terms of how the ordering of worlds undergoes change) versions are shown here, for more details and sentential versions refer to \cite{Darwiche1997}.
 
-\begin{equation*}
-\begin{aligned}
-    (CR1) \qquad & \textrm{If } v\in [\alpha], w \in [\alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w\\
-    (CR2) \qquad & \textrm{If } v\in [\neg \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w\\
-    (CR3) \qquad & \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v <_{\mathbb{E}} w \textrm{ only if } v <_{\mathbb{E\ast\alpha}} w\\
-    (CR4) \qquad & \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ only if } v \leq_{\mathbb{E\ast\alpha}} w\\
-\end{aligned}
-\end{equation*}
+\begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = (CR$\arabic*$)]
+    \item\label{CR1} $\qquad \textrm{If } v\in [\alpha], w \in [\alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR2} $\qquad \textrm{If } v\in [\neg \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR3} $\qquad \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v <_{\mathbb{E}} w \textrm{ only if } v <_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR4} $\qquad \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ only if } v \leq_{\mathbb{E\ast\alpha}} w$
+\end{enumerate}
 
-$(CR1)$ and $(CR2)$ mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$ or $\neg\alpha$ worlds. $(CR3)$ and $(CR4)$ require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after a $\alpha$-revision.
+\ref{CR1} and \ref{CR2} mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$ or $\neg\alpha$ worlds. \ref{CR3} and \ref{CR4} require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after a $\alpha$-revision.
 
 % TODO: QUESTION: do we need C1-C4 here? 
 %\begin{equation*}
@@ -180,17 +178,50 @@ $(CR1)$ and $(CR2)$ mean that the relative ordering of worlds following a revisi
 
 % TODO write chapter
 \section{Enriched epistemic states and $\leq$-faithful tpos}
-%INTRO from dpm-agm
-%For the rest of the paper we assume a fixed but arbitrary initial tpo ≤ over W
-%which we wish to revise. This tpo plays the role of the plausibility ordering over
-%worlds introduced by Darwiche and Pearl into epistemic states. < will denote
-%the strict part of ≤, and ∼ the symmetric closure of ≤ (i.e. x ∼ y iff both x ≤ y
-%and y ≤ x). We are interested in functions ∗ which, for each α ∈ L, return a
-%new ordering ≤∗
-%α, and we will refer to any such ∗ as a revision operator for ≤.
+Based on DP-AGM and the postulates $(CR1)$-$(CR4)$ Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of the paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. Functions $\ast$ that can be used for iterated revision in that way are refered to as revision operators for $\leq$.
 
-% recal table 1 with visualisation exampple
+Booth and Meyers \cite{Booth2011} approach is to add additional metadata to every world $w \in W$. This new structure is denoted as $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$. In this notation a world $w \in W$ is represented twice: When new evidence $\alpha$ arrives that makes $w$ more plausible (because $w \in [\alpha]$) the agent can assume it's rank as $w^{+} \in W^{\pm}$. In contrast if the new evidence makes $w$ less plausible ($w \notin [\alpha]$) than $w^{-} \in W^{\pm}$ is $w$'s rank. The pair $(w^{+}, w^{-})$ represents an abstract interval representing metadata about plausibility assumptions about $w$.
 
+For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation $\preceq$ over $W^{\pm}$ that is added to the epistemic state of an agent.
+
+\begin{example}
+    \label{example:example-stick}
+    Recall that tpos can be equivalently thought of as a linearly ordere set of ranks (Example \ref{example:example-introduction}) and therefor a tpo over $W$ can be visualised by ordering every $w \in W$ in a table of ranks (Table \ref{tab:visualising-a-tpo-example}). To visualise the interval ordering introduced by $\preceq$ Booth and Meyer use a "stick" with the endpoints defined as $w^{+}$/$w^{-}$ respectively, first introduced in \cite{Booth2007}. 
+    
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                  yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
+                  xticklabels={,,},
+                  ytick style={draw=none},
+                  xtick style={draw=none},
+                  axis line style={draw=none},
+            scatter/classes={
+                empty={mark=o,draw=black}}]
+                    \addplot[scatter,
+                        scatter src=explicit symbolic]
+                        table [meta=label] {
+                    x y label
+                    
+                    5 1 empty
+                    7 1 empty
+                    
+                    2 2 empty
+                    4 2 empty
+                    
+                    2 3 empty
+                    4 3 empty
+                    
+                    1 4 empty
+                    3 4 empty
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \label{plot:example-visualisation-scatterplot}
+            \caption{Representation of $\preceq$ over $W^{\pm}$ using sticks}
+    \end{figure}
+\end{example}
 
 %\begin{itemize}
 %    \item Notation of the enriched epistemic state $W^{\pm}$, $\preceq$ and conditions on it as well as it's relation to $\leq$. Visual examples using sticks \cite{Booth2011} and ranks (and mentioning that tpos can be represented as linearly ordered set of ranks) \cite{Booth2006}. Definition of a $\leq$-faithful tpo over $W^{\pm}$.
