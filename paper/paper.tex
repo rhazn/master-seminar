@@ -67,7 +67,8 @@ In belief revision, belief change is modelled using an operator that produces an
 %questionable and has to be given up; the operation that makes this change is a
 %contraction
 
-A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (shortened as tpos) \cite{Booth2011}. The primary article for this report, 'How to Revise a Total Preorder' discusses how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps and therefor places the article in the field of iterated belief revision.
+% TODO: discussed in \cite{Katsuno1991} correct? was mentioned in intro of Admissible and Restrained Revision
+A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (shortened as tpos) \cite{Booth2011}, discussed in \cite{Katsuno1991}. The primary article for this report, 'How to Revise a Total Preorder' discusses how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps and therefor places the article in the field of iterated belief revision.
 %1.2 Ich sehe hier die Gefahr, dass das zu Ausführlich wird.
 %Keine große Diskussion von AGM, Darwiche and Pearl und so weiter.
 %Keine Beziehung zur Allen und co herstellen ;)
@@ -118,6 +119,23 @@ A helpful visualisation for tpos is shown in \cite{Booth2006}. It uses the fact 
 % TODO write chapter
 \subsection{Belief sets and epistemic states}
 A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. AGM theory \cite{Alchourron1985} defines postulates for belief sets and their contraction, revision or expansion with new evidence.
+% TODO explain contraction, revision, expansion?
+%    As our perception of the world described by the knowledge base
+%    changes, the knowledge base must be modified. G~irdenfors [9] distinguishes
+%    several kinds of modifications. If we simply acquire additional knowledge
+%    about the world, and the new knowledge does not conflict with the current
+%    beliefs t of the KB, we expand the KB. If, however, the new knowledge is
+%    inconsistent with the old beliefs, and we want the KB to be always consistent,
+%    we must resolve the conflict somehow; this operation will be called revision. A
+%    * Part of this work was performed while this author was visiting the University of Toronto.
+%    ** This author is partially supported by the Natural Science and Engineering Research Council
+%    of Canada.
+%    1 We use the terms belief and knowledge interchangeably in this paper.
+%    0004-3702/91/$03.50 © 1991 -- Elsevier Science Publishers B.V. All rights reserved 
+%    264 H. Katsuno, A.O. Mendelzon
+%    different kind of change occurs when a sentence previously believed becomes
+%    questionable and has to be given up; the operation that makes this change is a
+%    contraction. Other kinds of operations are discussed in [14].
 
 Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is not expressive enough for satisfying results in iterated belief revision. They make the distinction between propositional beliefs (i.e. beliefs the agent accepts and are part of the belief set) and conditional beliefs (i.e. beliefs the agent is prepared to adopt with new evidence).
 
@@ -350,6 +368,7 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
 %three rules were considered characteristic of a family of operators called
 %admissible revision operators [7]."
 % TODO: WHAT ARE ADMISSIBLE OPERATORS
+%info here: \cite{Booth2006a}
 
 
 % THEOREM 1 as axiomatisation of the family of revision operators considered in the paper.
