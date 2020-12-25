@@ -12,8 +12,7 @@
 \newtheorem{example}{Example}[section]
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\renewcommand{\thedefinition}{\arabic{definition}}
+\newtheorem{definition}{Definition}
 
 \begin{document}
 
@@ -75,7 +74,6 @@ A common tool used to encode plausibility assumptions of an agent about possible
 %Kurz und Prägnant präsentieren, was benötgigt wird um zu Verstehen was
 %in dem Primärartikel neu ist.
 
-% TODO write formal background
 \section{Formal background}
 
 \subsection{Propositional Logic} % Aussagenlogik
@@ -115,8 +113,6 @@ A helpful visualisation for tpos is shown in \cite{Booth2006}. It uses the fact 
     \end{table}
 \end{example}
 
-
-% TODO write chapter
 \subsection{Belief sets and epistemic states}
 A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. AGM theory \cite{Alchourron1985} defines postulates for belief sets and their contraction, revision or expansion with new evidence.
 % TODO explain contraction, revision, expansion?
@@ -149,7 +145,7 @@ Belief sets can be extracted from epistemic states (the belief set extracted fro
     $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $[B(\mathbb{E})] = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
 \end{example}
 
-% do we need to discuss this in ore detail? faithful assignment here:
+% TODO: do we need to discuss this in ore detail? faithful assignment here:
 %Katsuno and Mendelzon [17] propose that an epistemic state Ψ
 %should be equipped with an ordering ≤Ψ of the worlds (interpretations), where the compatibility with Bel(Ψ) is ensured by the socalled faithfulness.
 %Definition 1 (Faithful Assignment [17]) A function Ψ 
@@ -197,8 +193,6 @@ While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $
 %\end{aligned}
 %\end{equation*}
 
-
-% TODO write chapter
 \section{Additional metadata for tpo revision}
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$ Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of the paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. Functions $\ast$ that can be used for iterated revision in that way are refered to as revision operators for $\leq$.
@@ -236,25 +230,25 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation $\p
             table [meta=class] {
                     x y class label
                     
-                    5 1 empty $x_{4}^{+}$
-                    7 1 empty $x_{4}^{-}$
+                    3 1 empty $x_{4}^{+}$
+                    6 1 empty $x_{4}^{-}$
                                         
-                    3 2 empty $x_{3}^{+}$
+                    2 2 empty $x_{3}^{+}$
                     5 2 empty $x_{3}^{-}$
                     
-                    2 3 empty $x_{2}^{+}$
-                    4 3 empty $x_{2}^{-}$
+                    1 3 empty $x_{2}^{+}$
+                    3 3 empty $x_{2}^{-}$
                     
                     1 4 empty $x_{1}^{+}$
                     3 4 empty $x_{1}^{-}$
                     };
             \end{axis}
         \end{tikzpicture}
+        \caption{Representation of $\preceq$ over $W^{\pm}$ using sticks}
         \label{fig:example-visualisation-scatterplot}
-            \caption{Representation of $\preceq$ over $W^{\pm}$ using sticks}
     \end{figure}
     
-    In this visualisation the worlds on lower ranks (more on the left) are preferred and therefor assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{2}^{+}$ and $x_{3}^{-} \sim x_{4}^{+}$ Note that while all sticks have the same length in this example that is not required.
+    In this visualisation the worlds on lower ranks (more on the left) are preferred and therefor assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{3}^{+}$ and $x_{1}^{-} \sim x_{4}^{+}$ Note that while all sticks have the same length in this example that is not required.
 \end{example}
 
 To define the relations between $\preceq$ and $\leq$ Booth and Meyer define a list of conditions.
@@ -348,17 +342,58 @@ Booth and Meyer \cite{Booth2011} aim to discuss tpo revision operators, function
 
 Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausible and worlds that do not satisfy $\alpha$ less plausible. Therefor the agent associates worlds $w \in [\alpha]$ with their positive representation $w^{+}$ and worlds $w \in [\neg\alpha]$ with their negative representation $w^{-}$.
 
-% visual example with alien -> revise tpo
+\begin{example}
+    \label{example:example-updated-tpo}
+    Reconsidering the tpo $\preceq$ from example \ref{example:example-stick} (page \pageref{example:example-stick}). When a new piece of evidence $\alpha$ has to be considered each world gets mapped to one end of the interval assigned to it depending on if it is an $\alpha$-world or not. In figure \ref{fig:example-updated-tpo} that mapping is indicated by the filled out dot. For this example $x_{1}, x_{2}$ and $x_{3}$ are $[\neg\alpha]$-worlds while $x_{4}$ is an $[\alpha]$-world.
 
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[scale=1.2]
+            \begin{axis}[
+                  yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
+                  xticklabels={,,},
+                  ytick style={draw=none},
+                  xtick style={draw=none},
+                  axis line style={draw=none}
+            ]
+            \addplot[
+                scatter,
+                scatter src=explicit symbolic,
+                mark size=3,
+                scatter/classes={
+                    empty={mark=o, draw=black}
+                },
+                nodes near coords*={\Label},
+                visualization depends on={value \thisrow{label} \as \Label}
+            ]
+            table [meta=class] {
+                    x y class label
+                    
+                    3 1 filled $x_{4}^{+}$
+                    6 1 empty $x_{4}^{-}$
+                                        
+                    2 2 empty $x_{3}^{+}$
+                    5 2 filled $x_{3}^{-}$
+                    
+                    1 3 empty $x_{2}^{+}$
+                    3 3 filled $x_{2}^{-}$
+                    
+                    1 4 empty $x_{1}^{+}$
+                    3 4 filled $x_{1}^{-}$
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Associating worlds with their positive/negative representations}
+        \label{fig:example-updated-tpo}
+    \end{figure}
+    
+    The updated tpo $\leq_{\alpha}^{\ast}$ can now be inferred from the figure as the ordering of the filled dots representing the new assignment for the respective world: $x_{1} \sim x_{2} \sim x_{4} < x_{3}$.
+\end{example}
+
+\subsection{Non priotised revision}
 % show also: new evidence that does not become part of the belief set -> non prio example, explain what it is
 \subsection{The problem of just moving things one up}
 
-%\begin{itemize}
-%    \item Introduction of $\ast$ as revision operator for $\leq$ and definition of $\ast_{\preceq}$ as example with visualisation.
-
-\subsection{Example operator}
-% shortened example from paper page 232 without SPH teil, show that shortened example satisfies the properties later on. USE EXAMPLE from darwiche -> here to illustrate things with guy killing an alien
-%TODO this could be OWN contribution!!?
 
 % TODO write chapter
 \section{Properties of tpo-revision operators}
@@ -372,6 +407,11 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
 
 
 % THEOREM 1 as axiomatisation of the family of revision operators considered in the paper.
+
+
+\subsection{Example operator}
+% shortened example from paper page 232 without SPH teil, show that shortened example satisfies the properties later on. USE EXAMPLE from darwiche -> here to illustrate things with guy killing an alien
+%TODO this could be OWN contribution!!?
 
 % TODO write chapter
 \section{Sentinential view, do we even need this?}
