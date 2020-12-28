@@ -99,7 +99,7 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
 
 \begin{example}
     \label{example:example-introduction}
-    As an accompanying example consider the following situation, closely aligned to \cite{Booth2011} and \cite{Darwiche1997}: 
+    As an accompanying example consider the following situation from a courtroom, closely aligned to \cite{Booth2011} and \cite{Darwiche1997}: 
     
     Our agent is a judge in a murder trial. John and Mary are suspects. $p$ represents "John is the murderer", $q$ represents "Mary is the murderer" and $r$ represents "the victim is an alien". Possible propositional worlds will be denoted as triplets of 0s and 1s denoting $p$, $q$ and $r$ to be true or false, e.g. the $101$-world stands for John being the murderer and the victim being an alien.
     
@@ -219,7 +219,7 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation den
         
     \begin{figure}[h]
         \centering
-        \begin{tikzpicture}[scale=1.2]
+        \begin{tikzpicture}[scale=1]
             \begin{axis}[
                   yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
                   xticklabels={,,},
@@ -325,7 +325,6 @@ Because of \ref{PREQ2} and \ref{PREQ3} it is sufficient to only include $\preceq
     As demonstrated here while the "sticks" do not need to be the same size (they just must exist due to \ref{PREQ4}), they need to be the same size for worlds that share a rank for their corresponding representations. They can not "cover" other sticks completely to continue to satisfy \ref{PREQ2} and \ref{PREQ3}.
 \end{example}
 
-% TODO: do i need this?
 \newpage
 
 \begin{example}
@@ -385,7 +384,7 @@ Because of \ref{PREQ2} and \ref{PREQ3} it is sufficient to only include $\preceq
                         };
                 \end{axis}
             \end{tikzpicture}
-            \caption{Representation of $\preceq$ over $W^{\pm}$ for example \ref{example:example-introduction}}
+            \caption{Representation of $\preceq$ over $W^{\pm}$ for the courtroom example \ref{example:example-introduction}}
             \label{fig:example-tpo-initial}
     \end{figure}
 \end{example}
@@ -422,7 +421,7 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
 
     \begin{figure}[h]
         \centering
-        \begin{tikzpicture}[scale=1.2]
+        \begin{tikzpicture}[scale=1]
             \begin{axis}[
                   yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
                   xticklabels={,,},
@@ -465,6 +464,85 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
     The updated tpo $\leq_{\alpha}^{\ast}$ can now be inferred from the figure. It is the ordering of the filled dots, representing the new assignment for the respective world: $x_{1} \sim x_{2} \sim x_{4} < x_{3}$.
 \end{example}
 
+% TODO do we need this?
+\newpage
+
+\begin{example}
+    \label{example:example-tpo-revised}
+    A complex example is the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ (for the courtroom example \ref{example:example-introduction}) using the $\leq$-faithful tpo $\preceq$ introduced in example \ref{example:example-tpo-initial} and shown in figure \ref{fig:example-tpo-revised}. In this case the new evidence received pointed to John being the murderer so $\alpha = p$.
+    
+    \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        filled={mark=*, fill=black}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 empty \empty
+                        3 8 filled
+                        
+                        1 7 filled 
+                        3 7 empty
+                        
+                        2 6 empty 
+                        4 6 filled
+                        
+                        2 5 filled 
+                        4 5 empty
+                        
+                        5 4 empty 
+                        7 4 filled
+                        
+                        5 3 filled 
+                        7 3 empty
+                        
+                        6 2 empty 
+                        8 2 filled
+                        
+                        6 1 filled 
+                        8 1 empty
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Associating positive and negative representations of worlds for the courtroom example \ref{example:example-introduction}, after receiving evidence $\alpha=p$}
+            \label{fig:example-tpo-revised}
+    \end{figure}
+    
+    For the worlds $010, 110 \in W$ in old tpo $\leq$, $010 \leq 110$ was true. To rank them with the revised tpo $\leq_{\alpha}^{\ast}$ calculate:
+    
+    \begin{equation*}
+        r_{\alpha}(010) = 010^{-}, 010 \in [\neg\alpha]
+    \end{equation*}
+    \begin{equation*}
+        r_{\alpha}(110) = 110^{+}, 110 \in [\alpha]
+    \end{equation*}
+    
+    and, as $r_{\alpha}(110^{+}) \prec r_{\alpha}(010^{-})$ is true, set $110 <_{\alpha}^{\ast} 010$.
+    
+    Repeating for every world in $W$, the new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$. Unsurprisingly the belief set associated with the new epistemic state is $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}}) = \{100\}$, "John is the murderer and the victim is not an alien".
+    
+    As $\leq_{\alpha}^{\ast}$ is a representation of the conditional beliefs of the agent, it is also interesting to look at the changes for them: While the judge initially thought both suspects being the murderers ($110$) was less plausible than only Mary being the murderer ($010$), they now have updated their assumptions to think only Mary being the murderer less plausible than both conspiring.
+\end{example}
+
 \subsection{Non-prioritised revision}
 
 Belief revision with the AGM postulates \cite{Alchourron1985} or the reformulation by Darwiche and Pearl \cite{Darwiche1997} always includes the new information $\alpha$ in the belief set after revision. This feature is explicit in \ref{E2} of DP-AGM from chapter \ref{chapter:dp-agm-postulates} (page \pageref{chapter:dp-agm-postulates}), given as $\alpha \in B(\mathbb{E}\ast\alpha)$.
@@ -473,15 +551,71 @@ The operators characterised by Booth and Meyer do not require new evidence $\alp
 
 A demonstration is already provided with example \ref{example:example-updated-tpo} and figure \ref{fig:example-updated-tpo}. The belief set extracted from the new epistemic state $\mathbb{E}$ as $[B(\mathbb{E})] = min(\top, \leq_{\alpha}^{\ast})$ includes the $[\neg\alpha]$-worlds $x_{1}$ and $x_{2}$ and therefor does not include the new evidence $\alpha$.
 
-%Although the approach described allows us to determine more than just
-%the belief set associated with an epistemic state, there is a problem with this
-%approach regarding iterated tpo-revision. While the extra structure tells us
-%how to determine a new tpo, it tells us nothing about how to determine the
-%new extra structure which is needed to guide the next revision. Clearly the
-%problem of iterated belief revision has simply re-emerged “one level up”. We
-%investigate this problem by considering some desirable properties for revising
-%the extra structure, and prove the consistency of these properties by giving a
-%concrete operator satisfying all of them.
+\begin{example}
+    \label{example:example-non-prio-revision} 
+    
+    Using the $\leq$-faithful tpo $\preceq$ already established for the courtroom example \ref{example:example-introduction} the revision by $\alpha = r$ ("the victim was an alien"). is shown in figure \ref{fig:example-non-prio-revision}.
+    \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        filled={mark=*, fill=black}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 empty \empty
+                        3 8 filled
+                        
+                        1 7 empty 
+                        3 7 filled
+                        
+                        2 6 empty 
+                        4 6 filled
+                        
+                        2 5 empty 
+                        4 5 filled
+                        
+                        5 4 filled 
+                        7 4 empty
+                        
+                        5 3 filled 
+                        7 3 empty
+                        
+                        6 2 filled 
+                        8 2 empty
+                        
+                        6 1 filled 
+                        8 1 empty
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Non-prioritised revision for $B(\mathbb{E})$}
+            \label{fig:example-non-prio-revision}
+    \end{figure}
+    
+    Since the agent considered the victim being an alien very unlikely even the positive representations of worlds in $[\alpha]$ are on higher ranks (so considered less plausible) than negative representations of worlds in $[\neg\alpha]$.
+    The belief set $B(\mathbb{E})$ of the agent is unchanged even under $\leq_{\alpha}^{\ast}$, since $\{010, 100\}$ are still the most plausible worlds, and does not include $r$ "the victim is an alien".
+\end{example}
+
+
 
 % TODO write Properties of Booth and Meyer tpo-revision operators
 \section{Properties of Booth and Meyer tpo-revision operators}
@@ -540,6 +674,17 @@ With these properties for $\ast$ defined, Booth and Meyer define the family of o
 \section{Revising $\preceq$}
 % DO NOT DO THIS? OR mention that we only show a concrete operator and not discuss properties, see discussion
 \subsection{Example operator}
+%Although the approach described allows us to determine more than just
+%the belief set associated with an epistemic state, there is a problem with this
+%approach regarding iterated tpo-revision. While the extra structure tells us
+%how to determine a new tpo, it tells us nothing about how to determine the
+%new extra structure which is needed to guide the next revision. Clearly the
+%problem of iterated belief revision has simply re-emerged “one level up”. We
+%investigate this problem by considering some desirable properties for revising
+%the extra structure, and prove the consistency of these properties by giving a
+%concrete operator satisfying all of them.
+
+
 % shortened example from paper page 232 without SPH teil, show that shortened example satisfies the properties later on. USE EXAMPLE from darwiche -> here to illustrate things with guy killing an alien
 %TODO this could be OWN contribution!!?
 
