@@ -20,8 +20,8 @@
 
 \begin{document}
 
-% TODO title
-\title{Sticks and tpos might help me}
+% TODO title, "Of judges, aliens and tpos"?
+\title{Total preorder in the courtroomg}
 \subtitle{Report on 'How to Revise a Total Preorder' \cite{Booth2011} for seminar 1901 - Representation and processing of uncertain knowledge with logic-based methods}
 \author{
 	Heltweg, Philip (3230880) \\
@@ -550,6 +550,7 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
 \end{example}
 
 \subsection{Non-prioritised revision}
+\label{section:non-prioritised-revision}
 
 Belief revision with the AGM postulates \cite{Alchourron1985} or the reformulation by Darwiche and Pearl \cite{Darwiche1997} always includes the new information $\alpha$ in the belief set after revision. This feature is explicit in \ref{E2} of DP-AGM from chapter \ref{chapter:dp-agm-postulates} (page \pageref{chapter:dp-agm-postulates}), given as $\alpha \in B(\mathbb{E}\ast\alpha)$.
 
@@ -811,9 +812,154 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
     \end{equation*}
 \end{example}
 
+\begin{example}
+    \label{example:example-preceq-revised-alien}
+    For an example that demonstrates the impact the revision of $\preceq$ has on the acceptance of conditional beliefs of an agent consider again the courtroom example \ref{example:example-introduction}. The fact that the victim might is an alien ($r$ true) seems very unlikely, which is modelled by the gap between $[r]$-worlds and $[\neg r]$-worlds.
+    
+    When evidence $\alpha = r$ arrives there seems to be little change in the epistemic state of the judge: $\leq_{\alpha}^{\ast}$ is unchanged as even considering the negative representations of $[\neg r]$-worlds they rank lower than $[r]$-worlds. An unchanged tpo $\leq_{\alpha}^{\ast}$ also means the believe set $B(\mathbb{E})$ stays the same and does not include $r$ (a property of non-prioritised revision as described in section \ref{section:non-prioritised-revision}).
+    
+    What did change is the willingness of the agent to accept conditional beliefs about $r$ being true in light of future evidence. This is reflected by the revised structure $\preceq_{p \ast \alpha}$ shown in figure \ref{fig:example-preceq-revised-alien}.
+
+    \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1.5]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        old={mark=x, fill=white}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 old \empty
+                        
+                        3 8 empty
+                        5 8 empty 
+                        
+                        1 7 old
+                        
+                        3 7 empty 
+                        5 7 empty
+                        
+                        2 6 old 
+                        
+                        4 6 empty
+                        6 6 empty
+                        
+                        2 5 old
+                        
+                        4 5 empty 
+                        6 5 empty
+                        
+                        5 4 empty
+                        7 4 empty
+                        
+                        5 3 empty 
+                        7 3 empty
+                        
+                        6 2 empty
+                        8 2 empty
+                        
+                        6 1 empty 
+                        8 1 empty
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = r$}
+            \label{fig:example-preceq-revised-alien}
+    \end{figure}
+    
+    % TODO tpo alpha as beta is unlucky because ast has a different meaning already, also change in figure 8 caption
+    Notice how now the gap between $[\neg r]$- and $[r]$-worlds has closed. After revising $\preceq_{p \ast \alpha}$ for a second piece of evidence $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$ ("the murderer was either John or Mary, not both") the new tpo $\leq_{\alpha \ast \beta}^{\ast}$ can be read from the filled dots in figure \ref{fig:example-preceq-revised-alien2}.
+    
+    \begin{figure}[h]
+            \centering
+            \begin{tikzpicture}[scale=1.5]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        filled={mark=*, fill=black},
+                        old={mark=x, fill=white}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 old \empty
+                        
+                        3 8 filled
+                        5 8 empty 
+                        
+                        1 7 old
+                        
+                        3 7 filled 
+                        5 7 empty
+                        
+                        2 6 old 
+                        
+                        4 6 empty
+                        6 6 filled
+                        
+                        2 5 old
+                        
+                        4 5 empty 
+                        6 5 filled
+                        
+                        5 4 filled
+                        7 4 empty
+                        
+                        5 3 filled 
+                        7 3 empty
+                        
+                        6 2 empty
+                        8 2 filled
+                        
+                        6 1 empty 
+                        8 1 filled
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$\preceq_{p \ast \alpha \ast \beta}$ for $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$}
+            \label{fig:example-preceq-revised-alien2}
+    \end{figure}
+    
+For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where it is not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that even with direct evidence for alien life did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$ the evidence changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$ the judge even considers the $[r]$-worlds $\{011, 101\}$ more likely than the $[\neg r]$-worlds $\{000, 110\}$!
+
+(Luckily due to the existence of $[\beta]$-worlds $\{010, 100\}$ the belief set of the judge still does not include $r$ and rationality prevails.)
+\end{example}
+
 % TODO write Discussion
 \section{Discussion}
-% TODO *6,*7 seem weird, no different "strength" of evidence?
+% TODO *6,*7 seem weird, no different "strength" of evidence? maybe revising multiple time by the same evidence should that be? otherwise revising multiple times by same evidence is also weird because it changes things and is not idempotent
 % TODO: discuss 6/7 being wrong? strength of evidence?=!=!, discuss 5 with it being equal when sticks - and + are same rank?! 
 \newpage
 
