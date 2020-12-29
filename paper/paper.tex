@@ -536,13 +536,13 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
     For the worlds $010, 110 \in W$ in old tpo $\leq$, $010 \leq 110$ was true. To rank them with the revised tpo $\leq_{\alpha}^{\ast}$ calculate:
     
     \begin{equation*}
-        r_{\alpha}(010) = 010^{-}, 010 \in [\neg\alpha]
+        010 \in [\neg\alpha] \textrm{ : } r_{\alpha}(010) = 010^{-}
     \end{equation*}
     \begin{equation*}
-        r_{\alpha}(110) = 110^{+}, 110 \in [\alpha]
+        110 \in [\alpha] \textrm{ : } r_{\alpha}(110) = 110^{+}
     \end{equation*}
     
-    and, as $r_{\alpha}(110^{+}) \prec r_{\alpha}(010^{-})$ is true, set $110 <_{\alpha}^{\ast} 010$.
+    and, as $110^{+} \prec 010^{-}$ is true, set $110 <_{\alpha}^{\ast} 010$.
     
     Repeating for every world in $W$, the new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$. Unsurprisingly the belief set associated with the new epistemic state is $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}}) = \{100\}$, "John is the murderer and the victim is not an alien".
     
@@ -682,12 +682,12 @@ With these properties for $\ast$ defined, Booth and Meyer define the family of o
 
 \section{Revising $\preceq$}
 
-The operator $\ast$, based on $\preceq$, allows the revision of a tpo $\leq$ associated with an epistemic state to $\leq_{\alpha}^{\ast}$. To be used in iterated belief revision the newly introduced structure $\preceq$ also needs to be revised Otherwise, as Booth and Meyer put it, the problem has just "re-emerged 'one level up'" \cite{Booth2011}. In their paper they discuss strict preference hierarchies (or SPHs), an equivalent structure to $\preceq$ denoted as $\$$, their properties and how to revise them.
+The operator $\ast$, based on $\preceq$, allows the revision of a tpo $\leq$ associated with an epistemic state to $\leq_{\alpha}^{\ast}$. To be used in iterated belief revision the newly introduced structure $\preceq$ also needs to be revised Otherwise, as Booth and Meyer put it, the problem has just "re-emerged 'one level up'" \cite{Booth2011}. In their paper they discuss strict preference hierarchies (or SPHs), an equivalent structure to $\preceq$, denoted as $\$$, their properties and how to revise them.
 
-This report focuses on revision of tpos itself. As an outlook, only the revision of a $\leq$-faithful tpo $\preceq$ using the example operator from the original paper is included. For a more detailed explanation of the operator, SPHs or their properties see \cite{Booth2011}.
+This report focuses on revision of tpos itself. As an outlook, only the revision of a $\leq$-faithful tpo $\preceq$ using the example operator from the original paper is included here. For a more detailed explanation of the operator, SPHs or their properties see \cite{Booth2011}.
 
 \subsection{A concrete operator}
-Booth and Meyer define their operator to revise $\preceq$ by with a function $p: W^{\pm} \mapsto \mathds{R}$ so that for all $x \in W$ the interval between it's positive and negative representation $a$ is:
+Booth and Meyer define their operator to revise $\preceq$ with a function $p: W^{\pm} \mapsto \mathds{R}$ so that for all $x \in W$ the interval between it's positive and negative representation is a real number $a$:
 
 \begin{equation*}
     p(x^{-}) - p(x^{+}) = a > 0
@@ -697,7 +697,7 @@ The smaller $p(x^{\epsilon})$ is, the more plausible the world is. The interval 
 
 \bigskip
 
-Using $p$ a $\leq$-faithful tpo $\preceq_{p}$ satisfying \ref{PREQ1}-\ref{PREQ4} is defined by:
+Using $p$, a $\leq$-faithful tpo $\preceq_{p}$ satisfying \ref{PREQ1}-\ref{PREQ4} can be defined as:
 
 \begin{equation*}
     x^{\epsilon} \preceq_{p} y^{\delta} \textrm{ iff } p(x^{\epsilon}) \leq p(y^{\delta} )
@@ -705,10 +705,10 @@ Using $p$ a $\leq$-faithful tpo $\preceq_{p}$ satisfying \ref{PREQ1}-\ref{PREQ4}
 
 \bigskip
 
-Revision of $\preceq$ becomes a two step process: First choose a function $p$ so that $\preceq_{p} = \preceq$, then revise to get a new assignment $p \ast \alpha$ that defines a new $\leq$-faithful tpo $\preceq_{p \ast \alpha}$.
+Revision of $\preceq$ becomes a two step process: First choose a function $p$ so that $\preceq_{p} = \preceq$, then revise $p$ to get a new assignment $p \ast \alpha$ that defines a new $\leq$-faithful tpo $\preceq_{p \ast \alpha}$.
 
 % TODO: probably don't need geffner ref here
-Booth and Meyer suggest an operator that keeps worlds that satisfy $\alpha$ constant and moves $\neg\alpha$-worlds "back" by $a$ (also known as L-conditionalisation in Spohn-type rankings \cite{Geffner1992}). They achieve this by setting $p$, for every $x^{\epsilon} \in W^{\pm}$ to:
+Booth and Meyer suggest an operator that keeps worlds that satisfy $\alpha$ constant and moves $\neg\alpha$-worlds "back" by $a$ (also known as L-conditionalisation in Spohn-type rankings \cite{Geffner1992}). They also mention other operators are possible and an area of further research. They achieve this by setting $p$, for every $x^{\epsilon} \in W^{\pm}$ to:
     
 \begin{equation*}
     (p \ast \alpha)(x^{\epsilon}) = \left\{
