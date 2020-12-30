@@ -47,7 +47,7 @@ This report presents part of their work in tpo-revision operators and their prop
 In the field of belief change total preorders (or tpos) are a common tool to model an agent's conditional beliefs. To support iterated belief revision it is necessary to research how these structures can be changed to adapt to an agent's changing world view.
 Booth and Meyer suggest an approach based on the idea of assigning an interval of additional metadata to the ordered, propositional worlds and iterate the tpo of an agent using that structure. They define and discuss properties of operators for tpo-revision and relate their approach to other fields of research.
 This report on their paper aims to present parts of their work to a wider audience with the addition of an accompanying example. The report's focus will be on the tpo-revision operators discussed in the paper and explicitly avoid the addition of strict preference hierarchies and relations to other research areas.
-The structure of the report will be as follows: First it will establish the context of the paper by presenting the research area of iterated belief revision and how it relates to other areas of artificial intelligence and philosophy. To establish a shared understanding of notation and definitions section \ref{section:formal-background} will discuss formal background and other, previous approaches to belief change. It will also introduce the main contribution of this report in an accompanying example demonstrating tpo-revision as described by Booth and Meyer. After establishing a foundation, section \ref{section:booth-and-meyer-tpo-revision-operators} and \ref{section:properties-of-bm-tpo-revision-operators} present part of the work from the original paper 'How to Revise a Total Preorder' \cite{Booth2011}. Section \ref{section:booth-and-meyer-tpo-revision-operators} establishes and defines functions $\ast$, used to revise tpos, a core contribution of Booth and Meyer. In section \ref{section:properties-of-bm-tpo-revision-operators} properties of these functions will be presented. To provide an outlook for the additional work done by Booth and Meyer, \ref{section:iterating-preceq-revision} shows their suggestion for a concrete operator for tpo-revision and includes several examples and novel visualisations of it being applied in the context of the accompanying example. Finally section \ref{section:discussion} closes the report with a summary and commentary on Booth and Meyer's approach to iterated belief revision with interval orderings.
+The structure of the report will be as follows: First it will establish the context of the paper by presenting the research area of iterated belief revision and how it relates to other areas of artificial intelligence and philosophy. To establish a shared understanding of notation and definitions section \ref{section:formal-background} will discuss formal background and other, previous approaches to belief change. It will also introduce the main contribution of this report in an accompanying example demonstrating tpo-revision as described by Booth and Meyer. After establishing a foundation, section \ref{section:booth-and-meyer-tpo-revision-operators} and \ref{section:properties-of-bm-tpo-revision-operators} present part of the work from the original paper 'How to Revise a Total Preorder' \cite{Booth2011}. Section \ref{section:booth-and-meyer-tpo-revision-operators} establishes and defines functions $\ast$, used to revise tpos, a core contribution of Booth and Meyer. In section \ref{section:properties-of-bm-tpo-revision-operators} properties of these functions will be presented. To provide an outlook for the additional work done by Booth and Meyer, \ref{section:iterating-preceq-revision} shows their suggestion for a concrete operator for tpo-revision and includes several examples and adapted visualisations of it being applied in the context of the accompanying example. Finally section \ref{section:conclusion} closes the report with a summary and commentary on Booth and Meyer's approach to iterated belief revision with interval orderings.
 
 \subsection{Research context}
 A core process for an agent dealing with uncertain knowledge is updating their worldview when new information becomes available, also called belief change. As an agent can be human or a machine, work in belief change has impact on both philosophy and artificial intelligence \cite{Ferme2011}. Different approaches to handling belief change have been discussed with notable approaches including nonmonotonic logic, probabilistic reasoning and belief revision \cite{Darwiche1997}.
@@ -651,7 +651,7 @@ With \ref{AST6} and \ref{AST7} Booth and Meyer aim to add supplementary rational
 
 \bigskip
 
-With these properties for $\ast$ defined, Booth and Meyer define the family of operators they are discussing with theorem \ref{theorem:revision-operator}.
+With these properties for $\ast$ discussed, Booth and Meyer define the family of operators they are discussing with theorem \ref{theorem:revision-operator}.
 
 \begin{theorem}
 \label{theorem:revision-operator}Let $\ast$ be any revision operator for $\leq$. Then $\ast$ is generated from some $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ iff $\ast$ satisfies \ref{AST1}-\ref{AST7}. \cite{Booth2011}
@@ -930,14 +930,32 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
             \label{fig:example-preceq-revised-alien2}
     \end{figure}
     
-For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where they are not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that even with direct evidence for alien life did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$ the evidence changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$ the judge even considers the $[r]$-worlds $\{011, 101\}$ more likely than the $[\neg r]$-worlds $\{000, 110\}$!
+For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where they are not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that even with direct evidence for alien life did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$, the evidence $\alpha$ changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$ the judge even considers the $[r]$-worlds $\{011, 101\}$ more likely than the $[\neg r]$-worlds $\{000, 110\}$!
 
 (Luckily due to the existence of $[\beta]$-worlds $\{010, 100\}$ the belief set of the judge still does not include $r$ and rationality prevails.)
 \end{example}
 
-% TODO write Discussion
-\section{Discussion}
-\label{section:discussion}
+% TODO write Conclusion
+\section{Conclusion}
+\label{section:conclusion}
+The featured paper 'How to Revise a Total Preorder' by Booth and Meyer \cite{Booth2011} is an expansive work on using interval orderings for belief change. This report focused on presenting the research context and previous work in iterated belief change as well as the concrete tpo-revision based on the additional structure of $\leq$-faithful tpos. A consistent example based on a trial situation (adapted from \cite{Darwiche1997} and \cite{Booth2011}) was used to accompany the discussion of the paper. In addition to the provided example the report also introduced an adapted visualisation for $\leq$-faithful tpo-revision based on the stick visualisation used by Booth and Meyer themselves.
+
+To make the presented content easier to follow some parts of the original paper had to be excluded. Booth and Meyer discuss multiple additional properties of their proposed operators as well as extreme examples. They also provide a different way to express the $\preceq$-structure using strict preference hierarchies and discuss how they relate to other research areas. For those topics as well as detailed proofs it is highly advised to read the primary paper \cite{Booth2011} itself.
+
+The idea to define an interval of plausibility for worlds depending on if evidence supports them or not does make intuitive sense. An angle largely missing from the paper is the discussion of the different impact and quality of new information itself.
+
+% idempotent correct?
+The proposed concrete operator for the revision of $\leq$-faithful tpos allows for multiple revisions by the same evidence $\alpha$ or semantically equivalent evidence $\beta \equiv \alpha$, consistently lowering the acceptance of $[\neg\alpha]$-worlds without presenting new evidence. It seems like an interesting question to ask if tpo-revision for iterated belief change should be idempotent in regards to already applied evidence.
+
+Considering quality and impact of new evidence also creates the question if \ref{AST6} and \ref{AST7} (properties of BM tpo-revision operators, page \ref{section:properties-of-bm-tpo-revision-operators}) should be weakened. Especially high quality evidence for a very unlikely type of world might change an agents plausibility ordering where low quality evidence that is very expected might not. Consider the following situation in our courtroom example \ref{example:example-introduction}: New evidence $\alpha$ arrives that fingerprints of John have been found at the place of the murder, pointing to a world $x$ with $p$ being true. But, because of a large body of evidence, the judge still considers a world $y$ where Mary is the murderer to be more plausible. This means there can be no evidence $\gamma$ that would make the agent consider the world $x$ more likely than $y$ according to \ref{AST7}:
+
+\begin{equation*}
+    \textrm{If } x \in [\alpha], y \in [\neg\alpha] \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x
+\end{equation*}
+
+But what if evidence is submitted that if Mary is the murderer, the victim must be an alien $\gamma = q \implies r$? Semantically a human agent would assume all worlds in which Mary is the murderer to be highly unlikely due to how far fetched the acceptance of the victim being an alien is. How to solve this apparent contradiction by modelling different types and strengths of evidence could be a future area of research.
+
+
 % TODO *6,*7 seem weird, no different "strength" of evidence? maybe revising multiple time by the same evidence should that be? otherwise revising multiple times by same evidence is also weird because it changes things and is not idempotent, discuss 5 with it being equal when sticks - and + are same rank?! 
 \newpage
 
