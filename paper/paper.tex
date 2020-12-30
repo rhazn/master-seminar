@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage[onehalfspacing]{setspace}
+\usepackage{float}
 
 \theoremstyle{definition}
 \newtheorem{example}{Example}[section]
@@ -31,7 +32,6 @@
 \date{\today}
 \maketitle
 
-% TODO abstract
 \abstract{Total preorders are a common tool to model plausibility orderings over worlds for agents in the research field of belief change. In their paper 'How to Revise a Total Preorder', Booth and Meyer present an approach to revising preorders for iterated belief revision based on assigning abstract intervals of plausibility under new evidence to worlds.
 
 This report presents part of their work in tpo-revision operators and their properties with the help of an accompanying example and additional visualisation.}
@@ -74,11 +74,6 @@ In belief revision, belief change is modelled using an operator that produces an
 
 % TODO: discussed in \cite{Katsuno1991} correct? was mentioned in intro of Admissible and Restrained Revision
 A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (shortened as tpos) \cite{Booth2011}, discussed in \cite{Katsuno1991}. The primary article for this report, 'How to Revise a Total Preorder', researches how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps and therefor places the article in the field of iterated belief revision.
-%1.2 Ich sehe hier die Gefahr, dass das zu Ausführlich wird.
-%Keine große Diskussion von AGM, Darwiche and Pearl und so weiter.
-%Keine Beziehung zur Allen und co herstellen ;)
-%Kurz und Prägnant präsentieren, was benötgigt wird um zu Verstehen was
-%in dem Primärartikel neu ist.
 
 \section{Formal background}
 \label{section:formal-background}
@@ -111,7 +106,7 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
     
     Consider the propositional worlds $W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$. A tpo representing the judges assumptions would be $\leq$ with $010 \sim 100 < 000 \sim 110 < 011 \sim 101 < 001 \sim 111$. The equivalent representation as a linearly ordered set of ranks is shown in table \ref{tab:visualising-a-tpo-example}.
 
-    \begin{table}[h]
+    \begin{table}[H]
          \centering
         \begin{tabular}{llll}
         $R_{1}$                      & $R_{2}$                                                                   & $R_{3}$ & $R_{4}$                      \\ \hline
@@ -221,9 +216,9 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation den
     \label{example:example-stick}
     Recall that tpos can be equivalently thought of as a linearly ordered set of ranks (Example \ref{example:example-introduction}, page \pageref{example:example-introduction}) and therefor a tpo over $W$ can be visualised by ordering every $w \in W$ in a table of ranks (Table \ref{tab:visualising-a-tpo-example}, page \pageref{tab:visualising-a-tpo-example}). To visualise the interval ordering introduced by $\preceq$, Booth and Meyer use a "stick" with the endpoints defined as $w^{+}$/$w^{-}$ respectively. This method was first introduced in \cite{Booth2007} and is shown in Figure \ref{fig:example-visualisation-scatterplot}.
         
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[scale=1]
+        \begin{tikzpicture}[scale=1.5]
             \begin{axis}[
                   yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
                   xticklabels={,,},
@@ -283,16 +278,13 @@ The choice between positive or negative representations of two worlds should be 
 
 Because of \ref{PREQ2} and \ref{PREQ3} it is sufficient to only include $\preceq$ in the epistemic state. The tpo $\leq$ over $W$ can be determined from $\preceq$ by restricting to only $\{ x^{+} \mid x \in W\}$ or $\{ x^{-} \mid x \in W\}$ respectively.
 
-% TODO do we need this?
-\newpage
-
 \begin{example}
     \label{example:example-faithful-tpo}
     Is the following tpo $\preceq$ over $W^{\pm}$ a $\leq$-faithful tpo?
         
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[scale=1]
+        \begin{tikzpicture}[scale=1.5]
             \begin{axis}[
                   yticklabels={,,},
                   xticklabels={,,},
@@ -332,17 +324,14 @@ Because of \ref{PREQ2} and \ref{PREQ3} it is sufficient to only include $\preceq
     As demonstrated here while the "sticks" do not need to be the same size (they just must exist due to \ref{PREQ4}), they need to be the same size for worlds that share a rank for their corresponding representations. They can not "cover" other sticks completely to continue to satisfy \ref{PREQ2} and \ref{PREQ3}.
 \end{example}
 
-% TODO: check all \newpages if I need them or fix the figure problem
 
-% TODO do we need this?
-\newpage
 
 \begin{example}
     \label{example:example-tpo-initial}
     Continuing the courtroom demonstration introduced in \ref{example:example-introduction} of a judge deciding on a verdict on the suspects John and Mary. Figure \ref{fig:example-tpo-initial} shows a possible version of a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ from which the tpo $\leq$ from table \ref{tab:visualising-a-tpo-example} can be reconstructed.
         
     
-    \begin{figure}[h]
+    \begin{figure}[H]
             \centering
             \begin{tikzpicture}[scale=1.5]
                 \begin{axis}[
@@ -430,9 +419,9 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
     \label{example:example-updated-tpo}
     Reconsider the $\leq$-faithful tpo $\preceq$ from example \ref{example:example-stick} (page \pageref{example:example-stick}). When a new piece of evidence $\alpha$ has to be considered each world gets mapped to one end of the interval assigned to it, depending on if it is an $\alpha$-world or not. In figure \ref{fig:example-updated-tpo} that mapping is indicated by the filled out dot. For this example $x_{1}, x_{2}$ and $x_{3}$ are $[\neg\alpha]$-worlds while $x_{4}$ is an $[\alpha]$-world.
 
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[scale=1]
+        \begin{tikzpicture}[scale=1.5]
             \begin{axis}[
                   yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
                   xticklabels={,,},
@@ -475,14 +464,11 @@ Intuitively new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausi
     The updated tpo $\leq_{\alpha}^{\ast}$ can now be inferred from the figure. It is the ordering of the filled dots, representing the new assignment for the respective world: $x_{1} \sim x_{2} \sim x_{4} < x_{3}$.
 \end{example}
 
-% TODO do we need this?
-\newpage
-
 \begin{example}
     \label{example:example-tpo-revised}
     A complex example is the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ (for the courtroom example \ref{example:example-introduction}) using the $\leq$-faithful tpo $\preceq$ introduced in example \ref{example:example-tpo-initial} and shown in figure \ref{fig:example-tpo-revised}. In this case the new evidence received pointed to John being the murderer so $\alpha = p$.
     
-    \begin{figure}[h]
+    \begin{figure}[H]
             \centering
             \begin{tikzpicture}[scale=1.5]
                 \begin{axis}[
@@ -563,14 +549,11 @@ The operators characterised by Booth and Meyer do not require new evidence $\alp
 
 A demonstration is already provided with example \ref{example:example-updated-tpo} and figure \ref{fig:example-updated-tpo}. The belief set extracted from the new epistemic state $\mathbb{E}$ as $[B(\mathbb{E})] = min(\top, \leq_{\alpha}^{\ast})$ includes the $[\neg\alpha]$-worlds $x_{1}$ and $x_{2}$ and therefor does not include the new evidence $\alpha$.
 
-% TODO do we need this?
-\newpage
-
 \begin{example}
     \label{example:example-non-prio-revision} 
     
     Using the $\leq$-faithful tpo $\preceq$ already established for the courtroom example \ref{example:example-introduction} the revision by $\alpha = r$ ("the victim was an alien"). is shown in figure \ref{fig:example-non-prio-revision}.
-    \begin{figure}[h]
+    \begin{figure}[H]
             \centering
             \begin{tikzpicture}[scale=1.5]
                 \begin{axis}[
@@ -630,9 +613,6 @@ A demonstration is already provided with example \ref{example:example-updated-tp
     The belief set $B(\mathbb{E})$ of the agent is unchanged even under $\leq_{\alpha}^{\ast}$, since $\{010, 100\}$ are still the most plausible worlds, and does not include $r$ "the victim is an alien".
 \end{example}
 
-
-
-% TODO write Properties of Booth and Meyer tpo-revision operators
 \section{Properties of BM tpo-revision operators}
 \label{section:properties-of-bm-tpo-revision-operators}
 While not determining a concrete operator $\ast_{\preceq}$ to revise a tpo $\leq$, definition \ref{definition:revision-operator} allows Booth and Meyer to discuss what properties any operator in that family must have \cite{Booth2011}.
@@ -672,9 +652,6 @@ With \ref{AST6} and \ref{AST7} Booth and Meyer aim to add supplementary rational
 \bigskip
 
 With these properties for $\ast$ defined, Booth and Meyer define the family of operators they are discussing with theorem \ref{theorem:revision-operator}.
-
-% THEOREM 1 as axiomatisation of the family of revision operators considered in the paper. "It turns out that these properties provide an exact characterisation of the
-% revision operators we consider."
 
 \begin{theorem}
 \label{theorem:revision-operator}Let $\ast$ be any revision operator for $\leq$. Then $\ast$ is generated from some $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ iff $\ast$ satisfies \ref{AST1}-\ref{AST7}. \cite{Booth2011}
@@ -732,7 +709,7 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
     \label{example:example-preceq-revised}
     For the courtroom example \ref{example:example-introduction} the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ for $\alpha = p$ ("John is the murderer") was already done in example \ref{example:example-tpo-revised}. The next step is revising $\preceq$ by $\alpha$. Figure \ref{fig:example-preceq-revised} shows the revised tpo $\preceq_{\alpha}$ with $\neg\alpha$-worlds moved back by $a$.
     
-    \begin{figure}[h]
+    \begin{figure}[H]
             \centering
             \begin{tikzpicture}[scale=1.5]
                 \begin{axis}[
@@ -813,9 +790,6 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
     \end{equation*}
 \end{example}
 
-% TODO need this?
-\newpage
-
 \begin{example}
     \label{example:example-preceq-revised-alien}
     For an example that demonstrates the impact the revision of $\preceq$ has on the acceptance of conditional beliefs of an agent consider again the courtroom example \ref{example:example-introduction}. The fact that the victim might is an alien ($r$ true) seems very unlikely, which is modelled by the gap between $[r]$-worlds and $[\neg r]$-worlds.
@@ -824,7 +798,7 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
     
     What did change is the willingness of the agent to accept conditional beliefs about $r$ being true in light of future evidence. This is reflected by the revised structure $\preceq_{p \ast \alpha}$ shown in figure \ref{fig:example-preceq-revised-alien}.
 
-    \begin{figure}[h]
+    \begin{figure}[H]
             \centering
             \begin{tikzpicture}[scale=1.5]
                 \begin{axis}[
@@ -891,7 +865,7 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
     % TODO tpo alpha as beta is unlucky because ast has a different meaning already, also change in figure 8 caption
     Notice how now the gap between $[\neg r]$- and $[r]$-worlds has closed. After revising $\preceq_{p \ast \alpha}$ for a second piece of evidence $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$ ("the murderer was either John or Mary, not both") the new tpo $\leq_{\alpha \ast \beta}^{\ast}$ can be read from the filled dots in figure \ref{fig:example-preceq-revised-alien2}.
     
-    \begin{figure}[h]
+    \begin{figure}[H]
             \centering
             \begin{tikzpicture}[scale=1.5]
                 \begin{axis}[
@@ -964,8 +938,7 @@ For the initial tpo $\leq$ there was no possible evidence that would change the 
 % TODO write Discussion
 \section{Discussion}
 \label{section:discussion}
-% TODO *6,*7 seem weird, no different "strength" of evidence? maybe revising multiple time by the same evidence should that be? otherwise revising multiple times by same evidence is also weird because it changes things and is not idempotent
-% TODO: discuss 6/7 being wrong? strength of evidence?=!=!, discuss 5 with it being equal when sticks - and + are same rank?! 
+% TODO *6,*7 seem weird, no different "strength" of evidence? maybe revising multiple time by the same evidence should that be? otherwise revising multiple times by same evidence is also weird because it changes things and is not idempotent, discuss 5 with it being equal when sticks - and + are same rank?! 
 \newpage
 
 \typeout{}
