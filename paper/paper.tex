@@ -42,12 +42,12 @@ This report presents part of their work in tpo-revision operators and their prop
 
 \newpage
 
-% TODO introduction
 \section{Introduction}
 
-% goal of paper: interested in function * for getting new tpo
-
-% roten faden des reports beschreiben
+In the field of belief change total preorders (or tpos) are a common tool to model an agent's conditional beliefs. To support iterated belief revision it is necessary to research how these structures can be changed to adapt to an agent's changing world view.
+Booth and Meyer suggest an approach based on the idea of assigning an interval of additional metadata to the ordered, propositional worlds and iterate the tpo of an agent using that structure. They define and discuss properties of operators for tpo-revision and relate their approach to other fields of research.
+This report on their paper aims to present parts of their work to a wider audience with the addition of an accompanying example. The report's focus will be on the tpo-revision operators discussed in the paper and explicitly avoid the addition of strict preference hierarchies and relations to other research areas.
+The structure of the report will be as follows: First it will establish the context of the paper by presenting the research area of iterated belief revision and how it relates to other areas of artificial intelligence and philosophy. To establish a shared understanding of notation and definitions section \ref{section:formal-background} will discuss formal background and other, previous approaches to belief change. It will also introduce the main contribution of this report in an accompanying example demonstrating tpo-revision as described by Booth and Meyer. After establishing a foundation, section \ref{section:booth-and-meyer-tpo-revision-operators} and \ref{section:properties-of-bm-tpo-revision-operators} present part of the work from the original paper 'How to Revise a Total Preorder' \cite{Booth2011}. Section \ref{section:booth-and-meyer-tpo-revision-operators} establishes and defines functions $\ast$, used to revise tpos, a core contribution of Booth and Meyer. In section \ref{section:properties-of-bm-tpo-revision-operators} properties of these functions will be presented. To provide an outlook for the additional work done by Booth and Meyer, \ref{section:iterating-preceq-revision} shows their suggestion for a concrete operator for tpo-revision and includes several examples and novel visualisations of it being applied in the context of the accompanying example. Finally section \ref{section:discussion} closes the report with a summary and commentary on Booth and Meyer's approach to iterated belief revision with interval orderings.
 
 \subsection{Research context}
 A core process for an agent dealing with uncertain knowledge is updating their worldview when new information becomes available, also called belief change. As an agent can be human or a machine, work in belief change has impact on both philosophy and artificial intelligence \cite{Ferme2011}. Different approaches to handling belief change have been discussed with notable approaches including nonmonotonic logic, probabilistic reasoning and belief revision \cite{Darwiche1997}.
@@ -81,6 +81,7 @@ A common tool used to encode plausibility assumptions of an agent about possible
 %in dem Primärartikel neu ist.
 
 \section{Formal background}
+\label{section:formal-background}
 
 \subsection{Propositional Logic} % Aussagenlogik
 Notation follows as used in \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables, lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\vdash$ as classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
@@ -205,6 +206,7 @@ While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $
 %\end{equation*}
 
 \section{Additional metadata for tpo revision}
+\label{section:additional-metadata-for-tpo-revision}
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$ Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of the paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. These functions are referred to as revision operators for $\leq$.
 
@@ -398,6 +400,7 @@ Because of \ref{PREQ2} and \ref{PREQ3} it is sufficient to only include $\preceq
 \end{example}
 
 \section{Booth and Meyer tpo-revision operators}
+\label{section:booth-and-meyer-tpo-revision-operators}
 Booth and Meyer \cite{Booth2011} aim to discuss tpo revision operators, functions $\ast$ that return a new tpo $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. To do so they define how to use the additional information from a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ to create a revision operator $\ast_{\preceq}$ (from now on referred to as BM tpo-revision operators).
 
 \begin{definition}[Revision operator $\ast_{\preceq}$ for $\leq$ generated by $\preceq$ from \cite{Booth2011}]
@@ -631,6 +634,7 @@ A demonstration is already provided with example \ref{example:example-updated-tp
 
 % TODO write Properties of Booth and Meyer tpo-revision operators
 \section{Properties of BM tpo-revision operators}
+\label{section:properties-of-bm-tpo-revision-operators}
 While not determining a concrete operator $\ast_{\preceq}$ to revise a tpo $\leq$, definition \ref{definition:revision-operator} allows Booth and Meyer to discuss what properties any operator in that family must have \cite{Booth2011}.
 
 The list of properties they consider to be a complete axiomatisation of the family of operators they describe follows:
@@ -684,7 +688,7 @@ With these properties for $\ast$ defined, Booth and Meyer define the family of o
 %    \item Explanation of sentinential view (and distinction to semantic level), definition of $\leq' \circ \beta $ and how it relates to conditional beliefs, mention of $\leq' \circ \top $ as belief set. Show of properties for the family of revision operators using sentinential view. Explanation of Disj1/Disj2 as properties that are easy to show in the sentinential view but not in the semantic formulation.
 
 \section{Iterating: $\preceq$-revision}
-
+\label{section:iterating-preceq-revision}
 The operator $\ast$, based on $\preceq$, allows the revision of a tpo $\leq$ associated with an epistemic state to $\leq_{\alpha}^{\ast}$. To be used in iterated belief revision the newly introduced structure $\preceq$ also needs to be revised Otherwise, as Booth and Meyer put it, the problem has just "re-emerged 'one level up'" \cite{Booth2011}. In their paper they discuss strict preference hierarchies (or SPHs), an equivalent structure to $\preceq$, denoted as $\$$, their properties and how to revise them.
 
 This report focuses on revision of tpos itself. As an outlook, only the revision of a $\leq$-faithful tpo $\preceq$ using the example operator from the original paper is included here. For a more detailed explanation of the operator, SPHs or their properties see \cite{Booth2011}.
@@ -723,11 +727,6 @@ Booth and Meyer suggest an operator that keeps worlds that satisfy $\alpha$ cons
 \end{equation*}
 
 By this definition the interval representing $\alpha$-worlds stay the same as $(p(x^{+}), p(x^{-}))$ while intervals of $\neg\alpha$-worlds become $(p(x^{-}), p(x^{-}) + a)$.
-
-% TODO put examples with alpha: r and alpha p from before here and revise them
-
-% TODO do we need this?
-\newpage
 
 \begin{example}
     \label{example:example-preceq-revised}
@@ -813,6 +812,9 @@ By this definition the interval representing $\alpha$-worlds stay the same as $(
         100 \in [\alpha] \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)
     \end{equation*}
 \end{example}
+
+% TODO need this?
+\newpage
 
 \begin{example}
     \label{example:example-preceq-revised-alien}
@@ -961,6 +963,7 @@ For the initial tpo $\leq$ there was no possible evidence that would change the 
 
 % TODO write Discussion
 \section{Discussion}
+\label{section:discussion}
 % TODO *6,*7 seem weird, no different "strength" of evidence? maybe revising multiple time by the same evidence should that be? otherwise revising multiple times by same evidence is also weird because it changes things and is not idempotent
 % TODO: discuss 6/7 being wrong? strength of evidence?=!=!, discuss 5 with it being equal when sticks - and + are same rank?! 
 \newpage
