@@ -25,7 +25,7 @@
 \pagenumbering{gobble}
   {\centering
   \vskip 30 pt
-  \LARGE Synopsis of 'How to Revise a Total Preorder' \cite{Booth2011} for seminar 1901 - 'Representation and processing of uncertain knowledge with logic-based methods' \par
+  \LARGE Synopsis of "How to Revise a Total Preorder" \cite{Booth2011} for seminar 1901 - "Representation and processing of uncertain knowledge with logic-based methods" \par
   \vskip 1.5em
   \large Philip Heltweg, matriculation number 3230880 \par
   \vskip 1.5em}
@@ -34,8 +34,6 @@
 \end{titlepage}
 \pagenumbering{arabic}
 
-% TODO: '' for quotes should be ""? Or consistent at least
-% TODO: references align: Richard Booth, sometimes R Booth
 \title{Of judges, aliens and total preorders}
 \author{
 	Heltweg, Philip \\
@@ -45,13 +43,13 @@
 \date{\today}
 \maketitle
 
-\abstract{Adapting one's world view in the light of new information is a central skill of intelligent agents. Total preorders are a common tool to model plausibility orderings over possible worlds in the research field of belief change. In their paper 'How to Revise a Total Preorder', Booth and Meyer present an approach to revising preorders for iterated belief revision. Their operator is based on assigning abstract intervals of plausibility to worlds depending on new evidence supporting them or not.
+\abstract{Adapting one's world view in the light of new information is a central skill of intelligent agents. Total preorders are a common tool to model plausibility orderings over possible worlds in the research field of belief change. In their paper "How to Revise a Total Preorder", Booth and Meyer present an approach to revising preorders for iterated belief revision. Their operator is based on assigning abstract intervals of plausibility to worlds depending on new evidence supporting them or not.
 
 This synopsis presents part of their work in tpo-revision operators and their properties with the help of an accompanying example and additional visualisation.}
 
 \newpage
 
-% TODO: consider not having a table of contents
+% TODO: QUESTION: consider not having a table of contents
 \tableofcontents
 
 \newpage
@@ -80,13 +78,13 @@ In belief revision, belief change is modelled using an operator that produces an
 %contraction
 
 % TODO: discussed in \cite{Katsuno1991} correct? was mentioned in intro of Admissible and Restrained Revision
-A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (tpos) \cite{Booth2011}, discussed in \cite{Katsuno1991}. In 'How to Revise a Total Preorder', Booth and Meyer describe how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps. It therefore places the article in the field of iterated belief revision.
+A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (tpos) \cite{Booth2011}, discussed in \cite{Katsuno1991}. In "How to Revise a Total Preorder", Booth and Meyer describe how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps. It therefore places the article in the field of iterated belief revision.
 
 To support iterated belief revision it is necessary to research how tpos can be changed to adapt to an agent's changing world view.
 Booth and Meyer suggest an approach based on the idea of assigning an interval of additional metadata to propositional worlds and iterate the tpo of an agent using that structure. They define and discuss properties of operators for tpo-revision as well as relate their approach to other fields of research.
 This synopsis presents parts of their work to a broader audience. An accompanying example will guide the discussion and visualise changes in the agent's state. The focus will be on the tpo-revision operators discussed in the primary paper and explicitly avoid the addition of strict preference hierarchies and relations to other research areas.
 
-The structure of the synopsis will be as follows: Establish the context of the paper by presenting the research area of iterated belief revision and how it relates to other areas of artificial intelligence and philosophy. To create a shared understanding of notation and definitions section \ref{section:formal-background} will discuss formal background and other, previous, approaches to belief change. It will also introduce the main contribution of this synopsis, an accompanying example demonstrating tpo-revision as described by Booth and Meyer. After building a foundation, section \ref{section:booth-and-meyer-tpo-revision-operators} and \ref{section:properties-of-bm-tpo-revision-operators} will present part of the work from the original paper 'How to Revise a Total Preorder' \cite{Booth2011}. Section \ref{section:booth-and-meyer-tpo-revision-operators} establishes and defines functions $\ast$, used to revise tpos. In section \ref{section:properties-of-bm-tpo-revision-operators} properties of these functions will be presented. To provide an outlook into the additional work done by Booth and Meyer, \ref{section:iterating-preceq-revision} will show their proposal of a concrete operator for tpo-revision. It includes several examples and adapted visualisations of the operator being applied in the context of the accompanying example. Finally, section \ref{section:conclusion} closes the synopsis with a summary and commentary on Booth and Meyer's approach to iterated belief revision with interval orderings.
+The structure of the synopsis will be as follows: Establish the context of the paper by presenting the research area of iterated belief revision and how it relates to other areas of artificial intelligence and philosophy. To create a shared understanding of notation and definitions section \ref{section:formal-background} will discuss formal background and other, previous, approaches to belief change. It will also introduce the main contribution of this synopsis, an accompanying example demonstrating tpo-revision as described by Booth and Meyer. After building a foundation, section \ref{section:booth-and-meyer-tpo-revision-operators} and \ref{section:properties-of-bm-tpo-revision-operators} will present part of the work from the original paper "How to Revise a Total Preorder" \cite{Booth2011}. Section \ref{section:booth-and-meyer-tpo-revision-operators} establishes and defines functions $\ast$, used to revise tpos. In section \ref{section:properties-of-bm-tpo-revision-operators} properties of these functions will be presented. To provide an outlook into the additional work done by Booth and Meyer, \ref{section:iterating-preceq-revision} will show their proposal of a concrete operator for tpo-revision. It includes several examples and adapted visualisations of the operator being applied in the context of the accompanying example. Finally, section \ref{section:conclusion} closes the synopsis with a summary and commentary on Booth and Meyer's approach to iterated belief revision with interval orderings.
 
 \section{Formal background}
 \label{section:formal-background}
@@ -97,7 +95,6 @@ The following notation will be used, as proposed by \cite{Booth2011}: A proposit
 $W$ is the set of propositional worlds (also called propositional interpretations in classical logic \cite{Kai2020}). Given a formula $\alpha \in L$, the set of worlds that satisfy $\alpha$ is denoted by $[\alpha]$.
 
 For any set of worlds $S \subseteq W$ of worlds, $Th(S)$ is the set of sentences true in all worlds in $S$.
-% TODO Th(S) not needed?
 
 \subsection{Total preorders}
 Tpos are a common tool to handle preference orderings over propositional worlds in literature about belief change \cite{Booth2011}.
@@ -131,7 +128,8 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
 \end{example}
 
 \subsection{Belief sets and epistemic states}
-% TODO explain contraction, revision, expansion? Gardenfors correct? read!
+% TODO QUESTION: explain contraction, revision, expansion?
+% TODO: Gardenfors correct? read!
 A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. Alchourrón, Gärdenfors, and Makinson (AGM theory, \cite{Alchourron1985}) define postulates for belief sets and their contraction, expansion or revision with new evidence. In the process of belief revision an agent keeps their set of beliefs consistent while incorporating new information, even if it is inconsistent with the current belief set \cite{Gaerdenfors1984}. Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is not expressive enough for satisfying results in iterated belief revision. They make the distinction between propositional beliefs (beliefs the agent accepts and are part of the belief set) and conditional beliefs as beliefs the agent is prepared to adopt with new evidence.
 
 While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they don't restrict changes in conditional beliefs. In their paper, Darwiche and Pearl argue for epistemic states, abstract entities that contain all information an agent needs for their reasoning. This includes especially their strategy for belief revision in addition to their belief set. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering new information \cite{Darwiche1997}.
@@ -144,7 +142,7 @@ Belief sets can be extracted from epistemic states. The belief set extracted fro
     $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $[B(\mathbb{E})] = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense, with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
 \end{example}
 
-% TODO: do we need to discuss this in ore detail? faithful assignment here:
+% TODO QUESTION: do we need to discuss this in ore detail? faithful assignment here:
 %Katsuno and Mendelzon [17] propose that an epistemic state Ψ
 %should be equipped with an ordering ≤Ψ of the worlds (interpretations), where the compatibility with Bel(Ψ) is ensured by the socalled faithfulness.
 %Definition 1 (Faithful Assignment [17]) A function Ψ 
@@ -193,9 +191,8 @@ While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $
 %\end{aligned}
 %\end{equation*}
 
-% TODO: we probably need to make clearer that this is where the paper starts, caro thought it should be in 2.x
+% TODO QUESTION: we probably need to make clearer that this is where the paper starts, caro thought it should be in 2.x
 \section{Additional metadata for tpo revision}
-\label{section:additional-metadata-for-tpo-revision}
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$, Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of their paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. These functions are referred to as revision operators for $\leq$.
 
@@ -621,7 +618,7 @@ The list of properties they consider to be a complete axiomatisation of the fami
     \item\label{AST7} $\qquad \textrm{If } x \in [\alpha], y \in [\neg\alpha] \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x$
 \end{enumerate}
 
-%TODO question: the text sounds like the properties are supposed by BM/they define them but they are also proved?! or does this mean proved for their approach but could be done differently?
+%TODO QUESTION: the text sounds like the properties are supposed by BM/they define them but they are also proved?! or does this mean proved for their approach but could be done differently?
 %We propose that if x is not more
 %preferred than y, even after receiving evidence which clearly points more to x
 %being the case than it does to y, then there can be no evi
@@ -636,7 +633,6 @@ In a similar way \ref{AST5} is a stronger requirement than the other two Darwich
 %info here: \cite{Booth2006a}
 % see also http://ceur-ws.org/Vol-2445/paper_2.pdf
 
-% TODO: pull these out? Basic postulates for tpo revision in one subsection, additional ones "supplementary rationality properties" as second section?
 These properties define tpo-revision with one input sentence. Booth and Meyer relate them to the AGM postulates for belief set revision \cite{Alchourron1985} as basic postulates for tpo-revision \cite{Booth2011}.
 
 With \ref{AST6} and \ref{AST7} Booth and Meyer aim to add supplementary rationality properties to keep revision with different sentences coherent. These properties are largely ignored in other literature on iterated belief change \cite{Booth2011}. \ref{AST6} means that if, after revision by evidence $\alpha$, that makes a world $x$ more plausible than $y$, $y$ is still considered at least as plausible as $x$, then for any possible revision by evidence $\gamma$, $y$ must still be at least as plausible as $x$. \ref{AST7} is the equivalent property for strict preference.
@@ -922,16 +918,16 @@ For the initial tpo $\leq$ there was no possible evidence that would change the 
 
 \section{Final remarks}
 \label{section:conclusion}
-The featured paper 'How to Revise a Total Preorder' by Booth and Meyer \cite{Booth2011} is a comprehensive work on using interval orderings for belief change. This synopsis focused on presenting the research context and previous work in iterated belief change as well as the concrete tpo-revision based on the additional structure of $\leq$-faithful tpos. A consistent example including a trial situation (adapted from \cite{Darwiche1997} and \cite{Booth2011}) was used to accompany the discussion of the paper. In addition to the provided example the synopsis also introduced an adapted visualisation for $\leq$-faithful tpo-revision based on the stick visualisation used by Booth and Meyer themselves.
+The featured paper "How to Revise a Total Preorder" by Booth and Meyer \cite{Booth2011} is a comprehensive work on using interval orderings for belief change. This synopsis focused on presenting the research context and previous work in iterated belief change as well as the concrete tpo-revision based on the additional structure of $\leq$-faithful tpos. A consistent example including a trial situation (adapted from \cite{Darwiche1997} and \cite{Booth2011}) was used to accompany the discussion of the paper. In addition to the provided example the synopsis also introduced an adapted visualisation for $\leq$-faithful tpo-revision based on the stick visualisation used by Booth and Meyer themselves.
 
 To make the presented content easier to follow some parts of the original paper had to be excluded. Booth and Meyer discuss multiple additional properties of their proposed operators as well as edge cases. They also provide a different way to express the $\preceq$-structure using strict preference hierarchies and discuss how they relate to other research areas. For those topics as well as detailed proofs it is highly advised to read the primary paper \cite{Booth2011} itself.
 
-The idea to define an interval of plausibility for worlds depending on if evidence supports them or not does make intuitive sense. An view largely missing from the paper is the discussion of the different impact and quality of new information itself.
+The idea to define an interval of plausibility for worlds depending on if evidence supports them or not does make intuitive sense. A view largely missing from the paper is the discussion of the different impact and quality of new information itself.
 
-% TODO: question, idempotent correct?
+% TODO: QUESTION, idempotent correct?
 The proposed, concrete operator for the revision of $\leq$-faithful tpos allows for multiple revisions by the same evidence $\alpha$ or semantically equivalent evidence $\beta \equiv \alpha$. Those would consistently lower the acceptance of $[\neg\alpha]$-worlds without presenting new evidence. It seems like an interesting question to ask, if tpo-revision for iterated belief change could be idempotent in regards to already known information.
 
-% TODO: this critique example seems very weak
+% TODO QUESTION: this critique example seems very weak
 Considering the quality and impact of new evidence also creates the question if \ref{AST6} and \ref{AST7} (properties of BM tpo-revision operators, section \ref{section:properties-of-bm-tpo-revision-operators}) should be weakened. Especially high quality evidence for a very unlikely type of world might change an agents plausibility ordering, while low quality evidence that is very expected might not. Consider the following situation in our courtroom example \ref{example:example-introduction}: New evidence $\alpha$ arrives that fingerprints of John have been found at the place of the murder. $\alpha$  makes a world $x$, with $p$ being true, more likely. But, because of a large body of evidence, the judge still considers a world $y$, where Mary is the murderer, to be more plausible. This means there can be no evidence $\gamma$ that would make the agent consider the world $x$ more likely than $y$ according to \ref{AST7}:
 
 \begin{equation*}
