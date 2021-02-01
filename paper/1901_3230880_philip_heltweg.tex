@@ -52,7 +52,6 @@ This synopsis presents part of their work in tpo-revision operators and their pr
 
 \newpage
 
-% TODO: QUESTION: consider not having a table of contents
 \tableofcontents
 
 \newpage
@@ -91,6 +90,8 @@ The structure of the synopsis will be as follows: Establish the context of the p
 
 \section{Formal background}
 \label{section:formal-background}
+
+% TODO: put text here
 
 \subsection{Propositional Logic} % Aussagenlogik
 The following notation will be used, as proposed by \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables. Lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\models$ denotes classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
@@ -131,7 +132,11 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
 \end{example}
 
 \subsection{Belief sets and epistemic states}
-% TODO QUESTION: explain contraction, revision, expansion?
+\label{chapter:belief-sets-and-epistemic-states}
+% TODO: explain contraction, revision, expansion
+% ANSWER: Ich würdes es ganz kurz erläutern im Text. Im Vortrag vielleicht nicht umbedingt.
+
+
 % TODO: Gardenfors correct? read!
 A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. Alchourrón, Gärdenfors, and Makinson (AGM theory, \cite{Alchourron1985}) define postulates for belief sets and their contraction, expansion or revision with new evidence. In the process of belief revision an agent keeps their set of beliefs consistent while incorporating new information, even if it is inconsistent with the current belief set \cite{Gaerdenfors1984}. Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is not expressive enough for satisfying results in iterated belief revision. They make the distinction between propositional beliefs (beliefs the agent accepts and are part of the belief set) and conditional beliefs as beliefs the agent is prepared to adopt with new evidence.
 
@@ -146,6 +151,13 @@ Belief sets can be extracted from epistemic states. The belief set extracted fro
 \end{example}
 
 % TODO QUESTION: do we need to discuss this in ore detail? faithful assignment here:
+
+% ANSWER: Das ist eine gute Frage. So wie ich das Paper von Booth und Meyer im
+% Kopf habe werden dort die Ordnung mit epistemischen Zuständen
+% gleichgesetzt (was Darwiche und Pearl ja nicht machen). Von daher halte
+% ich das für ok es nicht im aller formalen Ausführlichkeit zu machen.
+% Aber man könnte es im einen Satz erwähnen.
+
 %Katsuno and Mendelzon [17] propose that an epistemic state Ψ
 %should be equipped with an ordering ≤Ψ of the worlds (interpretations), where the compatibility with Bel(Ψ) is ensured by the socalled faithfulness.
 %Definition 1 (Faithful Assignment [17]) A function Ψ 
@@ -173,7 +185,9 @@ A well established set of Postulates for revision are the AGM postulates \cite{A
 
 To guarantee the ability to extract unique belief sets from epistemic states after a revision by $\alpha$, Booth and Meyer \cite{Booth2011} require consistent epistemic inputs. That means dropping \ref{E6} and considering only \ref{E1}-\ref{E5} and \ref{E7}-\ref{E8} for their belief revision postulates, named DP-AGM.
 
-While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $min(\alpha, \leq_{\mathbb{E}})$), Darwiche and Pearl also define postulates that restrict the rest of the new ordering. Since this synopsis only focused on the revision of tpos, the semantic (i.e. in terms of how the ordering of worlds undergoes change) versions are shown here. For more details and sentential versions refer to \cite{Darwiche1997}.
+The DP-AGM postulates put restrictions how the belief set of an agent changes after revision of new evidence $\alpha$. As outlined before belief sets can be extracted from epistemic states by taking the set of formulae true in all most plausible worlds after revision by $\alpha$, defined as $\modelsOf{B(\mathbb{E}\ast\alpha)} = min(\alpha, \leq_{\mathbb{E}})$.
+
+Darwiche and Pearl also define postulates that restrict how the rest of the new ordering changes. This extends the constrains to not only the changes in the currently held belief of an agent (the belief set), but also to the conditional beliefs it is prepared to accept depending on future evidence. Since this synopsis only focused on the revision of tpos, the semantic (i.e. in terms of how the ordering of worlds undergoes change) versions are shown here. For more details and sentential versions refer to Darwiche and Pearl \cite{Darwiche1997}.
 
 \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = (CR$\arabic*$)]
     \item\label{CR1} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
@@ -184,8 +198,8 @@ While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $
 
 \ref{CR1} and \ref{CR2} mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$- or $\neg\alpha$- worlds. \ref{CR3} and \ref{CR4} require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after an $\alpha$-revision.
 
-% TODO QUESTION: we probably need to make clearer that this is where the paper starts, caro thought it should be in 2.x
 \section{Additional metadata for tpo revision}
+% TODO: Text, put in that paper by booth and meyer starts here basically
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$, Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of their paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. These functions are referred to as revision operators for $\leq$.
 
@@ -643,7 +657,7 @@ With these properties for $\ast$ discussed, Booth and Meyer define the family of
 \label{section:iterating-preceq-revision}
 The operator $\ast$, based on $\preceq$, allows the revision of a tpo $\leq$ associated with an epistemic state to $\leq_{\alpha}^{\ast}$. To be used in iterated belief revision the newly introduced structure $\preceq$ also needs to be revised. Otherwise, as Booth and Meyer put it, the problem has just "re-emerged 'one level up'" \cite{Booth2011}. In their study, they discuss strict preference hierarchies (SPHs), an equivalent structure to $\preceq$, denoted as $\$$, their properties and how to revise them.
 
-Since this synopsis focuses on the revision of tpos itself, only the revision of a $\leq$-faithful tpo $\preceq$ using the example operator from the original paper is included here. For a more detailed explanation of the operator, SPHs or their properties refer to \cite{Booth2011}.
+Since this synopsis focuses on the revision of tpos itself, only the revision of a $\leq$-faithful tpo $\preceq$ using the example operator from the original paper is included here. For a more detailed explanation of the operator, SPHs or their properties refer to Booth and Meyer \cite{Booth2011}.
 
 \subsection{A concrete operator}
 Booth and Meyer define their operator to revise $\preceq$ with a function $p: W^{\pm} \mapsto \mathds{R}$. For all $x \in W$ the interval between it's positive and negative representation is a real number $a$:
@@ -920,7 +934,7 @@ The idea to define an interval of plausibility for worlds depending on if eviden
 
 The proposed, concrete operator for the revision of $\leq$-faithful tpos allows for consecutive revisions by the same evidence $\alpha$ or semantically equivalent evidence $\beta \equiv \alpha$. Those would consistently lower the acceptance of $\modelsOf{\neg\alpha}$-worlds without presenting new evidence. It seems like an interesting question to ask, if tpo-revision for iterated belief change could be idempotent in regards to already known information.
 
-% TODO QUESTION: this critique example seems very weak
+% TODO: this critique example seems very weak
 Considering the quality and impact of new evidence also creates the question if \ref{AST6} and \ref{AST7} (properties of BM tpo-revision operators, section \ref{section:properties-of-bm-tpo-revision-operators}) should be weakened. Especially high quality evidence for a very unlikely type of world might change an agents plausibility ordering, while low quality evidence that is very expected might not. Consider the following situation in our courtroom example \ref{example:example-introduction}: New evidence $\alpha$ arrives that fingerprints of John have been found at the place of the murder. $\alpha$  makes a world $x$, with $p$ being true, more likely. But, because of a large body of evidence, the judge still considers a world $y$, where Mary is the murderer, to be more plausible. This means there can be no evidence $\gamma$ that would make the agent consider the world $x$ more likely than $y$ according to \ref{AST7}:
 
 \begin{equation*}
