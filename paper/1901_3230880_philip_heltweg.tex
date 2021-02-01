@@ -9,6 +9,7 @@
 \usepackage{pgfplots}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{float}
+\usepackage{stmaryrd}
 
 \theoremstyle{definition}
 \newtheorem{example}{Example}
@@ -18,6 +19,8 @@
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}
+
+\newcommand{\modelsOf}[1]{\llbracket #1 \rrbracket}
 
 \begin{document}
 
@@ -57,7 +60,7 @@ This synopsis presents part of their work in tpo-revision operators and their pr
 \section{Introduction}
 A core process for an intelligent agent dealing with uncertain knowledge is updating their worldview when new information becomes available, also called belief change. As an agent can be human or machine, work in belief change has impact on the fields of both philosophy and artificial intelligence \cite{Ferme2011}. Different approaches to handling belief change have been discussed with notable approaches including nonmonotonic logic, probabilistic reasoning and belief revision \cite{Darwiche1997}.
 
-In belief revision, belief change is modelled using an operator that produces an updated set of beliefs from the state of an agent and new evidence. Research in this area discusses appropriate formalisations of agent state and constrains on individual operators or families of operators. Depending on if the suggested operator handles only one new evidence or multiple new evidences, the approaches are called one-step or iterated belief revision.
+In belief revision, belief change is modelled using an operator that produces an updated set of beliefs from the state of an agent and new evidence. Research in this area discusses appropriate formalisations of agent state and constrains on individual operators or families of operators. Depending on if the suggested operator handles only one new evidence or consecutive evidence, the approaches are called one-step or iterated belief revision.
 
 %Consider a knowledge base (KB) represented by a set of sentences in a
 %language L. As our perception of the world described by the knowledge base
@@ -90,9 +93,9 @@ The structure of the synopsis will be as follows: Establish the context of the p
 \label{section:formal-background}
 
 \subsection{Propositional Logic} % Aussagenlogik
-The following notation will be used, as proposed by \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables. Lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\vdash$ denotes classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
+The following notation will be used, as proposed by \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables. Lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\models$ denotes classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
 
-$W$ is the set of propositional worlds (also called propositional interpretations in classical logic \cite{Kai2020}). Given a formula $\alpha \in L$, the set of worlds that satisfy $\alpha$ is denoted by $[\alpha]$.
+$W$ is the set of propositional worlds (also called propositional interpretations in classical logic \cite{Kai2020}). Given a formula $\alpha \in L$, the set of worlds that satisfy $\alpha$ is denoted by $\modelsOf{\alpha}$.
 
 For any set of worlds $S \subseteq W$ of worlds, $Th(S)$ is the set of sentences true in all worlds in $S$.
 
@@ -134,12 +137,12 @@ A belief set is the deductively closed set of propositions an agent accepts as t
 
 While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they don't restrict changes in conditional beliefs. In their paper, Darwiche and Pearl argue for epistemic states, abstract entities that contain all information an agent needs for their reasoning. This includes especially their strategy for belief revision in addition to their belief set. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering new information \cite{Darwiche1997}.
 
-Belief sets can be extracted from epistemic states. The belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$. Darwiche and Pearl show that their version of revision of epistemic states can be modelled with a tpo $\leq_{\mathbb{E}}$, associated with $\mathbb{E}$. Extraction of $B(\mathbb{E})$ is achieved by considering the set of lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is defined to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$. The belief set of the agent with this notation is $Th([B(\mathbb{E})])$.
+Belief sets can be extracted from epistemic states. The belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$. Darwiche and Pearl show that their version of revision of epistemic states can be modelled with a tpo $\leq_{\mathbb{E}}$, associated with $\mathbb{E}$. Extraction of $B(\mathbb{E})$ is achieved by considering the set of lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is defined to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$. The belief set of the agent with this notation is $Th(\modelsOf{B(\mathbb{E})})$.
 
 \begin{example}
     Continuing example \ref{example:example-introduction} it is possible to model an epistemic state $\mathbb{E}$ with the tpo $\leq_{\mathbb{E}}$.
     
-    $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $[B(\mathbb{E})] = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense, with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
+    $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $\modelsOf{B(\mathbb{E})} = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense, with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
 \end{example}
 
 % TODO QUESTION: do we need to discuss this in ore detail? faithful assignment here:
@@ -155,7 +158,7 @@ Belief sets can be extracted from epistemic states. The belief set extracted fro
 
 \subsection{Belief revision postulates}
 \label{chapter:dp-agm-postulates}
-The postulates first introduced by \cite{Alchourron1985} and reformulated for iterated belief revision on epistemic states by \cite{Darwiche1997} which are further used in this text are presented here. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ it's associated belief set, $B(\mathbb{E}) + \alpha$ the expansion of $B(\mathbb{E})$ by $\alpha$. $\ast$ being a belief change operator on epistemic states. 
+A well established set of Postulates for revision are the AGM postulates \cite{Alchourron1985}. In this text, a reformulation for epistemic states by Darwiche and Pearl \cite{Darwiche1997} is used, presented in the following. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ it's associated belief set, $B(\mathbb{E}) + \alpha$ the expansion of $B(\mathbb{E})$ by $\alpha$. $\ast$ being a belief change operator on epistemic states. 
 
 \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
     \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
@@ -163,7 +166,7 @@ The postulates first introduced by \cite{Alchourron1985} and reformulated for it
     \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
     \item\label{E4} $\qquad \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
     \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
-    \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \vdash \neg \alpha$
+    \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \models \neg \alpha$
     \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
     \item\label{E8} $\qquad \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta))$
 \end{enumerate}
@@ -173,37 +176,27 @@ To guarantee the ability to extract unique belief sets from epistemic states aft
 While DP-AGM define the most plausible worlds after a revision by $\alpha$ (as $min(\alpha, \leq_{\mathbb{E}})$), Darwiche and Pearl also define postulates that restrict the rest of the new ordering. Since this synopsis only focused on the revision of tpos, the semantic (i.e. in terms of how the ordering of worlds undergoes change) versions are shown here. For more details and sentential versions refer to \cite{Darwiche1997}.
 
 \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = (CR$\arabic*$)]
-    \item\label{CR1} $\qquad \textrm{If } v\in [\alpha], w \in [\alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
-    \item\label{CR2} $\qquad \textrm{If } v\in [\neg \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
-    \item\label{CR3} $\qquad \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v <_{\mathbb{E}} w \textrm{ only if } v <_{\mathbb{E\ast\alpha}} w$
-    \item\label{CR4} $\qquad \textrm{If } v\in [ \alpha], w \in [\neg \alpha] \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ only if } v \leq_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR1} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR2} $\qquad \textrm{If } v\in \modelsOf{\neg\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR3} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v <_{\mathbb{E}} w \textrm{ only if } v <_{\mathbb{E\ast\alpha}} w$
+    \item\label{CR4} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ only if } v \leq_{\mathbb{E\ast\alpha}} w$
 \end{enumerate}
 
-\ref{CR1} and \ref{CR2} mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$ or $\neg\alpha$ worlds. \ref{CR3} and \ref{CR4} require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after a $\alpha$-revision.
-
-% TODO: QUESTION: do we need C1-C4 here? 
-%\begin{equation*}
-%\begin{aligned}
-%    (C1) \qquad & \textrm{If } \beta \vdash \alpha \textrm{ then } B(\mathbb{E}\ast\alpha\ast\beta)=B(\mathbb{E}\ast\beta) \\
-%    (C2) \qquad & \textrm{If } \beta \vdash \neg  \alpha \textrm{ then } B(\mathbb{E}\ast\alpha\ast\beta)=B(\mathbb{E}\ast\beta) \\
-%    (C3) \qquad & \textrm{If } \alpha \in B(\mathbb{E}\ast\beta) \textrm{ then } \alpha \in B(\mathbb{E}\ast\alpha\ast\beta) \\
-%    (C4) \qquad & \textrm{If } \neg \alpha \notin B(\mathbb{E}\ast\beta) \textrm{ then } \neg \alpha \notin B(\mathbb{E}\ast\alpha\ast\beta) \\
-%\end{aligned}
-%\end{equation*}
+\ref{CR1} and \ref{CR2} mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$- or $\neg\alpha$- worlds. \ref{CR3} and \ref{CR4} require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after an $\alpha$-revision.
 
 % TODO QUESTION: we probably need to make clearer that this is where the paper starts, caro thought it should be in 2.x
 \section{Additional metadata for tpo revision}
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$, Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of their paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. These functions are referred to as revision operators for $\leq$.
 
-Booth and Meyer's \cite{Booth2011} approach is to add an additional structure with metadata for every world $w \in W$. This new structure is denoted as $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$. In this notation a world $w \in W$ is represented twice: When new evidence $\alpha$ arrives that makes $w$ more plausible (because $w \in [\alpha]$), the agent can assume it's positive representation as $w^{+} \in W^{\pm}$. In contrast, if the new evidence makes $w$ less plausible ($w \notin [\alpha]$), then the negative representation $w^{-} \in W^{\pm}$ is the agent's view of $w$. Booth and Meyer call the pair $(w^{+}, w^{-})$ the positive/negative representation of the world $w$. They are an abstract interval, representing metadata about plausibility assumptions about $w$.
+Booth and Meyer's \cite{Booth2011} approach is to add an additional structure with metadata for every world $w \in W$. This new structure is denoted as $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$. In this notation a world $w \in W$ is represented twice: When new evidence $\alpha$ arrives that makes $w$ more plausible (because $w \in \modelsOf{\alpha}$), the agent can assume it's positive representation as $w^{+} \in W^{\pm}$. In contrast, if the new evidence makes $w$ less plausible ($w \notin \modelsOf{\alpha}$), then the negative representation $w^{-} \in W^{\pm}$ is the agent's view of $w$. Booth and Meyer call the pair $(w^{+}, w^{-})$ the positive/negative representation of the world $w$. They are an abstract interval, representing metadata about plausibility assumptions about $w$.
 
 \subsection{$\leq$-faithful tpos}
 For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation, denoted $\preceq$ over $W^{\pm}$, that is added to the epistemic state of an agent.
 
 \begin{example}
-    \label{example:example-stick}
-    Recall that tpos can be equivalently thought of as a linearly ordered set of ranks (Example \ref{example:example-introduction}). Therefore a tpo over $W$ can be visualised by ordering every $w \in W$ in a table of ranks (table \ref{tab:visualising-a-tpo-example}). To visualise the interval ordering introduced by $\preceq$, Booth and Meyer use a "stick" with the endpoints defined as $w^{+}$/$w^{-}$ respectively. This method was first introduced in \cite{Booth2007} and is shown in Figure \ref{fig:example-visualisation-scatterplot}.
+    \label{example:example-intervals}
+    Recall that tpos can be equivalently thought of as a linearly ordered set of ranks (Example \ref{example:example-introduction}). Therefore a tpo over $W$ can be visualised by displaying every $w \in W$ in a table that has one column for every rank (like in Table \ref{tab:visualising-a-tpo-example}). To visualise the interval ordering introduced by $\preceq$, Booth and Meyer use an interval with the endpoints defined as $w^{+}$/$w^{-}$ respectively. This type of visualisation was first introduced in a previous paper by Booth and Meyer themselves \cite{Booth2007} and is shown in Figure \ref{fig:example-visualisation-scatterplot}.
         
     \begin{figure}[H]
         \centering
@@ -243,11 +236,11 @@ For the ordering on $W^{\pm}$ Booth and Meyer suppose an additional relation, de
                     };
             \end{axis}
         \end{tikzpicture}
-        \caption{Representation of $\preceq$ over $W^{\pm}$ using sticks}
+        \caption{Representation of $\preceq$ over $W^{\pm}$ using intervals}
         \label{fig:example-visualisation-scatterplot}
     \end{figure}
     
-   The worlds on lower ranks (more on the left) are preferred and assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{3}^{+}$ and $x_{1}^{-} \sim x_{4}^{+}$ Note that, even though all sticks have the same length in this example, that is not required.
+   The worlds on lower ranks (more on the left) are preferred and assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{3}^{+}$ and $x_{1}^{-} \sim x_{4}^{+}$ Note that, even though all intervals have the same length in this example, that is not required.
 \end{example}
 
 To characterise the relations between $\preceq$ and $\leq$, Booth and Meyer define a list of conditions.
@@ -261,15 +254,15 @@ To characterise the relations between $\preceq$ and $\leq$, Booth and Meyer defi
 
 The choice between positive or negative representations of two worlds should be the same as under $\leq$ (due to \ref{PREQ2}, \ref{PREQ3}). According to \ref{PREQ4} there has to be a difference between a positive representation and a negative representation of the same world and given the choice between both, the positive representation has to be chosen.
 
-\begin{definition}[$\leq$-faithful tpo over $W^{\pm}$ taken directly from \cite{Booth2011}]
-\label{definition:faithful-tpo}Let $\preceq \in W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4}, we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
+\begin{definition}[$\leq$-faithful tpo over $W^{\pm}$ \cite{Booth2011}]
+\label{definition:faithful-tpo}Let $\preceq \subseteq W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4}, we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
 \end{definition}
 
 Because of \ref{PREQ2} and \ref{PREQ3}, it is sufficient to only include $\preceq$ in the epistemic state. The tpo $\leq$ over $W$ can be determined from $\preceq$ by restricting to only $\{ x^{+} \mid x \in W\}$ or $\{ x^{-} \mid x \in W\}$, respectively.
 
 \begin{example}
     \label{example:example-faithful-tpo}
-    Is the following tpo $\preceq$ over $W^{\pm}$ a $\leq$-faithful tpo?
+    Consider the following tpo $\preceq$ over $W^{\pm}$.
         
     \begin{figure}[H]
         \centering
@@ -308,14 +301,14 @@ Because of \ref{PREQ2} and \ref{PREQ3}, it is sufficient to only include $\prece
         \end{tikzpicture}
     \end{figure}
     
-    Even though \ref{PREQ1} and \ref{PREQ4} are satisfied, $\preceq$ is not a $\leq$-faithful tpo: From \ref{PREQ2} and $x_{1}^{+} \prec x_{2}^{+}$ follows $x_{1} < x_{2}$. That means \ref{PREQ3} can not hold as $x_{2}^{-} \prec x_{1}^{-}$ which would require $x_{2} < x_{3}$ to be true.
+    $\preceq$ is not a $\leq$-faithful tpo: Even though \ref{PREQ1} and \ref{PREQ4} are satisfied, $\preceq$ is not a $\leq$-faithful tpo: From \ref{PREQ2} and $x_{1}^{+} \prec x_{2}^{+}$ follows $x_{1} < x_{2}$. That means \ref{PREQ3} can not hold as $x_{2}^{-} \prec x_{1}^{-}$ which would require $x_{2} < x_{3}$ to be true.
     
-    As demonstrated here, even though the "sticks" do not need to be the same size for all worlds (they just must exist due to \ref{PREQ4}), they need to be the same size for worlds that share a rank for their corresponding representations. They can not overlap other sticks completely to continue to satisfy \ref{PREQ2} and \ref{PREQ3}.
+    As demonstrated here, even though the intervals do not need to be the same size for all worlds (they just must exist due to \ref{PREQ4}), they need to be the same size for worlds that share a rank for their corresponding representations. They can not overlap other intervals completely to continue to satisfy \ref{PREQ2} and \ref{PREQ3}.
 \end{example}
 
 \begin{example}
     \label{example:example-tpo-initial}
-    Continuing the courtroom demonstration introduced in \ref{example:example-introduction} of a judge deciding on a verdict on the suspects John and Mary. Figure \ref{fig:example-tpo-initial} shows a possible version of a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ from which the tpo $\leq$ from table \ref{tab:visualising-a-tpo-example} can be reconstructed.
+    Continuing the courtroom demonstration introduced in Example \ref{example:example-introduction} of a judge deciding on a verdict on the suspects John and Mary. Figure \ref{fig:example-tpo-initial} shows a possible version of a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ from which the tpo $\leq$ from table \ref{tab:visualising-a-tpo-example} can be reconstructed.
         
     
     \begin{figure}[H]
@@ -374,14 +367,14 @@ Because of \ref{PREQ2} and \ref{PREQ3}, it is sufficient to only include $\prece
             \label{fig:example-tpo-initial}
     \end{figure}
     
-    Notice the "gap" between the $[r]$-worlds that include the victim being an alien. Even in their positive representations they are not as plausible as negative representations of $[\neg r]$-worlds. That fact will be discussed more in section \ref{section:non-prioritised-revision} and example \ref{example:example-non-prio-revision}.
+    Notice the "gap" between the $\modelsOf{r}$-worlds that include the victim being an alien. Even in their positive representations they are not as plausible as negative representations of $\modelsOf{\neg r}$-worlds. That fact will be discussed more in section \ref{section:non-prioritised-revision} and example \ref{example:example-non-prio-revision}.
 \end{example}
 
 \section{Booth and Meyer tpo-revision operators}
 \label{section:booth-and-meyer-tpo-revision-operators}
-Booth and Meyer \cite{Booth2011} discussed tpo revision operators, functions $\ast$ that return a new tpo $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. To do so they define how to use the additional information from a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ to create a revision operator $\ast_{\preceq}$ (from now on referred to as BM tpo-revision operators).
+Booth and Meyer \cite{Booth2011} discussed tpo revision operators, functions $\ast$ that return a new tpo $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. They define how to use the additional information from a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ to create a revision operator $\ast_{\preceq}$ (from now on referred to as BM tpo-revision operators).
 
-\begin{definition}[Revision operator $\ast_{\preceq}$ for $\leq$ generated by $\preceq$ from \cite{Booth2011}]
+\begin{definition}[Revision operator $\ast_{\preceq}$ for $\leq$ generated by $\preceq$ \cite{Booth2011}]
     \label{definition:revision-operator}
     For each $\leq$-faithful tpo $\preceq$ over $W^{\pm}$, refer to $\ast_{\preceq}$ as the revision operator for $\leq$ generated by $\preceq$ defined by:
     
@@ -389,8 +382,8 @@ Booth and Meyer \cite{Booth2011} discussed tpo revision operators, functions $\a
     \begin{equation*}
         r_{\alpha}(x) = \left\{
                     \begin{array}{ll}
-                      x^{+} \textrm{ if } x \in [\alpha]\\
-                      x^{-} \textrm{ if } x \in [\neg\alpha]
+                      x^{+} \textrm{ if } x \in \modelsOf{\alpha}\\
+                      x^{-} \textrm{ if } x \in \modelsOf{\neg\alpha}
                     \end{array}
                   \right.
     \end{equation*}
@@ -402,11 +395,11 @@ Booth and Meyer \cite{Booth2011} discussed tpo revision operators, functions $\a
     \end{equation*}
 \end{definition}
 
-Intuitively, new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausible and worlds that do not satisfy $\alpha$ less plausible. Therefore the agent associates worlds $x \in [\alpha]$ with their positive representation $x^{+}$ and worlds $x \in [\neg\alpha]$ with their negative representation $x^{-}$.
+Intuitively, new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plausible and worlds that do not satisfy $\alpha$ less plausible. Therefore the agent associates worlds $x \in \modelsOf{\alpha}$ with their positive representation $x^{+}$ and worlds $x \in \modelsOf{\neg\alpha}$ with their negative representation $x^{-}$.
 
 \begin{example}
     \label{example:example-updated-tpo}
-    Reconsider the $\leq$-faithful tpo $\preceq$ from example \ref{example:example-stick}. When a new piece of evidence $\alpha$ has to be considered, each world gets mapped to one end of the interval assigned to it, depending on if it is an $\alpha$-world or not. In figure \ref{fig:example-updated-tpo} that mapping is indicated by the filled out dot. For this example $x_{1}, x_{2}$ and $x_{3}$ are $[\neg\alpha]$-worlds while $x_{4}$ is an $[\alpha]$-world.
+    Reconsider the $\leq$-faithful tpo $\preceq$ from example \ref{example:example-intervals}. When a new piece of evidence $\alpha$ has to be considered, each world gets mapped to one end of the interval assigned to it, depending on if it is an $\alpha$-world or not. In figure \ref{fig:example-updated-tpo} that mapping is indicated by the filled out dot. For this example $x_{1}, x_{2}$ and $x_{3}$ are $\modelsOf{\neg\alpha}$-worlds while $x_{4}$ is an $\modelsOf{\alpha}$-world.
 
     \begin{figure}[H]
         \centering
@@ -455,7 +448,7 @@ Intuitively, new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plaus
 
 \begin{example}
     \label{example:example-tpo-revised}
-    A more complex example is the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ (for the courtroom example \ref{example:example-introduction}) using the $\leq$-faithful tpo $\preceq$, introduced in example \ref{example:example-tpo-initial} and shown in figure \ref{fig:example-tpo-revised}. In this case the new evidence received points to John being the murderer so $\alpha = p$.
+    A more complex example is the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ (for the courtroom Example \ref{example:example-introduction}) using the $\leq$-faithful tpo $\preceq$, introduced in Example \ref{example:example-tpo-initial} and shown in Figure \ref{fig:example-tpo-revised}. In this case the new evidence received points to John being the murderer so $\alpha = p$.
     
     \begin{figure}[H]
             \centering
@@ -516,15 +509,15 @@ Intuitively, new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plaus
     For the worlds $010, 110 \in W$, $010 \leq 110$ was true. To rank them with the revised tpo $\leq_{\alpha}^{\ast}$ calculate:
     
     \begin{equation*}
-        010 \in [\neg\alpha] \textrm{ : } r_{\alpha}(010) = 010^{-}
+        010 \in \modelsOf{\neg\alpha} \textrm{ : } r_{\alpha}(010) = 010^{-}
     \end{equation*}
     \begin{equation*}
-        110 \in [\alpha] \textrm{ : } r_{\alpha}(110) = 110^{+}
+        110 \in \modelsOf{\alpha} \textrm{ : } r_{\alpha}(110) = 110^{+}
     \end{equation*}
     
     and, as $110^{+} \prec 010^{-}$ is true, set $110 <_{\alpha}^{\ast} 010$.
     
-    Repeating for every world in $W$, the new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$. Unsurprisingly, the belief set associated with the new epistemic state is $[B(\mathbb{E})] = min(\top, \leq_{\mathbb{E}}) = \{100\}$: "John is the murderer and the victim is not an alien".
+    Repeating for every world in $W$, the new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$. Unsurprisingly, the belief set associated with the new epistemic state is $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}}) = \{100\}$: "John is the murderer and the victim is not an alien".
     
     As $\leq_{\alpha}^{\ast}$ is a representation of the conditional beliefs of the agent, it is also interesting to look at the changes for them: Initially the judge thought both suspects being the murderers ($110$) was less plausible than only Mary being the murderer ($010$). Now they have updated their conditional beliefs to think only Mary being the murderer less plausible than both conspiring.
 \end{example}
@@ -536,7 +529,7 @@ Belief revision with the AGM postulates \cite{Alchourron1985} or the reformulati
 
 The operators characterised by Booth and Meyer do not require new evidence $\alpha$ to be part of the revised belief set, which makes them part of non-prioritised revision operators \cite{Hansson1999}.
 
-A demonstration is already provided with example \ref{example:example-updated-tpo} and figure \ref{fig:example-updated-tpo}. The most plausible worlds in the new epistemic state $\mathbb{E}$, $min(\top, \leq_{\alpha}^{\ast})$, include the $[\neg\alpha]$-worlds $x_{1}$ and $x_{2}$. Therefore $Th(min(\top, \leq_{\alpha}^{\ast}))$ does not include the new evidence $\alpha$.
+A demonstration is already provided with Example \ref{example:example-updated-tpo} and Figure \ref{fig:example-updated-tpo}. The most plausible worlds in the new epistemic state $\mathbb{E}$, $min(\top, \leq_{\alpha}^{\ast})$, include the $\modelsOf{\neg\alpha}$-worlds $x_{1}$ and $x_{2}$. Therefore $Th(min(\top, \leq_{\alpha}^{\ast}))$ does not include the new evidence $\alpha$.
 
 \begin{example}
     \label{example:example-non-prio-revision} 
@@ -598,7 +591,7 @@ A demonstration is already provided with example \ref{example:example-updated-tp
             \label{fig:example-non-prio-revision}
     \end{figure}
     
-    Since the agent considered the victim being an alien very unlikely, even the positive representations of worlds in $[\alpha]$ are on higher ranks (so considered less plausible) than negative representations of worlds in $[\neg\alpha]$.
+    Since the agent considered the victim being an alien very unlikely, even the positive representations of worlds in $\modelsOf{\alpha}$ are on higher ranks (so considered less plausible) than negative representations of worlds in $\modelsOf{\neg\alpha}$.
     The belief set $B(\mathbb{E})$ of the agent is unchanged under $\leq_{\alpha}^{\ast}$, since $\{010, 100\}$ are still the most plausible worlds, and does not include $r$ "the victim is an alien".
 \end{example}
 
@@ -611,11 +604,11 @@ The list of properties they consider to be a complete axiomatisation of the fami
 \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
     \item\label{AST1} $\qquad \leq_{\alpha}^{\ast} \textrm{ is a tpo over } W$
     \item\label{AST2} $\qquad\alpha \equiv \gamma \textrm{ implies } \leq_{\alpha}^{\ast}=\leq_{\gamma}^{\ast}$
-    \item\label{AST3} $\qquad \textrm{If } x, y \in [\alpha] \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
-    \item\label{AST4} $\qquad \textrm{If } x, y \in [\neg\alpha] \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
-    \item\label{AST5} $\qquad \textrm{If } x \in [\alpha], y \in [\neg\alpha] \textrm{ and } x \leq y \textrm{ then } x <_{\alpha}^{\ast} y$
-    \item\label{AST6} $\qquad \textrm{If } x \in [\alpha], y \in [\neg\alpha] \textrm{ and } y \leq_{\alpha}^{\ast} x \textrm{ then } y \leq_{\gamma}^{\ast} x$
-    \item\label{AST7} $\qquad \textrm{If } x \in [\alpha], y \in [\neg\alpha] \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x$
+    \item\label{AST3} $\qquad \textrm{If } x, y \in \modelsOf{\alpha} \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
+    \item\label{AST4} $\qquad \textrm{If } x, y \in \modelsOf{\neg\alpha} \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
+    \item\label{AST5} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } x \leq y \textrm{ then } x <_{\alpha}^{\ast} y$
+    \item\label{AST6} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y \leq_{\alpha}^{\ast} x \textrm{ then } y \leq_{\gamma}^{\ast} x$
+    \item\label{AST7} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x$
 \end{enumerate}
 
 %TODO QUESTION: the text sounds like the properties are supposed by BM/they define them but they are also proved?! or does this mean proved for their approach but could be done differently?
@@ -623,11 +616,11 @@ The list of properties they consider to be a complete axiomatisation of the fami
 %preferred than y, even after receiving evidence which clearly points more to x
 %being the case than it does to y, then there can be no evi
 
-\ref{AST1} and \ref{AST2} are considered basic properties: A revision of a tpo $\leq$ over $W$ must generate another tpo over $W$ . In addition the operator must return an equal revised tpo for semantically equivalent sentences, the so called syntax-irrelevance property.
+\ref{AST1} and \ref{AST2} are considered basic properties: A revision of a tpo $\leq$ over $W$ must generate another tpo over $W$. In addition the operator must return an equal revised tpo for semantically equivalent sentences, the so called syntax-irrelevance property.
 
 The next group of properties, \ref{AST3}-\ref{AST5} are common rules in iterated belief change. Booth and Meyer themselves consider them characteristic for admissible revision operators \cite{Booth2006a}.
-If revising a tpo by a sentence $\alpha$, the relative ordering of worlds that are either both $[\alpha]$- or $[\neg\alpha]$-worlds, must stay the same (\ref{AST3}/\ref{AST4}). These properties were already part of the semantic postulates \ref{CR1} and \ref{CR2} by Darwiche and Pearl \cite{Darwiche1997} discussed in section \ref{chapter:dp-agm-postulates}.
-In a similar way \ref{AST5} is a stronger requirement than the other two Darwiche and Pearl postulates \ref{CR3} and \ref{CR4}. It means the following: A world $x$ that is considered at least as plausible as a world $y$ before a revision by new information $\alpha$. If $\alpha$ makes $x$ more plausible ($x \in [\alpha]$) and $y$ less plausible ($y \in [\neg\alpha]$) then after revision $x$ should be considered strictly more plausible than $y$. This rule was not only proposed by Booth and Meyer \cite{Booth2006a} but also by Jin und Thielscher in \cite{Jin2007} (as the postulate of independence).
+If revising a tpo by a sentence $\alpha$, the relative ordering of worlds that are either both $\modelsOf{\alpha}$- or $\modelsOf{\neg\alpha}$-worlds, must stay the same (\ref{AST3}/\ref{AST4}). These properties were already part of the semantic postulates \ref{CR1} and \ref{CR2} by Darwiche and Pearl \cite{Darwiche1997} discussed in section \ref{chapter:dp-agm-postulates}.
+In a similar way \ref{AST5} is a stronger requirement than the other two Darwiche and Pearl postulates \ref{CR3} and \ref{CR4}. It means the following: A world $x$ that is considered at least as plausible as a world $y$ before a revision by new information $\alpha$. If $\alpha$ makes $x$ more plausible ($x \in \modelsOf{\alpha}$) and $y$ less plausible ($y \in \modelsOf{\neg\alpha}$) then after revision $x$ should be considered strictly more plausible than $y$. This rule was not only proposed by Booth and Meyer \cite{Booth2006a} but also by Jin und Thielscher in \cite{Jin2007} (as the postulate of independence).
 
 % TODO: WHAT ARE ADMISSIBLE OPERATORS
 %info here: \cite{Booth2006a}
@@ -679,8 +672,8 @@ Booth and Meyer propose an operator that keeps worlds that satisfy $\alpha$ cons
 \begin{equation*}
     (p \ast \alpha)(x^{\epsilon}) = \left\{
                     \begin{array}{ll}
-                      p(x^{\epsilon}) \textrm{ if } x \in [\alpha]\\
-                      p(x^{\epsilon}) + a \textrm{ if } x \in [\neg\alpha]
+                      p(x^{\epsilon}) \textrm{ if } x \in \modelsOf{\alpha}\\
+                      p(x^{\epsilon}) + a \textrm{ if } x \in \modelsOf{\neg\alpha}
                     \end{array}
                   \right.
 \end{equation*}
@@ -764,21 +757,21 @@ By this definition, the interval representing $\alpha$-worlds stays the same as 
     In the second step $p$ is revised by $\alpha$ to $p \ast \alpha$. The $\neg\alpha$-world $010$ is moved back by $a$, while the $\alpha$-world $100$ is unchanged:
     
     \begin{equation*}
-        010 \in [\neg\alpha] \textrm{ : } (p(010^{-}), p(010^{-}) + a) = (a, 2a)
+        010 \in \modelsOf{\neg\alpha} \textrm{ : } (p(010^{-}), p(010^{-}) + a) = (a, 2a)
     \end{equation*}
     
     \begin{equation*}
-        100 \in [\alpha] \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)
+        100 \in \modelsOf{\alpha} \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)
     \end{equation*}
 \end{example}
 
 \begin{example}
     \label{example:example-preceq-revised-alien}
-    For an example that demonstrates the impact the revision of $\preceq$ has on the acceptance of conditional beliefs, consider again the courtroom example \ref{example:example-introduction}. The fact that the victim is an alien ($r$ true) seems very unlikely, which is modelled by the gap between $[r]$-worlds and $[\neg r]$-worlds.
+    For an example that demonstrates the impact the revision of $\preceq$ has on the acceptance of conditional beliefs, consider again the courtroom example \ref{example:example-introduction}. The fact that the victim is an alien ($r=\textrm{true}$) seems very unlikely, which is modelled by the gap between $\modelsOf{r}$-worlds and $\modelsOf{\neg r}$-worlds.
     
-    When evidence $\alpha = r$ arrives, there seems to be little change in the epistemic state of the judge: $\leq_{\alpha}^{\ast}$ is unchanged, as even considering the negative representations of $[\neg r]$-worlds, they rank lower than $[r]$-worlds. An unchanged tpo $\leq_{\alpha}^{\ast}$ also means the believe set $B(\mathbb{E})$ stays the same and does not include $r$ (a property of non-prioritised revision as described in item \ref{section:non-prioritised-revision}).
+    When evidence $\alpha = r$ arrives, there seems to be little change in the epistemic state of the judge: $\leq_{\alpha}^{\ast}$ is unchanged, as even considering the negative representations of $\modelsOf{\neg r}$-worlds, they rank lower than $\modelsOf{r}$-worlds. An unchanged tpo $\leq_{\alpha}^{\ast}$ also means the believe set $B(\mathbb{E})$ stays the same and does not include $r$ (a property of non-prioritised revision as described in item \ref{section:non-prioritised-revision}).
     
-    What did change is the willingness of the agent to accept conditional beliefs about $r$ being true in light of future evidence. This is reflected by the revised structure $\preceq_{p \ast \alpha}$ shown in figure \ref{fig:example-preceq-revised-alien}.
+    What did change is the willingness of the agent to accept conditional beliefs about $r$ being true in light of future evidence. This is reflected by the revised structure $\preceq_{p \ast \alpha}$ shown in figure \ref{fig:example-preceq-revised-alien2}.
 
     \begin{figure}[H]
             \centering
@@ -845,7 +838,7 @@ By this definition, the interval representing $\alpha$-worlds stays the same as 
     \end{figure}
     
     % TODO tpo alpha as beta is unlucky because ast has a different meaning already, also change in figure 8 caption
-    Notice how the gap between $[\neg r]$- and $[r]$-worlds has now closed. After revising $\preceq_{p \ast \alpha}$ for a second piece of evidence $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$ ("the murderer was either John or Mary, not both") the new tpo $\leq_{\alpha \ast \beta}^{\ast}$ can be read from the filled dots in figure \ref{fig:example-preceq-revised-alien2}.
+    Notice how the gap between $\modelsOf{\neg r}$- and $\modelsOf{r}$-worlds has now closed. After revising $\preceq_{p \ast \alpha}$ for a second piece of evidence $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$ ("the murderer was either John or Mary, not both") the new tpo $\leq_{\alpha \ast \beta}^{\ast}$ can be read from the filled dots in figure \ref{fig:example-preceq-revised-alien2}.
     
     \begin{figure}[H]
             \centering
@@ -912,27 +905,26 @@ By this definition, the interval representing $\alpha$-worlds stays the same as 
             \label{fig:example-preceq-revised-alien2}
     \end{figure}
     
-For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where they are not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that, even after direct evidence for alien life, did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$, the evidence $\alpha$ changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$, the judge even considers the $[r]$-worlds $\{011, 101\}$ more likely than the $[\neg r]$-worlds $\{000, 110\}$!
+For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where they are not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that, even after direct evidence for alien life, did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$, the evidence $\alpha$ changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$, the judge even considers the $\modelsOf{r}$-worlds $\{011, 101\}$ more likely than the $\modelsOf{\neg r}$-worlds $\{000, 110\}$!
 
-(Luckily, due to the existence of $[\beta]$-worlds $\{010, 100\}$, the belief set of the judge still does not include $r$ and rationality prevails.)
+(Luckily, due to the existence of $\modelsOf{\beta}$-worlds $\{010, 100\}$, the belief set of the judge still does not include $r$ and rationality prevails.)
 \end{example}
 
 \section{Final remarks}
 \label{section:conclusion}
-The featured paper "How to Revise a Total Preorder" by Booth and Meyer \cite{Booth2011} is a comprehensive work on using interval orderings for belief change. This synopsis focused on presenting the research context and previous work in iterated belief change as well as the concrete tpo-revision based on the additional structure of $\leq$-faithful tpos. A consistent example including a trial situation (adapted from \cite{Darwiche1997} and \cite{Booth2011}) was used to accompany the discussion of the paper. In addition to the provided example the synopsis also introduced an adapted visualisation for $\leq$-faithful tpo-revision based on the stick visualisation used by Booth and Meyer themselves.
+The featured paper "How to Revise a Total Preorder" by Booth and Meyer \cite{Booth2011} is a comprehensive work on using interval orderings for belief change. This synopsis focused on presenting the research context and previous work in iterated belief change as well as the concrete tpo-revision based on the additional structure of $\leq$-faithful tpos. A consistent example including a trial situation (adapted from \cite{Darwiche1997} and \cite{Booth2011}) was used to accompany the discussion of the paper. In addition to the provided example the synopsis also introduced an adapted visualisation for $\leq$-faithful tpo-revision based on the interval visualisation used by Booth and Meyer themselves.
 
 To make the presented content easier to follow some parts of the original paper had to be excluded. Booth and Meyer discuss multiple additional properties of their proposed operators as well as edge cases. They also provide a different way to express the $\preceq$-structure using strict preference hierarchies and discuss how they relate to other research areas. For those topics as well as detailed proofs it is highly advised to read the primary paper \cite{Booth2011} itself.
 
 The idea to define an interval of plausibility for worlds depending on if evidence supports them or not does make intuitive sense. A view largely missing from the paper is the discussion of the different impact and quality of new information itself.
 
-% TODO: QUESTION, idempotent correct?
-The proposed, concrete operator for the revision of $\leq$-faithful tpos allows for multiple revisions by the same evidence $\alpha$ or semantically equivalent evidence $\beta \equiv \alpha$. Those would consistently lower the acceptance of $[\neg\alpha]$-worlds without presenting new evidence. It seems like an interesting question to ask, if tpo-revision for iterated belief change could be idempotent in regards to already known information.
+The proposed, concrete operator for the revision of $\leq$-faithful tpos allows for consecutive revisions by the same evidence $\alpha$ or semantically equivalent evidence $\beta \equiv \alpha$. Those would consistently lower the acceptance of $\modelsOf{\neg\alpha}$-worlds without presenting new evidence. It seems like an interesting question to ask, if tpo-revision for iterated belief change could be idempotent in regards to already known information.
 
 % TODO QUESTION: this critique example seems very weak
 Considering the quality and impact of new evidence also creates the question if \ref{AST6} and \ref{AST7} (properties of BM tpo-revision operators, section \ref{section:properties-of-bm-tpo-revision-operators}) should be weakened. Especially high quality evidence for a very unlikely type of world might change an agents plausibility ordering, while low quality evidence that is very expected might not. Consider the following situation in our courtroom example \ref{example:example-introduction}: New evidence $\alpha$ arrives that fingerprints of John have been found at the place of the murder. $\alpha$  makes a world $x$, with $p$ being true, more likely. But, because of a large body of evidence, the judge still considers a world $y$, where Mary is the murderer, to be more plausible. This means there can be no evidence $\gamma$ that would make the agent consider the world $x$ more likely than $y$ according to \ref{AST7}:
 
 \begin{equation*}
-    \textrm{If } x \in [\alpha], y \in [\neg\alpha] \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x
+    \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x
 \end{equation*}
 
 But what if evidence is submitted that, if Mary is the murderer, the victim must be an alien $\gamma = q \implies r$? Semantically a human agent would assume all worlds in which Mary is the murderer to be highly unlikely due to how far fetched the acceptance of the victim being an alien is. Further research is required to solve this apparent contradiction by modelling different types and strengths of evidence.
