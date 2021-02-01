@@ -90,11 +90,7 @@ The structure of the synopsis will be as follows: Establish the context of the p
 
 \section{Formal background}
 \label{section:formal-background}
-
-% TODO: put text here
-
-\subsection{Propositional Logic} % Aussagenlogik
-The following notation will be used, as proposed by \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables. Lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\models$ denotes classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
+The following notation will be used, largely aligned to Booth and Meyer \cite{Booth2011}: A propositional language $L$ generated from finitely many propositional variables. Lower case greek letters represent formulae in $L$ and $\top$, $\bot$ representing tautology and contradiction respectively. $\models$ denotes classical logical consequence, $\equiv$ classical logical equivalence. $Cn$ is used to denote the deductive closure of a formula or set of formulae in $L$.
 
 $W$ is the set of propositional worlds (also called propositional interpretations in classical logic \cite{Kai2020}). Given a formula $\alpha \in L$, the set of worlds that satisfy $\alpha$ is denoted by $\modelsOf{\alpha}$.
 
@@ -199,7 +195,8 @@ Darwiche and Pearl also define postulates that restrict how the rest of the new 
 \ref{CR1} and \ref{CR2} mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$- or $\neg\alpha$- worlds. \ref{CR3} and \ref{CR4} require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after an $\alpha$-revision.
 
 \section{Additional metadata for tpo revision}
-% TODO: Text, put in that paper by booth and meyer starts here basically
+After discussing notation and previous research, the following chapters present an excerpt of the new work done by Booth and Meyer in \cite{Booth2011}. To support their approach to tpo revision, Booth and Meyer propose adding additional metadata to epistemic states. 
+
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$, Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of their paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. These functions are referred to as revision operators for $\leq$.
 
