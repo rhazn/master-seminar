@@ -61,24 +61,6 @@ A core process for an intelligent agent dealing with uncertain knowledge is upda
 
 In belief revision, belief change is modelled using an operator that produces an updated set of beliefs from the state of an agent and new evidence. Research in this area discusses appropriate formalisations of agent state and constrains on individual operators or families of operators. Depending on if the suggested operator handles only one new evidence or consecutive evidence, the approaches are called one-step or iterated belief revision.
 
-%Consider a knowledge base (KB) represented by a set of sentences in a
-%language L. As our perception of the world described by the knowledge base
-%changes, the knowledge base must be modified. G~irdenfors [9] distinguishes
-%several kinds of modifications. If we simply acquire additional knowledge
-%about the world, and the new knowledge does not conflict with the current
-%beliefs t of the KB, we expand the KB. If, however, the new knowledge is
-%inconsistent with the old beliefs, and we want the KB to be always consistent,
-%we must resolve the conflict somehow; this operation will be called revision. A
-%* Part of this work was performed while this author was visiting the University of Toronto.
-%** This author is partially supported by the Natural Science and Engineering Research Council
-%of Canada.
-%1 We use the terms belief and knowledge interchangeably in this paper.
-%0004-3702/91/$03.50 © 1991 -- Elsevier Science Publishers B.V. All rights reserved 
-%264 H. Katsuno, A.O. Mendelzon
-%different kind of change occurs when a sentence previously believed becomes
-%questionable and has to be given up; the operation that makes this change is a
-%contraction
-
 % TODO: discussed in \cite{Katsuno1991} correct? was mentioned in intro of Admissible and Restrained Revision
 A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (tpos) \cite{Booth2011}, discussed in \cite{Katsuno1991}. In "How to Revise a Total Preorder", Booth and Meyer describe how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps. It therefore places the article in the field of iterated belief revision.
 
@@ -131,10 +113,8 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
 \label{chapter:belief-sets-and-epistemic-states}
 % TODO: explain contraction, revision, expansion
 % ANSWER: Ich würdes es ganz kurz erläutern im Text. Im Vortrag vielleicht nicht umbedingt.
-
-
 % TODO: Gardenfors correct? read!
-A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. Alchourrón, Gärdenfors, and Makinson (AGM theory, \cite{Alchourron1985}) define postulates for belief sets and their contraction, expansion or revision with new evidence. In the process of belief revision an agent keeps their set of beliefs consistent while incorporating new information, even if it is inconsistent with the current belief set \cite{Gaerdenfors1984}. Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is not expressive enough for satisfying results in iterated belief revision. They make the distinction between propositional beliefs (beliefs the agent accepts and are part of the belief set) and conditional beliefs as beliefs the agent is prepared to adopt with new evidence.
+A belief set is the deductively closed set of propositions an agent accepts as true at any given point in time \cite{Ferme2011}. Alchourrón, Gärdenfors, and Makinson (AGM theory, \cite{Alchourron1985}) define postulates for belief sets and their expansion, contraction or revision with new evidence. Belief set expansion is the process of incorporating a new piece of evidence that is not inconsistent with currently held beliefs while contraction refers to giving up a belief that has become questionable. The process of belief revision refers to keeping an agent's set of beliefs consistent while incorporating new information that is inconsistent with the current belief set \cite{Katsuno1991, Gaerdenfors1984}. Darwiche and Pearl \cite{Darwiche1997} argue that working with belief sets is not expressive enough for satisfying results in iterated belief revision. They make the distinction between propositional beliefs (beliefs the agent accepts and are part of the belief set) and conditional beliefs as beliefs the agent is prepared to adopt with new evidence.
 
 While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they don't restrict changes in conditional beliefs. In their paper, Darwiche and Pearl argue for epistemic states, abstract entities that contain all information an agent needs for their reasoning. This includes especially their strategy for belief revision in addition to their belief set. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering new information \cite{Darwiche1997}.
 
