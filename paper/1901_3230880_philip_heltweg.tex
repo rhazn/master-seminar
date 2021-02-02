@@ -61,8 +61,7 @@ A core process for an intelligent agent dealing with uncertain knowledge is upda
 
 In belief revision, belief change is modelled using an operator that produces an updated set of beliefs from the state of an agent and new evidence. Research in this area discusses appropriate formalisations of agent state and constrains on individual operators or families of operators. Depending on if the suggested operator handles only one new evidence or consecutive evidence, the approaches are called one-step or iterated belief revision.
 
-% TODO: discussed in \cite{Katsuno1991} correct? was mentioned in intro of Admissible and Restrained Revision
-A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (tpos) \cite{Booth2011}, discussed in \cite{Katsuno1991}. In "How to Revise a Total Preorder", Booth and Meyer describe how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps. It therefore places the article in the field of iterated belief revision.
+A common tool used to encode plausibility assumptions of an agent about possible worlds are total preorders (tpos) \cite{Booth2011}, also discussed in \cite{Katsuno1991}. In "How to Revise a Total Preorder", Booth and Meyer describe how to model the change of these total preorders when new evidence becomes available. Being able to derive a new tpo from additional evidence is an approach to handling multiple revision steps. It therefore places the article in the field of iterated belief revision.
 
 To support iterated belief revision it is necessary to research how tpos can be changed to adapt to an agent's changing world view.
 Booth and Meyer suggest an approach based on the idea of assigning an interval of additional metadata to propositional worlds and iterate the tpo of an agent using that structure. They define and discuss properties of operators for tpo-revision as well as relate their approach to other fields of research.
@@ -606,14 +605,9 @@ The list of properties they consider to be a complete axiomatisation of the fami
 
 \ref{AST1} and \ref{AST2} are considered basic properties: A revision of a tpo $\leq$ over $W$ must generate another tpo over $W$. In addition the operator must return an equal revised tpo for semantically equivalent sentences, the so called syntax-irrelevance property.
 
-The next group of properties, \ref{AST3}-\ref{AST5} are common rules in iterated belief change. Booth and Meyer themselves consider them characteristic for admissible revision operators \cite{Booth2006a}.
+The next group of properties, \ref{AST3}-\ref{AST5} are common rules in iterated belief change. Booth and Meyer themselves consider them characteristic for admissible revision operators, a class of operators that requires new evidence to not be ignored completely \cite{Booth2006a}. This is in contrast to revision strategies like natural revision by Boutilier \cite{Boutilier1996} that minimise change in conditional beliefs.
 If revising a tpo by a sentence $\alpha$, the relative ordering of worlds that are either both $\modelsOf{\alpha}$- or $\modelsOf{\neg\alpha}$-worlds, must stay the same (\ref{AST3}/\ref{AST4}). These properties were already part of the semantic postulates \ref{CR1} and \ref{CR2} by Darwiche and Pearl \cite{Darwiche1997} discussed in section \ref{chapter:dp-agm-postulates}.
 In a similar way \ref{AST5} is a stronger requirement than the other two Darwiche and Pearl postulates \ref{CR3} and \ref{CR4}. It means the following: A world $x$ that is considered at least as plausible as a world $y$ before a revision by new information $\alpha$. If $\alpha$ makes $x$ more plausible ($x \in \modelsOf{\alpha}$) and $y$ less plausible ($y \in \modelsOf{\neg\alpha}$) then after revision $x$ should be considered strictly more plausible than $y$. This rule was not only proposed by Booth and Meyer \cite{Booth2006a} but also by Jin und Thielscher in \cite{Jin2007} (as the postulate of independence).
-
-% TODO: WHAT ARE ADMISSIBLE OPERATORS
-%info here: \cite{Booth2006a}
-% see also http://ceur-ws.org/Vol-2445/paper_2.pdf
-% see also: Whiwap: Checking Iterative Belief Changes
 
 These properties define tpo-revision with one input sentence. Booth and Meyer relate them to the AGM postulates for belief set revision \cite{Alchourron1985} as basic postulates for tpo-revision \cite{Booth2011}.
 
@@ -654,8 +648,7 @@ Using $p$, a $\leq$-faithful tpo $\preceq_{p}$ satisfying \ref{PREQ1}-\ref{PREQ4
 
 Revision of $\preceq$ becomes a two step process: First choose a function $p$ so that $\preceq_{p} = \preceq$. Then revise $p$ to get a new assignment $p \ast \alpha$ that defines a new $\leq$-faithful tpo $\preceq_{p \ast \alpha}$.
 
-% TODO: probably don't need geffner ref here
-Booth and Meyer propose an operator that keeps worlds that satisfy $\alpha$ constant and moves $\neg\alpha$-worlds "back" by $a$ (also known as L-conditionalisation in Spohn-type rankings \cite{Geffner1992}). Other operators are possible and an area of further research \cite{Booth2011}. They achieve this by setting $p$, for every $x^{\epsilon} \in W^{\pm}$ to:
+Booth and Meyer propose an operator that keeps worlds that satisfy $\alpha$ constant and moves $\neg\alpha$-worlds "back" by $a$. Other operators are possible and an area of further research \cite{Booth2011}. They achieve this by setting $p$, for every $x^{\epsilon} \in W^{\pm}$ to:
     
 \begin{equation*}
     (p \ast \alpha)(x^{\epsilon}) = \left\{
