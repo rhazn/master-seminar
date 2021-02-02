@@ -114,7 +114,9 @@ A belief set is the deductively closed set of propositions an agent accepts as t
 
 While the AGM postulates define restrictions on revising propositional beliefs (a core one being the principle of minimal change), they don't restrict changes in conditional beliefs. In their paper, Darwiche and Pearl argue for epistemic states, abstract entities that contain all information an agent needs for their reasoning. This includes especially their strategy for belief revision in addition to their belief set. As conditional beliefs are represented by these strategies, it is necessary to define how to modify the strategy itself when encountering new information \cite{Darwiche1997}.
 
-Belief sets can be extracted from epistemic states. The belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$. Darwiche and Pearl show that their version of revision of epistemic states can be modelled with a tpo $\leq_{\mathbb{E}}$, associated with $\mathbb{E}$. Extraction of $B(\mathbb{E})$ is achieved by considering the set of lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is defined to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$. The belief set of the agent with this notation is $Th(\modelsOf{B(\mathbb{E})})$.
+Darwiche and Pearl show that their version of belief revision on epistemic states can be modelled with a tpo $\leq_{\mathbb{E}}$, associated with $\mathbb{E}$. The mapping of a belief state $\mathbb{E}$ to a tpo $\leq_{\mathbb{E}}$, that maintains the belief set, is is called a faithful assignment. As Booth and Meyer describe an additional structure, from which a tpo $\leq_{\mathbb{E}}$ can be determined, faithful assignment is mentioned here only for completeness. For more information refer to Katsuno and Mendelzon \cite{Katsuno1991}.
+
+Belief sets can be extracted from epistemic states. The belief set extracted from an epistemic state $\mathbb{E}$ is denoted as $B(\mathbb{E})$. Extraction of $B(\mathbb{E})$ is achieved by considering the set of lowest ranked worlds (i.e. the most plausible interpretations) under $\leq_{\mathbb{E}}$. The set of propositional sentences that holds in all those worlds is defined to be the belief set of the agent. For notation let $min(\alpha, \leq_{\mathbb{E}})$ denote the set of minimal models for the propositional formula $\alpha$ under $\leq_{\mathbb{E}}$. Then $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$ is the set of worlds that are models of the belief set $B(\mathbb{E})$ associated with $\mathbb{E}$. The belief set of the agent with this notation is $Th(\modelsOf{B(\mathbb{E})})$.
 
 \begin{example}
     Continuing Example \ref{example:example-introduction} it is possible to model an epistemic state $\mathbb{E}$ with the tpo $\leq_{\mathbb{E}}$.
@@ -122,27 +124,9 @@ Belief sets can be extracted from epistemic states. The belief set extracted fro
     $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $\modelsOf{B(\mathbb{E})} = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense, with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
 \end{example}
 
-% TODO QUESTION: do we need to discuss this in ore detail? faithful assignment here:
-
-% ANSWER: Das ist eine gute Frage. So wie ich das Paper von Booth und Meyer im
-% Kopf habe werden dort die Ordnung mit epistemischen Zuständen
-% gleichgesetzt (was Darwiche und Pearl ja nicht machen). Von daher halte
-% ich das für ok es nicht im aller formalen Ausführlichkeit zu machen.
-% Aber man könnte es im einen Satz erwähnen.
-
-%Katsuno and Mendelzon [17] propose that an epistemic state Ψ
-%should be equipped with an ordering ≤Ψ of the worlds (interpretations), where the compatibility with Bel(Ψ) is ensured by the socalled faithfulness.
-%Definition 1 (Faithful Assignment [17]) A function Ψ 
-%→≤Ψ that
-%maps each epistemic state to a total preorder on interpretations is
-%said to be a faithful assignment if and only if:
-%(FA1) if ω1 ∈ Ψ and ω2 ∈ Ψ, then ω1 Ψ ω2
-%(FA2) if ω1 ∈ Ψ and ω2 ∈  / Ψ, then ω1 <Ψ ω2
-%Intuitively, ≤Ψ orders the worlds by plausibility, such that the minimal worlds with respect to ≤Ψ are the most plausible worlds.
-
 \subsection{Belief revision postulates}
 \label{chapter:dp-agm-postulates}
-A well established set of Postulates for revision are the AGM postulates \cite{Alchourron1985}. In this text, a reformulation for epistemic states by Darwiche and Pearl \cite{Darwiche1997} is used, presented in the following. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ it's associated belief set, $B(\mathbb{E}) + \alpha$ the expansion of $B(\mathbb{E})$ by $\alpha$. $\ast$ being a belief change operator on epistemic states. 
+A well established set of postulates for revision are the AGM postulates \cite{Alchourron1985}. In this text, a reformulation for epistemic states by Darwiche and Pearl \cite{Darwiche1997} is used, presented in the following. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ it's associated belief set, $B(\mathbb{E}) + \alpha$ the expansion of $B(\mathbb{E})$ by $\alpha$. $\ast$ being a belief change operator on epistemic states. 
 
 \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
     \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
@@ -598,11 +582,6 @@ The list of properties they consider to be a complete axiomatisation of the fami
     \item\label{AST7} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x$
 \end{enumerate}
 
-%TODO QUESTION: the text sounds like the properties are supposed by BM/they define them but they are also proved?! or does this mean proved for their approach but could be done differently?
-%We propose that if x is not more
-%preferred than y, even after receiving evidence which clearly points more to x
-%being the case than it does to y, then there can be no evi
-
 \ref{AST1} and \ref{AST2} are considered basic properties: A revision of a tpo $\leq$ over $W$ must generate another tpo over $W$. In addition the operator must return an equal revised tpo for semantically equivalent sentences, the so called syntax-irrelevance property.
 
 The next group of properties, \ref{AST3}-\ref{AST5} are common rules in iterated belief change. Booth and Meyer themselves consider them characteristic for admissible revision operators, a class of operators that requires new evidence to not be ignored completely \cite{Booth2006a}. This is in contrast to revision strategies like natural revision by Boutilier \cite{Boutilier1996} that minimise change in conditional beliefs.
@@ -818,7 +797,7 @@ By this definition, the interval representing $\alpha$-worlds stays the same as 
             \label{fig:example-preceq-revised-alien}
     \end{figure}
     
-    % TODO tpo alpha as beta is unlucky because ast has a different meaning already, also change in figure 8 caption
+    % TODO tpo alpha ast beta is unlucky because ast has a different meaning already, also change in figure 8 caption
     Notice how the gap between $\modelsOf{\neg r}$- and $\modelsOf{r}$-worlds has now closed. After revising $\preceq_{p \ast \alpha}$ for a second piece of evidence $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$ ("the murderer was either John or Mary, not both") the new tpo $\leq_{\alpha \ast \beta}^{\ast}$ can be read from the filled dots in Figure \ref{fig:example-preceq-revised-alien2}.
     
     \begin{figure}[H]
