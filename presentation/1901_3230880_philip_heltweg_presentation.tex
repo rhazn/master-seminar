@@ -11,11 +11,27 @@
 
 \documentclass[11pt]{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{pgfpages}
 
 \usefonttheme{professionalfonts}
 \usetheme{Madrid}
 \usecolortheme{orchid}
 
+% Notes
+% Talk using pympress: brew install pympress
+% Talk command: pympress -t 40 -n right ~/Documents/master/1901/presentation/1901_3230880_philip_heltweg_presentation.pdf
+\setbeameroption{show notes on second screen=right} % Both
+% Coloring note-pages
+\setbeamertemplate{note page}{\pagecolor{yellow!15}\insertnote\vfill\insertframenumber}
+\setbeamertemplate{note page}{
+	\pagecolor{yellow!15}
+	\medskip
+	SLIDE: \insertframenumber\\
+	TITLE: \insertframetitle,
+
+	\insertnote
+	
+}
 
 \AtBeginSection[]
 {
@@ -36,6 +52,13 @@
 \begin{frame}
     \frametitle{Table of Contents}
     \tableofcontents
+    
+    \note{
+        \begin{itemize}
+            \item Foo
+            \item Bar
+        \end{itemize}
+    }
 \end{frame}
 
 \section{Example}
