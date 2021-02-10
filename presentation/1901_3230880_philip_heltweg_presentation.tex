@@ -12,6 +12,17 @@
 \documentclass[11pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{pgfpages}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{stmaryrd}
+
+\newcommand{\modelsOf}[1]{\llbracket #1 \rrbracket}
 
 \usefonttheme{professionalfonts}
 \usetheme{Madrid}
@@ -49,8 +60,7 @@
 
 \frame{\titlepage}
 
-\begin{frame}
-    \frametitle{Table of Contents}
+\begin{frame}{Table of Contents}
     \tableofcontents
     
     \note{
@@ -61,10 +71,174 @@
     }
 \end{frame}
 
-\section{Example}
+\section{Introduction}
 
-\begin{frame}
-    \frametitle{Sample frame title}
+\begin{frame}{Motivation}
+    How should a judge change their worldview when presented with new information?  
+    \note{
+        \begin{itemize}
+            \item Example question to motivate
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom example \footnote{inspired by \cite{Booth2011}, \cite{Darwiche1997}}}
+    \begin{itemize}
+        \item The agent is a judge in a murder trial, "John" and "Mary" are suspects
+        \item $\Sigma = \{ p, q, r\}$
+        \begin{itemize}
+            \item p = "John is the murderer"
+            \item q = "Mary is the murderer"
+            \item r = "The victim is an alien"
+        \end{itemize}
+        \item  $I_{\Sigma} = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$ 
+    \end{itemize} 
+    \note{
+        \begin{itemize}
+            \item NOTE
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Research Context}
+    \note{
+        \begin{itemize}
+            \item Research context with areas according to darwiche
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Different types of belief}
+    \note{
+        \begin{itemize}
+            \item belief sets (AGM) vs conditional beliefs (Darwiche and Pearl) vs iterating on conditional beliefs (Booth and Meyer)
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Paper goal}
+    \note{
+        \begin{itemize}
+            \item present paper goal as defining postulates for a family of operators, functions $\ast$ for iterating on belief change revision operators
+            \item explain the concept of defining postulates for a family of operators and research in these postulates to have something to talk about, explain there are different operators and different postulates. this is not finding "the true one" but defining families and discussing pro/contra
+        \end{itemize}
+    }
+\end{frame}
+
+\section{Formal Background}
+
+\begin{frame}{Total preorders}
+    \begin{itemize}
+        \item Common tool to handle preference orderings over propositional worlds \cite{Booth2011}
+        \item binary relation $\leq$, total, reflexive, transitive
+        \item  $<$ strict, $\sim$ symmetric closure
+    \end{itemize}
+    \note{
+        \begin{itemize}
+            \item total (for all $x, y \in W$ either $x \leq y$ or $y \leq x$)
+            \item reflexive ($x \leq x$ for all $x \in W$)
+            \item transitive (if $x \leq y$ and $y \leq z$ then $x \leq z$)
+            \item  $<$ strict part of $\leq$
+            \item $\sim$ symmetric closure of $\leq$ (i.e. $x \sim y$ iff $x \leq y$ and $y \leq x$)
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Preorder example}
+    \begin{itemize}
+        \item Judge beliefs
+        \begin{itemize}
+            \item Murderer probably acted alone but possible that they conspired
+            \item Unlikely, but not impossible, for the victim to be an alien
+        \end{itemize} 
+        \item $\leq$ over $W$: $010 \sim 100 < 000 \sim 110 < 011 \sim 101 < 001 \sim 111$
+    \end{itemize}
+    \note{
+        \begin{itemize}
+            \item NOTE
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Preorder visualisation}
+    \begin{table}[H]
+         \centering
+        \begin{tabular}{llll}
+        $R_{1}$                      & $R_{2}$                                                                   & $R_{3}$ & $R_{4}$                      \\ \hline
+        \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
+            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}} \\ \hline
+        \end{tabular}
+        \caption{Visualising a tpo as a linearly ordered set of ranks, as done in \cite{Booth2006}}.
+        \label{tab:visualising-a-tpo-example}
+    \end{table}
+    \note{
+        \begin{itemize}
+            \item It uses the fact that tpos can be represented as a linearly ordered set of ranks. Each rank of a tpo $\leq$ is defined as the equivalence classes modulo the symmetric closure of $\leq$: $[[x]]_{\sim} = \{y \mid y \sim x\}$. These equivalence classes are then ordered by the relation $[[x]] \leq [[y]]$ iff $x \leq y$.
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Belief Sets}
+    \note{
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Epistemic States}
+    \note{
+        \begin{itemize}
+            \item how to extract belief sets from epistemic states
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Belief Set Revision Postulates\footnote{AGM postulates \cite{Alchourron1985}, reformulated for epistemic states by Darwiche and Pearl \cite{Darwiche1997}}}
+    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
+        \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
+        \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
+        \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
+        \item\label{E4} $\qquad \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
+        \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
+        \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \models \neg \alpha$
+        \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
+        \item\label{E8} $\qquad \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta))$
+    \end{enumerate}
+    
+    \note{
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Conditional Belief Revision Postulates\footnote{by Darwiche and Pearl \cite{Darwiche1997}}}
+    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = (CR$\arabic*$)]
+        \item\label{CR1} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
+        \item\label{CR2} $\qquad \textrm{If } v\in \modelsOf{\neg\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
+        \item\label{CR3} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v <_{\mathbb{E}} w \textrm{ only if } v <_{\mathbb{E\ast\alpha}} w$
+        \item\label{CR4} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ only if } v \leq_{\mathbb{E\ast\alpha}} w$
+    \end{enumerate}
+    \note{
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    }
+\end{frame}
+
+\section{Additional metadata for tpo revision}
+\section{Booth and Meyer tpo-revision operators}
+\section{Iterating: $\preceq$-revision}
+\section{Final remarks}
+
+\begin{frame}{References}
+    \typeout{}
+    \bibliographystyle{plain}
+    \bibliography{references}
+\end{frame}
+
+\begin{frame}{Sample frame title}
     This is a text in the first frame. This is a text in the first frame. This is a text in the first frame.
 \end{frame}
 
