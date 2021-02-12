@@ -28,6 +28,13 @@
 \usetheme{Madrid}
 \usecolortheme{orchid}
 
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{theorems}[numbered]
+
+% TODO theorems/definitions etc should be numbered
+
+% TODO itemize dots seem to be lost
+
 % Notes
 % Talk using pympress: brew install pympress
 % Talk command: pympress -t 40 -n right ~/Documents/master/1901/presentation/1901_3230880_philip_heltweg_presentation.pdf
@@ -228,8 +235,190 @@
 \end{frame}
 
 \section{Additional metadata for tpo revision}
+
+\begin{frame}{Enriching Epistemic States}
+    \note{
+        \begin{itemize}
+            \item W+-
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{$\leq$-faithful tpo}
+    \begin{definition}[$\leq$-faithful tpo over $W^{\pm}$ \cite{Booth2011}]
+        \label{definition:faithful-tpo}Let $\preceq \subseteq W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4}, we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
+    \end{definition}
+    \note{
+        \begin{itemize}
+            \item characteristics + definition
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}[fragile]{$\leq$-faithful tpo visualisation}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                  yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
+                  xticklabels={,,},
+                  ytick style={draw=none},
+                  xtick style={draw=none},
+                  axis line style={draw=none}
+            ]
+            \addplot[
+                scatter,
+                scatter src=explicit symbolic,
+                mark size=3,
+                scatter/classes={
+                    empty={mark=*, fill=white},
+                    filled={mark=*, fill=black}
+                },
+                nodes near coords*={\Label},
+                visualization depends on={value \thisrow{label} \as \Label}
+            ]
+            table [meta=class] {
+                    x y class label
+                    
+                    3 1 empty $x_{4}^{+}$
+                    6 1 empty $x_{4}^{-}$
+                                        
+                    2 2 empty $x_{3}^{+}$
+                    5 2 empty $x_{3}^{-}$
+                    
+                    1 3 empty $x_{2}^{+}$
+                    3 3 empty $x_{2}^{-}$
+                    
+                    1 4 empty $x_{1}^{+}$
+                    3 4 empty $x_{1}^{-}$
+            };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Representation of $\preceq$ over $W^{\pm}$ using intervals}
+        \label{fig:example-visualisation-scatterplot}
+    \end{figure}
+    
+    \note{
+        \begin{itemize}
+            \item example with sticks
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom example: $\leq$-faithful tpo}
+    \note{
+        \begin{itemize}
+            \item example for courtroom
+        \end{itemize}
+    }
+\end{frame}
+
 \section{Booth and Meyer tpo-revision operators}
+
+\begin{frame}{BM tpo-revision operator}
+    \note{
+        \begin{itemize}
+            \item definition
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom example: Revision}
+    \note{
+        \begin{itemize}
+            \item example 7, math
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom example: Revision Visualised}
+    \note{
+        \begin{itemize}
+            \item example 7, figure 4
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{BACKUP: non-prioritised revision}
+    \note{
+        \begin{itemize}
+            \item example 7, figure 4
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Properties of BM Revision Operators}
+    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
+        \item\label{AST1} $\qquad \leq_{\alpha}^{\ast} \textrm{ is a tpo over } W$
+        \item\label{AST2} $\qquad\alpha \equiv \gamma \textrm{ implies } \leq_{\alpha}^{\ast}=\leq_{\gamma}^{\ast}$
+        \item\label{AST3} $\qquad \textrm{If } x, y \in \modelsOf{\alpha} \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
+        \item\label{AST4} $\qquad \textrm{If } x, y \in \modelsOf{\neg\alpha} \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
+        \item\label{AST5} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } x \leq y \textrm{ then } x <_{\alpha}^{\ast} y$
+        \item\label{AST6} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y \leq_{\alpha}^{\ast} x \textrm{ then } y \leq_{\gamma}^{\ast} x$
+        \item\label{AST7} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x$
+    \end{enumerate}
+
+    \note{
+        \begin{itemize}
+            \item properties
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Family of BM Revision Operators}
+    \begin{theorem}
+        \label{theorem:revision-operator}Let $\ast$ be any revision operator for $\leq$. Then $\ast$ is generated from some $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ iff $\ast$ satisfies \ref{AST1}-\ref{AST7}. \cite{Booth2011}
+    \end{theorem}
+
+    \note{
+        \begin{itemize}
+            \item theorem 1
+        \end{itemize}
+    }
+\end{frame}
+
 \section{Iterating: $\preceq$-revision}
+
+\begin{frame}{A concrete operator}
+    \note{
+        \begin{itemize}
+            \item math for operator
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom Example: A concrete operator}
+    \note{
+        \begin{itemize}
+            \item math for example with operator
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom Example: Visualised}
+    \note{
+        \begin{itemize}
+            \item figure 6
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom Example: Conditional beliefs 1}
+    \note{
+        \begin{itemize}
+            \item figure 7
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Courtroom Example: Conditional beliefs 2}
+    \note{
+        \begin{itemize}
+            \item figure 8
+        \end{itemize}
+    }
+\end{frame}
+
 \section{Final remarks}
 
 \begin{frame}{References}
