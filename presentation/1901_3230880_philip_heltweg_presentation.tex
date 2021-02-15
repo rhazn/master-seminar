@@ -543,6 +543,22 @@
 \section{Iterating: $\preceq$-revision}
 
 \begin{frame}{A concrete operator}
+    \begin{itemize}
+        \item $p: W^{\pm} \mapsto \mathds{R}$
+        \item $p(x^{-}) - p(x^{+}) = a > 0$
+        \item $x^{\epsilon} \preceq_{p} y^{\delta} \textrm{ iff } p(x^{\epsilon}) \leq p(y^{\delta})$
+        \item Set $p$, for every $x^{\epsilon} \in W^{\pm}$, to:
+    \end{itemize}
+    
+    \begin{equation*}
+        (p \ast \alpha)(x^{\epsilon}) = \left\{
+                        \begin{array}{ll}
+                          p(x^{\epsilon}) \textrm{ if } x \in \modelsOf{\alpha}\\
+                          p(x^{\epsilon}) + a \textrm{ if } x \in \modelsOf{\neg\alpha}
+                        \end{array}
+                      \right.
+    \end{equation*}
+    
     \note{
         \begin{itemize}
             \item math for operator
@@ -551,6 +567,19 @@
 \end{frame}
 
 \begin{frame}{Courtroom Example: A concrete operator}
+    \begin{itemize}
+        \item Choose initial $p$ so that $\preceq_{p} = \preceq$
+        \begin{itemize}
+            \item $010 \textrm{ : } (p(010^{+}), p(010^{-})) = (0, a)$.
+            \item $100 \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)$.
+        \end{itemize}
+        \item Revise $p$ by $\alpha$ to $p \ast \alpha$
+        \begin{itemize}
+            \item $010 \in \modelsOf{\neg\alpha} \textrm{ : } (p(010^{-}), p(010^{-}) + a) = (a, 2a)$
+            \item $100 \in \modelsOf{\alpha} \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)$
+        \end{itemize}
+            \end{itemize}
+
     \note{
         \begin{itemize}
             \item math for example with operator
@@ -558,15 +587,71 @@
     }
 \end{frame}
 
-\begin{frame}{Courtroom Example: Visualised}
-    \note{
-        \begin{itemize}
-            \item figure 6
-        \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{Courtroom Example: Conditional beliefs 1}
+\begin{frame}[fragile]{Courtroom Example: Visualised}
+    \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        old={mark=x, fill=white}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 old \empty
+                        
+                        3 8 empty
+                        5 8 empty 
+                        
+                        1 7 empty 
+                        3 7 empty
+                        
+                        2 6 old 
+                        
+                        4 6 empty
+                        6 6 empty
+                        
+                        2 5 empty 
+                        4 5 empty
+                        
+                        5 4 old 
+                        
+                        7 4 empty
+                        9 4 empty
+                        
+                        5 3 empty 
+                        7 3 empty
+                        
+                        6 2 old 
+                        
+                        8 2 empty
+                        10 2 empty
+                        
+                        6 1 empty 
+                        8 1 empty
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = p$}
+            \label{fig:example-preceq-revised}
+    \end{figure}
+    
     \note{
         \begin{itemize}
             \item figure 7
@@ -574,7 +659,71 @@
     }
 \end{frame}
 
-\begin{frame}{Courtroom Example: Conditional beliefs 2}
+\begin{frame}[fragile]{Courtroom Example: Conditional beliefs 1}
+    \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        old={mark=x, fill=white}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 old \empty
+                        
+                        3 8 empty
+                        5 8 empty 
+                        
+                        1 7 old
+                        
+                        3 7 empty 
+                        5 7 empty
+                        
+                        2 6 old 
+                        
+                        4 6 empty
+                        6 6 empty
+                        
+                        2 5 old
+                        
+                        4 5 empty 
+                        6 5 empty
+                        
+                        5 4 empty
+                        7 4 empty
+                        
+                        5 3 empty 
+                        7 3 empty
+                        
+                        6 2 empty
+                        8 2 empty
+                        
+                        6 1 empty 
+                        8 1 empty
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = r$}
+            \label{fig:example-preceq-revised-alien}
+    \end{figure}
+    
     \note{
         \begin{itemize}
             \item figure 8
@@ -582,58 +731,88 @@
     }
 \end{frame}
 
-\section{Final remarks}
+\begin{frame}[fragile]{Courtroom Example: Conditional beliefs 2}
+    \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[scale=1]
+                \begin{axis}[
+                        xticklabels={},
+                        yticklabels={},
+                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                        ytick style={draw=none},
+                        xtick style={draw=none},
+                        axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                        empty={mark=*, fill=white},
+                        filled={mark=*, fill=black},
+                        old={mark=x, fill=white}
+                    },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+                        
+                        1 8 old \empty
+                        
+                        3 8 filled
+                        5 8 empty 
+                        
+                        1 7 old
+                        
+                        3 7 filled 
+                        5 7 empty
+                        
+                        2 6 old 
+                        
+                        4 6 empty
+                        6 6 filled
+                        
+                        2 5 old
+                        
+                        4 5 empty 
+                        6 5 filled
+                        
+                        5 4 filled
+                        7 4 empty
+                        
+                        5 3 filled 
+                        7 3 empty
+                        
+                        6 2 empty
+                        8 2 filled
+                        
+                        6 1 empty 
+                        8 1 filled
+                        };
+                \end{axis}
+            \end{tikzpicture}
+            \caption{$\preceq_{p \ast \alpha \ast \beta}$ for $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$}
+            \label{fig:example-preceq-revised-alien2}
+    \end{figure}
+    
+    \note{
+        \begin{itemize}
+            \item figure 9
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{}
+  \centering \Huge
+  Thank You
+\end{frame}
 
 \begin{frame}{References}
     \typeout{}
     \bibliographystyle{plain}
     \bibliography{references}
-\end{frame}
-
-\begin{frame}{Sample frame title}
-    This is a text in the first frame. This is a text in the first frame. This is a text in the first frame.
-\end{frame}
-
-\begin{frame}
-\frametitle{Sample frame title}
-
-In this slide, some important text will be
-\alert{highlighted} because it's important.
-Please, don't abuse it.
-
-\begin{block}{Remark}
-Sample text
-\end{block}
-
-\begin{alertblock}{Important theorem}
-Sample text in red box
-\end{alertblock}
-
-\begin{examples}
-Sample text in green box. The title of the block is ``Examples".
-\end{examples}
-\end{frame}
-
-\section{More examples}
-
-\begin{frame}
-\frametitle{Two-column slide}
-
-\begin{columns}
-
-\column{0.5\textwidth}
-This is a text in first column.
-$$E=mc^2$$
-\begin{itemize}
-\item First item
-\item Second item
-\end{itemize}
-
-\column{0.5\textwidth}
-This text will be in the second column
-and on a second tought this is a nice looking
-layout in some cases.
-\end{columns}
 \end{frame}
 
 \end{document}
