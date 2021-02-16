@@ -108,26 +108,57 @@
 \end{frame}
 
 \begin{frame}{Research Context}
+    \begin{itemize}
+        \item Philosophy and artificial intelligence \cite{Ferme2011}
+        \item Belief change \cite{Darwiche1997}
+            \begin{itemize}
+                \item Nonmonotonic logic
+                \item Probabilistic reasoning
+                \item Belief revision
+            \end{itemize}
+        \item One-step vs. iterated belief revision
+    \end{itemize}
+
     \note{
         \begin{itemize}
-            \item Research context with areas according to darwiche
+            \item Belief change, adapting one's world view under imperfect information
+            \item Agent can be human or machine -> major areas philosophy and AI
+            \item Different approaches, nonmonotonic logic known from beierle courses (truth maintenance systems, default logic like reiter or pool), probabilistic reasoning (also known from beierle course 1845),
+            \item Belief revision: operator based. Define and discuss operators that transition agent state from one to the next for new evidence
+            \item One step vs iterated depending on how many consecutive new information it handels
+            \item Booth and Meyer: iterated belief revision
         \end{itemize}
     }
 \end{frame}
 
 \begin{frame}{Different types of belief}
+    \begin{itemize}
+        \item Belief set \cite{Alchourron1985}
+        \item Conditional beliefs \cite{Darwiche1997}
+        \item Change of conditional beliefs \cite{Booth2011}
+    \end{itemize}
+
     \note{
         \begin{itemize}
-            \item belief sets (AGM) vs conditional beliefs (Darwiche and Pearl) vs iterating on conditional beliefs (Booth and Meyer)
+            \item Belief sets as what an agent currently accepts as true (AGM theory: How is a belief set defined and how does the belief set change with new evidence?)
+            \item Conditional beliefs as what an agent is prepared to accept as true depending on future evidence? (Darwiche and Pearl: In addition to how does the belief set change, what is the "strategy" for future belief set change? How do conditional beliefs change?)
+            \item Booth and Meyer: Change of conditional beliefs: If conditional beliefs are the strategy to change belief sets with future evidence, how can we change conditional beliefs with new evidence?
         \end{itemize}
     }
 \end{frame}
 
-\begin{frame}{Paper goal}
+\begin{frame}{Goal}
+    \begin{itemize}
+        \item "conditional belief" revision operators
+        \item axiomatisation of a family of operators by defining properties
+        \item discuss properties and edge cases
+    \end{itemize}
+
     \note{
         \begin{itemize}
-            \item present paper goal as defining postulates for a family of operators, functions $\ast$ for iterating on belief change revision operators
-            \item explain the concept of defining postulates for a family of operators and research in these postulates to have something to talk about, explain there are different operators and different postulates. this is not finding "the true one" but defining families and discussing pro/contra
+            \item paper goal/focus of this talk revision operators for conditional belief structure (not mention tpo yet)
+            \item postulates for operators to restrict them, define a family of operators (axiomatisation) by doing that
+            \item properties are not "correct" but has to be done to reasonably talk about those operators and narrow down possibilities, compare to other properties/edge cases to branch out
         \end{itemize}
     }
 \end{frame}
@@ -186,6 +217,13 @@
 \end{frame}
 
 \begin{frame}{Belief Sets}
+    \begin{itemize}
+        \item Set of propositions the agent accepts as true at any point in time \cite{Ferme2011}
+        \item Deductively closed
+        \item Possible for example: $Cn(\{ p \vee q, \neg(p \wedge q), \neg r \})$
+    \end{itemize}
+    % TODO: Cn here good?
+    
     \note{
         \begin{itemize}
             \item 
@@ -194,9 +232,20 @@
 \end{frame}
 
 \begin{frame}{Epistemic States}
+    \begin{itemize}
+        \item abstract entity $\mathbb{E}$ that contain all information an agent need for their reasoning \cite{Darwiche1997}
+        \item commonly used: tpo $\leq_{\mathbb{E}}$
+        \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states as all sentences true in the most plausible worlds
+            \begin{itemize}
+                \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
+                \item Set of worlds that are models of the belief set of the agent $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$
+                \item All sentences true in those worlds: $Th(\modelsOf{B(\mathbb{E})})$
+            \end{itemize}
+    \end{itemize}
+    
     \note{
         \begin{itemize}
-            \item how to extract belief sets from epistemic states
+            \item "commonly used" does not mean has to be used, abstract
         \end{itemize}
     }
 \end{frame}
@@ -501,15 +550,6 @@
     }
 \end{frame}
 
-
-\begin{frame}{BACKUP: non-prioritised revision}
-    \note{
-        \begin{itemize}
-            \item example 7, figure 4
-        \end{itemize}
-    }
-\end{frame}
-
 \begin{frame}{Properties of BM Revision Operators}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
         \item\label{AST1} $\qquad \leq_{\alpha}^{\ast} \textrm{ is a tpo over } W$
@@ -809,7 +849,7 @@
   Thank You
 \end{frame}
 
-\begin{frame}{References}
+\begin{frame}[allowframebreaks=0.9]{References}
     \typeout{}
     \bibliographystyle{plain}
     \bibliography{references}
