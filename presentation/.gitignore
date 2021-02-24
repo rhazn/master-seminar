@@ -19,6 +19,7 @@
 # vscode
 *.vrb
 __latexindent_temp.tex
+.vscode
 
 ## Intermediate documents:
 *.dvi
