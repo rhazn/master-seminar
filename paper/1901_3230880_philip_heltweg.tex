@@ -69,7 +69,7 @@ A common tool used to encode plausibility assumptions of an agent about possible
 
 To support iterated belief revision it is necessary to research how tpos can be changed to adapt to an agent's changing world view.
 Booth and Meyer suggest an approach based on the idea of assigning an interval of additional metadata to propositional worlds and iterate the tpo of an agent using that structure. They define and discuss properties of operators for tpo-revision as well as relate their approach to other fields of research.
-This synopsis presents parts of their work to a broader audience. An accompanying example will guide the discussion and visualise changes in the agent's state. The focus will be on the tpo-revision operators discussed in the primary paper and explicitly avoid the addition of strict preference hierarchies and relations to other research areas.
+This synopsis presents parts of their work to a broader audience. An accompanying example will guide the discussion and visualize changes in the agent's state. The focus will be on the tpo-revision operators discussed in the primary paper and explicitly avoid the addition of strict preference hierarchies and relations to other research areas.
 
 The structure of the synopsis will be as follows: Establish the context of the paper by presenting the research area of iterated belief revision and how it relates to other areas of artificial intelligence and philosophy. To create a shared understanding of notation and definitions section \ref{section:formal-background} discusses formal background and other previous approaches to belief change. It also introduces the main contribution of this synopsis, the use of an accompanying example demonstrating tpo-revision as described by Booth and Meyer. After building this foundation, section \ref{section:booth-and-meyer-tpo-revision-operators} and \ref{section:properties-of-bm-tpo-revision-operators} present selected parts of the work from the original paper "How to Revise a Total Preorder" \cite{Booth2011}. Section \ref{section:booth-and-meyer-tpo-revision-operators} establishes and defines functions $\ast$, used to revise tpos. Properties of these functions are presented in section \ref{section:properties-of-bm-tpo-revision-operators}. To provide an outlook into the additional work done by Booth and Meyer, section \ref{section:iterating-preceq-revision} will show their proposal of a concrete operator for tpo-revision. It includes several examples and adapted visualisations of the operator being applied in the context of the accompanying example. Finally, section \ref{section:conclusion} closes the synopsis with a summary and commentary on Booth and Meyer's approach to iterated belief revision with interval orderings.
 
@@ -107,7 +107,7 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
         \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
             \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}} \\ \hline
         \end{tabular}
-        \caption{Visualising a tpo as a linearly ordered set of ranks, as done in \cite{Booth2006}}.
+        \caption{Visualizing a tpo as a linearly ordered set of ranks, as done in \cite{Booth2006}}.
         \label{tab:visualising-a-tpo-example}
     \end{table}
 \end{example}
@@ -173,7 +173,7 @@ For the ordering on $W^{\pm}$, Booth and Meyer suppose an additional relation, d
 
 \begin{example}
     \label{example:example-intervals}
-    Recall that tpos can be equivalently thought of as a linearly ordered set of ranks (Example \ref{example:example-introduction}). Therefore, a tpo over $W$ can be visualised by displaying every $w \in W$ in a table that has one column for every rank (like in Table \ref{tab:visualising-a-tpo-example}). To visualise the ordering introduced by $\preceq$, Booth and Meyer use an interval with the endpoints defined as $w^{+}$/$w^{-}$ respectively. This type of visualisation was first introduced in a previous paper by Booth and Meyer themselves \cite{Booth2007} and is shown in Figure \ref{fig:example-visualisation-scatterplot}.
+    Recall that tpos can be equivalently thought of as a linearly ordered set of ranks (Example \ref{example:example-introduction}). Therefore, a tpo over $W$ can be visualized by displaying every $w \in W$ in a table that has one column for every rank (like in Table \ref{tab:visualising-a-tpo-example}). To visualize the ordering introduced by $\preceq$, Booth and Meyer use an interval with the endpoints defined as $w^{+}$/$w^{-}$ respectively. This type of visualisation was first introduced in a previous paper by Booth and Meyer themselves \cite{Booth2007} and is shown in Figure \ref{fig:example-visualisation-scatterplot}.
         
     \begin{figure}[H]
         \centering
