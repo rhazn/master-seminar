@@ -1,4 +1,5 @@
 \documentclass[12pt]{beamer}
+%\documentclass[12pt, handout]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{pgfpages}
 \usepackage{amsmath}
@@ -47,6 +48,7 @@
 % Talk using pympress: brew install pympress
 % Talk command: pympress -t 40 -n right ~/Documents/master/1901/presentation/1901_3230880_philip_heltweg_presentation.pdf
 \setbeameroption{show notes on second screen=right} % Both
+
 % Coloring note-pages
 \setbeamertemplate{note page}{\pagecolor{yellow!15}\insertnote\vfill\insertframenumber}
 \setbeamertemplate{note page}{
@@ -73,6 +75,11 @@
 \date{March 13th, 2021}
 
 \frame{\titlepage}
+\note{
+    \begin{itemize}
+        \item Folien sind nummeriert unten rechts, bei Fragen am besten Nummer aufschreiben
+    \end{itemize}
+}
 
 \begin{frame}{Table of Contents}
     \tableofcontents
@@ -691,7 +698,7 @@
     \end{itemize}
 }
 
-\begin{frame}{A concrete operator: Setup}
+\begin{frame}{A concrete operator \footnote{as shown in \cite{Booth2011}}: Setup}
     \begin{itemize}
         \item Function p mapping worlds to real numbers: $p: W^{\pm} \mapsto \mathds{R}$
         \item Interval representing a world: $(p(x^{+}), p(x^{-}))$
