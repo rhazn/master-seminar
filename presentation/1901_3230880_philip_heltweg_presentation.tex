@@ -345,13 +345,15 @@
 
 \begin{frame}{Enriching Epistemic States}
     \begin{itemize}
-        \item Additional structure of plausibility of worlds under new evidence $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$
+        \item Additional structure $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$
+        \item "A bad day surfing is better than a good day working" \cite{booth2006bad}
         \item Worlds are either supported by evidence or not $w \in \modelsOf{\alpha}$ / $w \in \modelsOf{\neg\alpha}$
         \item Interval representing a world $(w^{+}, w^{-})$
     \end{itemize}
     \note{
         \begin{itemize}
-            \item W+-
+            \item Additional structure of plausibility of worlds under new evidence  W+-
+            \item "A bad day surfing is better than a good day working" als idee das eine Welt sogar unter evidenz die sie nicht supported mehr plausibel bleiben kann, e.g. aliens tendenziell nicht so einfach zu glauben
         \end{itemize}
     }
 \end{frame}
@@ -359,7 +361,7 @@
 \begin{frame}{$\leq$-faithful tpo}
     \begin{itemize}
         \item original tpo $\leq$ was an order over $W$
-        \item additional structure $\preceq$ over new $W^{\pm}$
+        \item $\preceq$ over new $W^{\pm}$
     \end{itemize}
 
     \note{
@@ -673,15 +675,29 @@
         \item Vorher: BM revisions operatoren definition, Revision der tpo am Beispiel
         \item Jetzt: Revision der neuen Struktur $\preceq$, ansonsten Problem mehrmaliger Revision nur "hochgeschoben"
         \item Jetzt: Ein möglicher konkreter Beispieloperator + Visualisierung
+        \item Jetzt: Wie die Revision von Annahmen funktioniert für mehr als einen Input
     \end{itemize}
 }
 
-\begin{frame}{A concrete operator}
+\begin{frame}{A concrete operator: Setup}
     \begin{itemize}
-        \item $p: W^{\pm} \mapsto \mathds{R}$
-        \item $p(x^{-}) - p(x^{+}) = a > 0$
-        \item $x^{\epsilon} \preceq_{p} y^{\delta} \textrm{ iff } p(x^{\epsilon}) \leq p(y^{\delta})$
-        \item Set $p$, for every $x^{\epsilon} \in W^{\pm}$, to:
+        \item Function p mapping worlds to real numbers: $p: W^{\pm} \mapsto \mathds{R}$
+        \item Interval representing a world: $(p(x^{+}), p(x^{-}))$
+        \item Distance between representations: $p(x^{-}) - p(x^{+}) = a > 0$
+        \item Define a tpo from $p$: $x^{\epsilon} \preceq_{p} y^{\delta} \textrm{ iff } p(x^{\epsilon}) \leq p(y^{\delta})$
+    \end{itemize}
+
+    \note{
+        \begin{itemize}
+            \item math for operator
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{A concrete operator: Iteration}
+    \begin{itemize}
+        \item Choose initial $p$ so that $\preceq_{p} = \preceq$
+        \item Revise $p$ by $\alpha$ to $p \ast \alpha$, for every $x^{\epsilon} \in W^{\pm}$:
     \end{itemize}
 
     \begin{equation*}
@@ -692,6 +708,10 @@
         \end{array}
         \right.
     \end{equation*}
+
+    \begin{itemize}
+        \item Define a revised tpo $\preceq_{p \ast \alpha}$ from $p \ast \alpha$: $x^{\epsilon} \preceq_{p \ast \alpha} y^{\delta} \textrm{ iff } (p \ast \alpha)(x^{\epsilon}) \leq (p \ast \alpha)(y^{\delta})$
+    \end{itemize}
 
     \note{
         \begin{itemize}
@@ -789,6 +809,8 @@
     \note{
         \begin{itemize}
             \item figure 7
+            \item maybe put the figure 5 from paper (original revision of <=) before this
+            \item maybe put slides for complete example in here going from tpo to revision once, to revision twice
         \end{itemize}
     }
 \end{frame}
