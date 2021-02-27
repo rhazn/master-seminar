@@ -1,14 +1,3 @@
-% TODO: explain contraction, revision, expansion
-% ANSWER: Ich würdes es ganz kurz erläutern im Text. Im Vortrag vielleicht nicht umbedingt.
-
-% TODO QUESTION: do we need to discuss this in ore detail? faithful assignment here:
-
-% ANSWER: Das ist eine gute Frage. So wie ich das Paper von Booth und Meyer im
-% Kopf habe werden dort die Ordnung mit epistemischen Zuständen
-% gleichgesetzt (was Darwiche und Pearl ja nicht machen). Von daher halte
-% ich das für ok es nicht im aller formalen Ausführlichkeit zu machen.
-% Aber man könnte es im einen Satz erwähnen.
-
 \documentclass[11pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{pgfpages}
@@ -22,6 +11,25 @@
 \usepackage{stmaryrd}
 
 \usepackage{enumitem}
+
+% TODO QUESTION: do we need to discuss this in ore detail? faithful assignment here:
+
+% ANSWER: Das ist eine gute Frage. So wie ich das Paper von Booth und Meyer im
+% Kopf habe werden dort die Ordnung mit epistemischen Zuständen
+% gleichgesetzt (was Darwiche und Pearl ja nicht machen). Von daher halte
+% ich das für ok es nicht im aller formalen Ausführlichkeit zu machen.
+% Aber man könnte es im einen Satz erwähnen
+
+% Representation theorem
+% In mathematics, a representation theorem is a theorem that states that every abstract structure with certain properties is isomorphic to another (abstract or concrete) structure.
+% In mathematics, an isomorphism is a structure-preserving mapping between two structures of the same type that can be reversed by an inverse mapping.
+
+% Operationalization
+% In research design, especially in psychology, social sciences, life sciences and physics, operationalization or operationalisation is a process of defining the measurement of a phenomenon that is not directly measurable, though its existence is inferred by other phenomena.
+% In a broader sense, it defines the extension of a concept—describing what is and is not an instance of that concept.
+
+\pgfplotsset{compat=1.17}
+
 \setitemize{label=\usebeamerfont*{itemize item}
   \usebeamercolor[fg]{itemize item}
   \usebeamertemplate{itemize item}}
@@ -62,49 +70,39 @@
 \title{Of judges, aliens and total preorders}
 \author[Heltweg, Philip]{Heltweg, Philip\\pheltweg@gmail.com}
 \institute{University of Hagen}
-\date{\today}
+\date{March 13th, 2021}
 
 \frame{\titlepage}
 
 \begin{frame}{Table of Contents}
     \tableofcontents
-    
+
     \note{
         \begin{itemize}
-            \item Foo
-            \item Bar
+            \item Einführung mit Motivation, Forschungskontext und Beispiel
+            \item Hintergrund: Festlegen Notation, was sind TPOs überhaupt, vorherige Arbeit von Alchouron et al, Darwiche und Pearl
+            \item Metadata: Wie bauen Booth und Meyer auf der vorherigen Arbeit auf, Erklärung des Ansatzes zur TPO revision
+            \item BM operators: Wie benutzen BM die vorher besprochenen Metadaten für belief revision, Definition von Eigenschaften ihrer Operatoren
+            \item Iteration: Ausblick, wenn wir tpos mit der neuen Struktur anpassen können müssen wir auch die neue Struktur anpassen, ansonsten kann man nicht mehrere neue Informationen einpflegen. Hier haben BM sehr viel mehr geschrieben als hier vorgestellt aber ein konkreter Operator wird hier vorgestellt.
         \end{itemize}
     }
 \end{frame}
 
 \section{Introduction}
+\note{
+    \begin{itemize}
+        \item Jetzt: Verstehen der Forschungsfrage, Einordnung des Papiers in einen Forschungskontext und Aufsetzen des begleitenden Beispiels ohne Formalisierung
+    \end{itemize}
+}
 
 \begin{frame}{Motivation}
-    How should a judge change their worldview when presented with new information?  
+    How should a judge change their worldview when presented with new information?
     \note{
         \begin{itemize}
-            \item Beispiel Frage zur Motivation
+            \item Beispiel Frage zur Motivation, wird unser Beispiel sein. Wir haben zwei Verdächtige und diverse Beweise und Indizien, wie bilden wir uns ein Bild über die Welt?
             \item Unvollständige Information: Kein gesichertes Wissen sondern Glauben und Annahmen aus Zeugenaussagen/Indizien
             \item Inkonsistente Information: Zeugen können lügen, Indizien falsch sein, Informationen können mit dem aktuellen Glauben inkonsistent sein
-            \item Keine reine richtig/falsch Frage. Soll neuer Information immer geglaubt werden? Wie sollen Konflikte gelöst werden?
-        \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{Courtroom example \footnote{inspired by Booth and Meyer \cite{Booth2011} and Darwiche and Pearl \cite{Darwiche1997}}}
-    \begin{itemize}
-        \item The agent is a judge in a murder trial, "John" and "Mary" are suspects
-        \item $\Sigma = \{ p, q, r\}$
-        \begin{itemize}
-            \item p = "John is the murderer"
-            \item q = "Mary is the murderer"
-            \item r = "The victim is an alien"
-        \end{itemize}
-        \item  $Int({\Sigma}) = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$ 
-    \end{itemize} 
-    \note{
-        \begin{itemize}
-            \item NOTE
+            \item Keine reine richtig/falsch Frage. Soll neuer Information immer geglaubt werden? Wie sollen Konflikte gelöst werden? Wie kann man abbilden, dass der Richter mit Indizien für einen Sachverhalt immer mehr bereit ist an diesen Sachverhalt zu glauben?
         \end{itemize}
     }
 \end{frame}
@@ -113,11 +111,11 @@
     \begin{itemize}
         \item Philosophy and artificial intelligence \cite{Ferme2011}
         \item Belief change \cite{Darwiche1997}
-            \begin{itemize}
-                \item Nonmonotonic logic
-                \item Probabilistic reasoning
-                \item Belief revision
-            \end{itemize}
+              \begin{itemize}
+                  \item Nonmonotonic logic
+                  \item Probabilistic reasoning
+                  \item Belief revision
+              \end{itemize}
         \item One-step vs. iterated belief revision
     \end{itemize}
 
@@ -149,15 +147,16 @@
     }
 \end{frame}
 
-\begin{frame}{Goal}
+\begin{frame}{Research question}
     \begin{itemize}
         \item "conditional belief" revision operators
         \item axiomatisation of a family of operators by defining properties
-        \item discuss properties and edge cases
+        \item discuss properties and define concrete example
     \end{itemize}
 
     \note{
         \begin{itemize}
+            \item Conditional beliefs/Conditional belief revision: Indizien für Sachverhalt = Sachverhalt nicht direkt glauben aber bei mehr Indizien immer mehr daran glauben/immer mehr bereit sein es zu akzeptieren.
             \item paper goal/focus of this talk revision operators for conditional belief structure (not mention tpo yet)
             \item postulates for operators to restrict them, define a family of operators (axiomatisation) by doing that
             \item properties are not "correct" but has to be done to reasonably talk about those operators and narrow down possibilities, compare to other properties/edge cases to branch out
@@ -166,6 +165,38 @@
 \end{frame}
 
 \section{Formal Background}
+\note{
+    \begin{itemize}
+        \item Vorher: Verstehen der Forschungsfrage, Einordnung des Papiers in einen Forschungskontext und Aufsetzen des begleitenden Beispiels
+        \item Jetzt: Formalisierung des Beispiels, Etablieren was eine total preorder ist.
+        \item Jetzt: Einführung von Formalisierungen zu Glaubensmengen/Annahmen und wie preorders dort benutzt werden
+        \item Jetzt: Postulate um Änderungen dieser Glaubensmengen/Annahmen mit neuen Informationen einzuschränken
+    \end{itemize}
+}
+
+\begin{frame}{Courtroom example \footnote{inspired by \cite{Booth2011} and \cite{Darwiche1997}}}
+    \begin{itemize}
+        \item The agent is a judge in a murder trial, "John" and "Mary" are suspects, the victim might be an alien
+        \item $\Sigma = \{ p, q, r\}$
+              \begin{itemize}
+                  \item p = "John is the murderer"
+                  \item q = "Mary is the murderer"
+                  \item r = "The victim is an alien"
+              \end{itemize}
+        \item  $Int({\Sigma}) = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$
+    \end{itemize}
+
+    \note{
+        \begin{itemize}
+            \item Konsistentes Beispiel in der Präsentation, gut aufpassen
+            \item Beispiel inspiriert aus der Literatur
+            \item Aussagenlogik, Aussagenvariablen p, q, r
+            \item "Mögliche Welt" als aussagenlogische Interpretationen/Belegungen, damit 2 hoch 3 = 8 mögliche Alternativen hier
+            \item Kodierung der Welt als Tupel von Wahrheitswerten (0 = false, 1 = true)
+            \item Beispiel für 1-2 Welten durchgehen: 010 = Mary ist Mörderin, Opfer ist kein Alien, 111 = John und Mary sind die Mörder, haben ein Alien getötet
+        \end{itemize}
+    }
+\end{frame}
 
 \begin{frame}{Total preorders}
     \begin{itemize}
@@ -187,10 +218,10 @@
 \begin{frame}{Preorder example}
     \begin{itemize}
         \item Judge beliefs
-        \begin{itemize}
-            \item Murderer probably acted alone but possible that they conspired
-            \item Unlikely, but not impossible, for the victim to be an alien
-        \end{itemize} 
+              \begin{itemize}
+                  \item Murderer probably acted alone but possible that they conspired
+                  \item Unlikely, but not impossible, for the victim to be an alien
+              \end{itemize}
         \item $\leq$ over $W$: $010 \sim 100 < 000 \sim 110 < 011 \sim 101 < 001 \sim 111$
     \end{itemize}
     \note{
@@ -202,13 +233,13 @@
 
 \begin{frame}{Preorder visualisation}
     \begin{table}[H]
-         \centering
+        \centering
         \begin{tabular}{llll}
-        $R_{1}$                      & $R_{2}$                                                                   & $R_{3}$ & $R_{4}$                      \\ \hline
-        \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
-            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}} \\ \hline
+            $R_{1}$                                          & $R_{2}$                                         & $R_{3}$                                         & $R_{4}$ \\ \hline
+            \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
+            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}}                                                                                                                \\ \hline
         \end{tabular}
-        \caption{Visualising a tpo as a linearly ordered set of ranks, as done in \cite{Booth2006}}.
+        \caption{Visualizing a tpo as a linearly ordered set of ranks, as done in \cite{booth2006bad}}.
         \label{tab:visualising-a-tpo-example}
     \end{table}
     \note{
@@ -225,10 +256,12 @@
         \item Possible for example: $Cn(\{ p \vee q, \neg(p \wedge q), \neg r \})$
     \end{itemize}
     % TODO: Cn here good?
-    
+
     \note{
         \begin{itemize}
-            \item 
+            \item Belief sets als aktuell akzeptierte Sätze eines Agenten
+            \item Gegensatz zu conditional beliefs: Sätze im Belief set werden als war angenommen.
+            \item Betrachtungsgegenstand von AGM-Theorie \cite{Alchourron1985} die Postulate definiert haben um Belief set revision einzuschränken, rationale revision, wir sprechen das allerdings später an weil wir die neu formulierten Postulates von \cite{Darwiche1997} nutzen
         \end{itemize}
     }
 \end{frame}
@@ -238,15 +271,16 @@
         \item abstract entity $\mathbb{E}$ that contain all information an agent need for their reasoning \cite{Darwiche1997}
         \item commonly used: tpo $\leq_{\mathbb{E}}$
         \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states as all sentences true in the most plausible worlds
-            \begin{itemize}
-                \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
-                \item Set of worlds that are models of the belief set of the agent $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$
-                \item All sentences true in those worlds: $Th(\modelsOf{B(\mathbb{E})})$
-            \end{itemize}
+              \begin{itemize}
+                  \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
+                  \item Set of worlds that are models of the belief set of the agent $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$
+                  \item All sentences true in those worlds: $Th(min(\top, \leq_{\mathbb{E}}))$
+              \end{itemize}
     \end{itemize}
-    
+
     \note{
         \begin{itemize}
+            \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind. Die Postulate von AGM definieren nur wie sich belief sets ändern (principle of least change) aber conditional beliefs können sich ändern wie sie wollen. Epistemic states enthalten die Strategie des Agenten wie er seinen Glauben ändert, damit auch die conditional beliefs.
             \item "commonly used" does not mean has to be used, abstract
         \end{itemize}
     }
@@ -263,10 +297,21 @@
         \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
         \item\label{E8} $\qquad \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta))$
     \end{enumerate}
-    
+
     \note{
         \begin{itemize}
-            \item 
+            \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
+            \item Postulates
+                  \begin{itemize}
+                      \item 1: deduktiv abgeschlossen
+                      \item 2: neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
+                      \item 3: % TODO
+                      \item 4:
+                      \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
+                      \item 6: Das belief set enthält elementaren widerspruch nach revision mit inkonsistenten informationen (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
+                      \item 7: % TODO
+                      \item 8: % TODO
+                  \end{itemize}
         \end{itemize}
     }
 \end{frame}
@@ -280,18 +325,29 @@
     \end{enumerate}
     \note{
         \begin{itemize}
-            \item 
+            \item Zusätzliche postulate von DP um conditional belief revision einzuschränken
+            \item Semantische version aka wie sich die Ordnung der Welten ändert mit v,w in W
+            \item CR1/2: Relative Ordnung der alpha/not alpha welten bleibt gleich bei alpha/not alpha revision
+            \item CR3 wenn eine alpha welt strikt bevorzugt wurde vor einer not alpha welt dann muss das auch nach einer revision mit alpha gelten
+            \item CR4 wie CR3 nur für "weak preference"
         \end{itemize}
     }
 \end{frame}
 
 \section{Additional metadata for tpo revision}
+\note{
+    \begin{itemize}
+        \item Vorher: Formalisierung des Beispiels/Glaubensmengen/Epistemischen Zuständen, Etablieren was eine total preorder ist, Postulate für Revision von Glaubensmengen und Annahmen
+        \item Jetzt: BM wollen revision von tpos besprechen und führen dafür neue Metadaten und Strukturen im epistemischen Zustand ein, wir stellen diese nun vor bevor wir im nächsten Schritt die Änderung selbst besprechen
+        \item Jetzt: Einführung einer intuitiven Visualisierung der neuen Struktur die wir im weiteren Verlauf nutzen
+    \end{itemize}
+}
 
 \begin{frame}{Enriching Epistemic States}
     \begin{itemize}
-        \item $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$
-        \item $w \in \modelsOf{\alpha}$ / $w \in \modelsOf{\neg\alpha}$
-        \item $(w^{+}, w^{-})$
+        \item Additional structure of plausibility of worlds under new evidence $W^{\pm} = \{x^{\epsilon} \mid x \in W \textrm{ and } \epsilon \in \{+, -\}\}$
+        \item Worlds are either supported by evidence or not $w \in \modelsOf{\alpha}$ / $w \in \modelsOf{\neg\alpha}$
+        \item Interval representing a world $(w^{+}, w^{-})$
     \end{itemize}
     \note{
         \begin{itemize}
@@ -301,12 +357,34 @@
 \end{frame}
 
 \begin{frame}{$\leq$-faithful tpo}
+    \begin{itemize}
+        \item original tpo $\leq$ was an order over $W$
+        \item additional structure $\preceq$ over new $W^{\pm}$
+    \end{itemize}
+
+    \note{
+        \begin{itemize}
+            \item what is it
+            \item say that the original tpo can be reconstructed from it
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{$\leq$-faithful tpo - definition}
+    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\preceq\arabic*$)]
+        \item\label{PREQ1} $\qquad \preceq \textrm{ is a tpo over } W^{\pm}$
+        \item\label{PREQ2} $\qquad x^{+} \preceq y^{+} \textrm{ iff } x \leq y$
+        \item\label{PREQ3} $\qquad x^{-} \preceq y^{-} \textrm{ iff } x \leq y$
+        \item\label{PREQ4} $\qquad x^{+} \prec x^{-}$
+    \end{enumerate}
+
     \begin{definition}[$\leq$-faithful tpo over $W^{\pm}$ \cite{Booth2011}]
         \label{definition:faithful-tpo}Let $\preceq \subseteq W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4}, we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
     \end{definition}
     \note{
         \begin{itemize}
             \item characteristics + definition
+            \item original tpo can be reconstructed from this
         \end{itemize}
     }
 \end{frame}
@@ -316,44 +394,44 @@
         \centering
         \begin{tikzpicture}[scale=1]
             \begin{axis}[
-                  yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
-                  xticklabels={,,},
-                  ytick style={draw=none},
-                  xtick style={draw=none},
-                  axis line style={draw=none}
-            ]
-            \addplot[
-                scatter,
-                scatter src=explicit symbolic,
-                mark size=3,
-                scatter/classes={
-                    empty={mark=*, fill=white},
-                    filled={mark=*, fill=black}
-                },
-                nodes near coords*={\Label},
-                visualization depends on={value \thisrow{label} \as \Label}
-            ]
-            table [meta=class] {
-                    x y class label
-                    
-                    3 1 empty $x_{4}^{+}$
-                    6 1 empty $x_{4}^{-}$
-                                        
-                    2 2 empty $x_{3}^{+}$
-                    5 2 empty $x_{3}^{-}$
-                    
-                    1 3 empty $x_{2}^{+}$
-                    3 3 empty $x_{2}^{-}$
-                    
-                    1 4 empty $x_{1}^{+}$
-                    3 4 empty $x_{1}^{-}$
-            };
+                    yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
+                    xticklabels={,,},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+
+                        3 1 empty $x_{4}^{+}$
+                        6 1 empty $x_{4}^{-}$
+
+                        2 2 empty $x_{3}^{+}$
+                        5 2 empty $x_{3}^{-}$
+
+                        1 3 empty $x_{2}^{+}$
+                        3 3 empty $x_{2}^{-}$
+
+                        1 4 empty $x_{1}^{+}$
+                        3 4 empty $x_{1}^{-}$
+                    };
             \end{axis}
         \end{tikzpicture}
         \caption{Representation of $\preceq$ over $W^{\pm}$ using intervals}
         \label{fig:example-visualisation-scatterplot}
     \end{figure}
-    
+
     \note{
         \begin{itemize}
             \item example with sticks
@@ -362,62 +440,62 @@
 \end{frame}
 
 \begin{frame}[fragile]{Courtroom example: $\leq$-faithful tpo}
-   \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 empty \empty
                         3 8 empty
-                        
-                        1 7 empty 
+
+                        1 7 empty
                         3 7 empty
-                        
-                        2 6 empty 
+
+                        2 6 empty
                         4 6 empty
-                        
-                        2 5 empty 
+
+                        2 5 empty
                         4 5 empty
-                        
-                        5 4 empty 
+
+                        5 4 empty
                         7 4 empty
-                        
-                        5 3 empty 
+
+                        5 3 empty
                         7 3 empty
-                        
-                        6 2 empty 
+
+                        6 2 empty
                         8 2 empty
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{Representation of $\preceq$ over $W^{\pm}$ for the courtroom example \ref{example:example-introduction}}
-            \label{fig:example-tpo-initial}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Representation of $\preceq$ over $W^{\pm}$ for the courtroom example}
+        \label{fig:example-tpo-initial}
     \end{figure}
-    
+
     \note{
         \begin{itemize}
             \item example for courtroom
@@ -426,24 +504,31 @@
 \end{frame}
 
 \section{Booth and Meyer tpo-revision operators}
+\note{
+    \begin{itemize}
+        \item Vorher: Neue Metadaten/Strukturen im epistemischen Zustand und Visualisierung
+        \item Jetzt: Nutzen dieser neuen Strukturen für tpo revision, Postulates für BM revision operatoren und Definition der Familie von BM revisons operatoren
+        \item Jetzt: Abstrakte tpo revision am Beispiel
+    \end{itemize}
+}
 
 \begin{frame}{BM tpo-revision operator}
     \begin{definition}[Revision operator $\ast_{\preceq}$ for $\leq$ generated by $\preceq$ \cite{Booth2011}]
         \label{definition:revision-operator}
         For each $\leq$-faithful tpo $\preceq$ over $W^{\pm}$, refer to $\ast_{\preceq}$ as the revision operator for $\leq$ generated by $\preceq$ defined by:
-        
+
         Set for any $\alpha \in L$ and $x \in W$:
         \begin{equation*}
             r_{\alpha}(x) = \left\{
-                        \begin{array}{ll}
-                          x^{+} \textrm{ if } x \in \modelsOf{\alpha}\\
-                          x^{-} \textrm{ if } x \in \modelsOf{\neg\alpha}
-                        \end{array}
-                      \right.
+            \begin{array}{ll}
+                x^{+} \textrm{ if } x \in \modelsOf{\alpha} \\
+                x^{-} \textrm{ if } x \in \modelsOf{\neg\alpha}
+            \end{array}
+            \right.
         \end{equation*}
-        
+
         The revised tpo $\leq_{\alpha}^{\ast}$ is defined by setting, for each $x, y \in W$,
-    
+
         \begin{equation*}
             x \leq_{\alpha}^{\ast} y \textrm{ iff } r_{\alpha}(x) \preceq r_{\alpha}(y)
         \end{equation*}
@@ -457,63 +542,63 @@
 \end{frame}
 
 \begin{frame}[fragile]{Courtroom example: Revision Visualised}
-    
+
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 empty \empty
                         3 8 filled
-                        
-                        1 7 filled 
+
+                        1 7 filled
                         3 7 empty
-                        
-                        2 6 empty 
+
+                        2 6 empty
                         4 6 filled
-                        
-                        2 5 filled 
+
+                        2 5 filled
                         4 5 empty
-                        
-                        5 4 empty 
+
+                        5 4 empty
                         7 4 filled
-                        
-                        5 3 filled 
+
+                        5 3 filled
                         7 3 empty
-                        
-                        6 2 empty 
+
+                        6 2 empty
                         8 2 filled
-                        
-                        6 1 filled 
+
+                        6 1 filled
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{Associating positive and negative representations of worlds after receiving evidence $\alpha=p$}
-            \label{fig:example-tpo-revised}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Associating positive and negative representations of worlds after receiving evidence $\alpha=p$}
+        \label{fig:example-tpo-revised}
     \end{figure}
-    
+
     \note{
         \begin{itemize}
             \item example 7, figure 4
@@ -533,18 +618,18 @@
     \begin{equation*}
         110 \in \modelsOf{\alpha} \textrm{ : } r_{\alpha}(110) = 110^{+}
     \end{equation*}
-    
+
     \begin{itemize}
         \item $110^{+} \prec 010^{-}$ is true, set $110 <_{\alpha}^{\ast} 010$
         \item new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$
         \item $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}}) = \{100\}$: "John is the murderer and the victim is not an alien".
         \item $\leq_{\alpha}^{\ast}$ as representation of the conditional beliefs
-        \begin{itemize}
-            \item before $010 \leq 110$: "Both suspects being the murderer is less plausible than Mary being the murderer"
-            \item now $110 <_{\alpha}^{\ast} 010$: "Only Mary being the murderer less plausible than both conspiring".
-        \end{itemize}
+              \begin{itemize}
+                  \item before $010 \leq 110$: "Both suspects being the murderer is less plausible than Mary being the murderer"
+                  \item now $110 <_{\alpha}^{\ast} 010$: "Only Mary being the murderer less plausible than both conspiring".
+              \end{itemize}
     \end{itemize}
-    
+
     \note{
         \begin{itemize}
             \item example 7, math
@@ -582,7 +667,14 @@
     }
 \end{frame}
 
-\section{Iterating: $\preceq$-revision}
+\section{Iterating: \texorpdfstring{$\preceq$}{tpo}-revision}
+\note{
+    \begin{itemize}
+        \item Vorher: BM revisions operatoren definition, Revision der tpo am Beispiel
+        \item Jetzt: Revision der neuen Struktur $\preceq$, ansonsten Problem mehrmaliger Revision nur "hochgeschoben"
+        \item Jetzt: Ein möglicher konkreter Beispieloperator + Visualisierung
+    \end{itemize}
+}
 
 \begin{frame}{A concrete operator}
     \begin{itemize}
@@ -591,16 +683,16 @@
         \item $x^{\epsilon} \preceq_{p} y^{\delta} \textrm{ iff } p(x^{\epsilon}) \leq p(y^{\delta})$
         \item Set $p$, for every $x^{\epsilon} \in W^{\pm}$, to:
     \end{itemize}
-    
+
     \begin{equation*}
         (p \ast \alpha)(x^{\epsilon}) = \left\{
-                        \begin{array}{ll}
-                          p(x^{\epsilon}) \textrm{ if } x \in \modelsOf{\alpha}\\
-                          p(x^{\epsilon}) + a \textrm{ if } x \in \modelsOf{\neg\alpha}
-                        \end{array}
-                      \right.
+        \begin{array}{ll}
+            p(x^{\epsilon}) \textrm{ if } x \in \modelsOf{\alpha} \\
+            p(x^{\epsilon}) + a \textrm{ if } x \in \modelsOf{\neg\alpha}
+        \end{array}
+        \right.
     \end{equation*}
-    
+
     \note{
         \begin{itemize}
             \item math for operator
@@ -611,16 +703,16 @@
 \begin{frame}{Courtroom Example: A concrete operator}
     \begin{itemize}
         \item Choose initial $p$ so that $\preceq_{p} = \preceq$
-        \begin{itemize}
-            \item $010 \textrm{ : } (p(010^{+}), p(010^{-})) = (0, a)$.
-            \item $100 \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)$.
-        \end{itemize}
+              \begin{itemize}
+                  \item $010 \textrm{ : } (p(010^{+}), p(010^{-})) = (0, a)$.
+                  \item $100 \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)$.
+              \end{itemize}
         \item Revise $p$ by $\alpha$ to $p \ast \alpha$
-        \begin{itemize}
-            \item $010 \in \modelsOf{\neg\alpha} \textrm{ : } (p(010^{-}), p(010^{-}) + a) = (a, 2a)$
-            \item $100 \in \modelsOf{\alpha} \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)$
-        \end{itemize}
-            \end{itemize}
+              \begin{itemize}
+                  \item $010 \in \modelsOf{\neg\alpha} \textrm{ : } (p(010^{-}), p(010^{-}) + a) = (a, 2a)$
+                  \item $100 \in \modelsOf{\alpha} \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)$
+              \end{itemize}
+    \end{itemize}
 
     \note{
         \begin{itemize}
@@ -631,69 +723,69 @@
 
 \begin{frame}[fragile]{Courtroom Example: Visualised}
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        old={mark=x, fill=white}
-                    },
+                            empty={mark=*, fill=white},
+                            old={mark=x, fill=white}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 old \empty
-                        
+
                         3 8 empty
-                        5 8 empty 
-                        
-                        1 7 empty 
+                        5 8 empty
+
+                        1 7 empty
                         3 7 empty
-                        
-                        2 6 old 
-                        
+
+                        2 6 old
+
                         4 6 empty
                         6 6 empty
-                        
-                        2 5 empty 
+
+                        2 5 empty
                         4 5 empty
-                        
-                        5 4 old 
-                        
+
+                        5 4 old
+
                         7 4 empty
                         9 4 empty
-                        
-                        5 3 empty 
+
+                        5 3 empty
                         7 3 empty
-                        
-                        6 2 old 
-                        
+
+                        6 2 old
+
                         8 2 empty
                         10 2 empty
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = p$}
-            \label{fig:example-preceq-revised}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\preceq_{p \ast \alpha}$ for $\alpha = p$}
+        \label{fig:example-preceq-revised}
     \end{figure}
-    
+
     \note{
         \begin{itemize}
             \item figure 7
@@ -703,69 +795,69 @@
 
 \begin{frame}[fragile]{Courtroom Example: Conditional beliefs 1}
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        old={mark=x, fill=white}
-                    },
+                            empty={mark=*, fill=white},
+                            old={mark=x, fill=white}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 old \empty
-                        
+
                         3 8 empty
-                        5 8 empty 
-                        
+                        5 8 empty
+
                         1 7 old
-                        
-                        3 7 empty 
+
+                        3 7 empty
                         5 7 empty
-                        
-                        2 6 old 
-                        
+
+                        2 6 old
+
                         4 6 empty
                         6 6 empty
-                        
+
                         2 5 old
-                        
-                        4 5 empty 
+
+                        4 5 empty
                         6 5 empty
-                        
+
                         5 4 empty
                         7 4 empty
-                        
-                        5 3 empty 
+
+                        5 3 empty
                         7 3 empty
-                        
+
                         6 2 empty
                         8 2 empty
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = r$}
-            \label{fig:example-preceq-revised-alien}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\preceq_{p \ast \alpha}$ for $\alpha = r$}
+        \label{fig:example-preceq-revised-alien}
     \end{figure}
-    
+
     \note{
         \begin{itemize}
             \item figure 8
@@ -775,70 +867,70 @@
 
 \begin{frame}[fragile]{Courtroom Example: Conditional beliefs 2}
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black},
-                        old={mark=x, fill=white}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black},
+                            old={mark=x, fill=white}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 old \empty
-                        
+
                         3 8 filled
-                        5 8 empty 
-                        
+                        5 8 empty
+
                         1 7 old
-                        
-                        3 7 filled 
+
+                        3 7 filled
                         5 7 empty
-                        
-                        2 6 old 
-                        
+
+                        2 6 old
+
                         4 6 empty
                         6 6 filled
-                        
+
                         2 5 old
-                        
-                        4 5 empty 
+
+                        4 5 empty
                         6 5 filled
-                        
+
                         5 4 filled
                         7 4 empty
-                        
-                        5 3 filled 
+
+                        5 3 filled
                         7 3 empty
-                        
+
                         6 2 empty
                         8 2 filled
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 filled
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{$\preceq_{p \ast \alpha \ast \beta}$ for $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$}
-            \label{fig:example-preceq-revised-alien2}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\preceq_{p \ast \alpha \ast \beta}$ for $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$}
+        \label{fig:example-preceq-revised-alien2}
     \end{figure}
-    
+
     \note{
         \begin{itemize}
             \item figure 9
@@ -847,13 +939,19 @@
 \end{frame}
 
 \begin{frame}{}
-  \centering \Huge
-  Thank You
+    \centering \Huge
+    Thank You
 \end{frame}
+\note{
+    \begin{itemize}
+        \item Vorher: Revision der neuen Struktur $\preceq$, ein möglicher konkreter Beispieloperator + Visualisierung
+        \item Jetzt: Fragen? Diskussion
+    \end{itemize}
+}
 
 \begin{frame}[allowframebreaks=0.9]{References}
     \typeout{}
-    \bibliographystyle{plain}
+    \bibliographystyle{apalike}
     \bibliography{references}
 \end{frame}
 
