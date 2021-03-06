@@ -1,5 +1,5 @@
-\documentclass[12pt]{beamer}
-%\documentclass[12pt, handout]{beamer}
+\documentclass[12pt, notheorems]{beamer}
+%\documentclass[12pt, notheorems, handout]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{pgfpages}
 \usepackage{amsmath}
@@ -44,9 +44,51 @@
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{theorems}[numbered]
 
+% Unique numbering scheme for definitions and theorems with the "notheorems" options on loading beamer
+% see https://tex.stackexchange.com/questions/82415/beamer-different-numbering-for-theorems-examples-definition-and-lemma
+\makeatletter
+    \ifbeamer@countsect
+      \newtheorem{theorem}{\translate{Theorem}}[section]
+    \else
+      \newtheorem{theorem}{\translate{Theorem}}
+    \fi
+    \newtheorem{corollary}{\translate{Corollary}}
+    \newtheorem{fact}{\translate{Fact}}
+    \newtheorem{lemma}{\translate{Lemma}}
+    \newtheorem{problem}{\translate{Problem}}
+    \newtheorem{solution}{\translate{Solution}}
+
+    \theoremstyle{definition}
+    \newtheorem{definition}{\translate{Definition}}
+    \newtheorem{definitions}{\translate{Definitions}}
+
+    \theoremstyle{example}
+    \newtheorem{example}{\translate{Example}}
+    \newtheorem{examples}{\translate{Examples}}
+
+
+    % Compatibility
+    \newtheorem{Beispiel}{Beispiel}
+    \newtheorem{Beispiele}{Beispiele}
+    \theoremstyle{plain}
+    \newtheorem{Loesung}{L\"osung}
+    \newtheorem{Satz}{Satz}
+    \newtheorem{Folgerung}{Folgerung}
+    \newtheorem{Fakt}{Fakt}
+    \newenvironment{Beweis}{\begin{proof}[Beweis.]}{\end{proof}}
+    \newenvironment{Lemma}{\begin{lemma}}{\end{lemma}}
+    \newenvironment{Proof}{\begin{proof}}{\end{proof}}
+    \newenvironment{Theorem}{\begin{theorem}}{\end{theorem}}
+    \newenvironment{Problem}{\begin{problem}}{\end{problem}}
+    \newenvironment{Corollary}{\begin{corollary}}{\end{corollary}}
+    \newenvironment{Example}{\begin{example}}{\end{example}}
+    \newenvironment{Examples}{\begin{examples}}{\end{examples}}
+    \newenvironment{Definition}{\begin{definition}}{\end{definition}}
+\makeatother
+
 % Notes
 % Talk using pympress: brew install pympress
-% Talk command: pympress -t 40 -n right ~/Documents/master/1901/presentation/1901_3230880_philip_heltweg_presentation.pdf
+% Talk command: pympress -t 40 -n right ~/Documents/master/master-seminar/presentation/1901_3230880_philip_heltweg_presentation.pdf
 \setbeameroption{show notes on second screen=right} % Both
 
 % Coloring note-pages
@@ -658,20 +700,47 @@
     }
 \end{frame}
 
-\begin{frame}{Properties of BM Revision Operators}
+\begin{frame}{Properties of BM Revision Operators: Basic properties}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
         \item\label{AST1} $\qquad \leq_{\alpha}^{\ast} \textrm{ is a tpo over } W$
         \item\label{AST2} $\qquad\alpha \equiv \gamma \textrm{ implies } \leq_{\alpha}^{\ast}=\leq_{\gamma}^{\ast}$
+    \end{enumerate}
+
+    \note{
+        \begin{itemize}
+            \item \ref{AST1} and \ref{AST2} are considered basic properties: A revision of a tpo $\leq$ over $W$ must generate another tpo over $W$. In addition, the operator must return an equal revised tpo for semantically equivalent sentences, the so called syntax-irrelevance property.
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Properties of BM Revision Operators: Common rules in iterated belief change}
+    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
+        \setcounter{enumi}{2}
         \item\label{AST3} $\qquad \textrm{If } x, y \in \modelsOf{\alpha} \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
         \item\label{AST4} $\qquad \textrm{If } x, y \in \modelsOf{\neg\alpha} \textrm{ then } x \leq_{\alpha}^{\ast} y \textrm{ iff } x \leq y$
         \item\label{AST5} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } x \leq y \textrm{ then } x <_{\alpha}^{\ast} y$
+    \end{enumerate}
+
+    \note{
+        \begin{itemize}
+            \item The next group of properties, \ref{AST3}-\ref{AST5} are common rules in iterated belief change. Booth and Meyer themselves consider them characteristic for admissible revision operators, a class of operators that requires new evidence to not be ignored completely \cite{Booth2006a}. This is in contrast to revision strategies like natural revision by Boutilier \cite{Boutilier1996}, which minimises change in conditional beliefs.
+            \item If revising a tpo by a sentence $\alpha$, the relative ordering of worlds that are either both $\modelsOf{\alpha}$- or $\modelsOf{\neg\alpha}$-worlds, must stay the same (\ref{AST3}/\ref{AST4}). These properties were already part of the semantic postulates \ref{CR1} and \ref{CR2}, by Darwiche and Pearl \cite{Darwiche1997}, discussed in section \ref{chapter:dp-agm-postulates}.
+            \item In a similar way, \ref{AST5} is a stronger requirement than the other two Darwiche and Pearl postulates \ref{CR3} and \ref{CR4}. It means the following: When a world $x$ is considered at least as plausible as a world $y$ before a revision by new information $\alpha$, if $\alpha$ makes $x$ more plausible ($x \in \modelsOf{\alpha}$) and $y$ less plausible ($y \in \modelsOf{\neg\alpha}$), then after revision by $\alpha$, $x$ should be considered strictly more plausible than $y$. This property was not only proposed by Booth and Meyer \cite{Booth2006a}, but also by Jin und Thielscher in \cite{Jin2007} (as the postulate of independence).
+            \item These properties define tpo-revision with one input sentence. Booth and Meyer relate them to the AGM postulates for belief set revision \cite{Alchourron1985} as basic postulates for tpo-revision \cite{Booth2011}.
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Properties of BM Revision Operators: Supplementary rationality properties }
+    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
+        \setcounter{enumi}{5}
         \item\label{AST6} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y \leq_{\alpha}^{\ast} x \textrm{ then } y \leq_{\gamma}^{\ast} x$
         \item\label{AST7} $\qquad \textrm{If } x \in \modelsOf{\alpha}, y \in \modelsOf{\neg\alpha} \textrm{ and } y <_{\alpha}^{\ast} x \textrm{ then } y <_{\gamma}^{\ast} x$
     \end{enumerate}
 
     \note{
         \begin{itemize}
-            \item properties
+            \item With \ref{AST6} and \ref{AST7}, Booth and Meyer aim to add supplementary rationality properties to keep revision with different sentences coherent. These properties are largely ignored in other literature on iterated belief change \cite{Booth2011}. \ref{AST6} means that if, after revision by evidence $\alpha$ that makes a world $x$ more plausible than $y$, $y$ is still considered at least as plausible as $x$, then for revision by any possible evidence $\gamma$, $y$ must still be at least as plausible as $x$. \ref{AST7} is the equivalent property for strict preference.
         \end{itemize}
     }
 \end{frame}
@@ -684,6 +753,73 @@
     \note{
         \begin{itemize}
             \item theorem 1
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}[fragile]{Non-priotized revision}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+
+                        1 8 empty \empty
+                        3 8 filled
+
+                        1 7 empty
+                        3 7 filled
+
+                        2 6 empty
+                        4 6 filled
+
+                        2 5 empty
+                        4 5 filled
+
+                        5 4 filled
+                        7 4 empty
+
+                        5 3 filled
+                        7 3 empty
+
+                        6 2 filled
+                        8 2 empty
+
+                        6 1 filled
+                        8 1 empty
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Non-prioritised revision by $\alpha = r$}
+        \label{fig:example-non-prio-revision}
+    \end{figure}
+
+    \note{
+        \begin{itemize}
+            \item Es gibt postulate die erfordern, dass neuen Informationen immer geglaubt wird und sie in das belief set aufgenommen werden, e.g. \ref{E2} als $\alpha \in B(\mathbb{E}\ast\alpha)$
+            \item BM revision operatoren sind "non priotized revision", d.h. neue informationen müssen nicht teil des belief sets werden wie hier gezeigt
+            \item aber auch erinnerung: admissible revision von BM erfordert (\ref{AST3} - \ref{AST5}), dass neue informationen nicht ignoriert werden, hier r verändert die conditional beliefs
+            \item das im gegensatz zu natural revision by boutilier welches minimal change für conditional beliefs fordert
         \end{itemize}
     }
 \end{frame}
