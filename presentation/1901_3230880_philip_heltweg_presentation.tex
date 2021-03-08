@@ -224,6 +224,7 @@
 }
 
 \begin{frame}{Courtroom example \footnote{inspired by \cite{Booth2011} and \cite{Darwiche1997}}}
+    \label{slide:example-setup}
     \begin{itemize}
         \item The agent is a judge in a murder trial, "John" and "Mary" are suspects, the victim might be an alien
         \item $\Sigma = \{ p, q, r\}$
@@ -281,7 +282,7 @@
 \end{frame}
 
 \begin{frame}{Preorder visualisation}
-
+    \label{slide:vis-ranks}
     \begin{itemize}
         \item $[[x]]_{\sim} = \{y \mid y \sim x\}$
         \item $[[x]] \leq [[y]]$ iff $x \leq y$
@@ -345,6 +346,7 @@
 \end{frame}
 
 \begin{frame}{Belief Set Revision Postulates\footnote{AGM postulates \cite{Alchourron1985}, reformulated for epistemic states by Darwiche and Pearl \cite{Darwiche1997}}}
+    \label{slide:e1-8}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
         \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
         \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
@@ -358,21 +360,20 @@
 
     \note{
         \begin{itemize}
+            \tiny
             \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
-            \item Postulates
-                  \begin{itemize}
-                      \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
-                      \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
-                      \item 3 und 4: "Inclusion" und "Vacuity": zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
-                      \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
-                      \item 6: Das belief set enthält elementaren widerspruch NUR nach revision mit inkonsistenten informationen, konsistenz "at all costs" (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
-                      \item 7 und 8: Wenn ein belief set nach revision mit alpha konsistent ist mit beta dann kann kann man das belief set von alpha und beta durch expansion mit beta erreichen (revision nicht nötig), wieder minimal change
-                  \end{itemize}
+            \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
+            \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
+            \item 3 und 4: "Inclusion" und "Vacuity": zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
+            \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
+            \item 6: Das belief set enthält elementaren widerspruch NUR nach revision mit inkonsistenten informationen, konsistenz "at all costs" (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
+            \item 7 und 8: Wenn ein belief set nach revision mit alpha konsistent ist mit beta dann kann kann man das belief set von alpha und beta durch expansion mit beta erreichen (revision nicht nötig), wieder minimal change
         \end{itemize}
     }
 \end{frame}
 
 \begin{frame}{Conditional Belief Revision Postulates\footnote{by Darwiche and Pearl \cite{Darwiche1997}}}
+    \label{slide:cr1-4}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = (CR$\arabic*$)]
         \item\label{CR1} $\qquad \textrm{If } v\in \modelsOf{\alpha}, w \in \modelsOf{\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
         \item\label{CR2} $\qquad \textrm{If } v\in \modelsOf{\neg\alpha}, w \in \modelsOf{\neg\alpha} \textrm{ then } v \leq_{\mathbb{E}} w \textrm{ iff } v \leq_{\mathbb{E\ast\alpha}} w$
@@ -428,6 +429,7 @@
 \end{frame}
 
 \begin{frame}{$\leq$-faithful tpo - definition}
+    \label{slide:faithful-tpo}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\preceq\arabic*$)]
         \item\label{PREQ1} $\qquad \preceq \textrm{ is a tpo over } W^{\pm}$
         \item\label{PREQ2} $\qquad x^{+} \preceq y^{+} \textrm{ iff } x \leq y$
@@ -578,6 +580,7 @@
 }
 
 \begin{frame}{BM tpo-revision operator}
+    \label{slide:bm-revision-operator}
     \begin{definition}[Revision operator $\ast_{\preceq}$ for $\leq$ generated by $\preceq$ \cite{Booth2011}]
         \label{definition:revision-operator}
         For each $\leq$-faithful tpo $\preceq$ over $W^{\pm}$, refer to $\ast_{\preceq}$ as the revision operator for $\leq$ generated by $\preceq$ defined by:
@@ -603,7 +606,8 @@
         \begin{itemize}
             \item Definition eines BM revisions operators
             \item Funktion * von tpo und satz alpha aus L zu neuer tpo auf W, basierend auf unserer extra struktur auf W+-
-            \item Damit operator basierte belief revision, konditionale glauben (strategie) in form der tpo und glaubensset weil man es aus der tpo extrahieren kann
+            \item Syntax: neue tpo als tpo subscript alpha, generiert mit superskript *
+            \item Damit operatorbasierte belief revision, konditionale glauben (strategie) in form der tpo und glaubensset weil man es aus der tpo extrahieren kann
             \item Prinzip einfach: Für jeden satz alpha und welt x, setze x auf ihre positive representation x+ in w+ wenn x ein model von alpha ist und auf ihre negative representation x- wenn sie kein model von alpha ist
             \item Die neue TPO ergibt sich dann aus der Ordnung auf den jeweiligen postiven/negativen representationen
         \end{itemize}
@@ -669,6 +673,7 @@
     \end{figure}
 
     \note{
+        \footnotesize
         \begin{itemize}
             \item Hier beispiel von vorher mit alpha gleich p "John ist der Mörderer"
             \item r subskript alpha von x ist hier jeweils als schwarzer Punkt markiert
@@ -700,6 +705,7 @@
     \end{itemize}
 
     \note{
+        \footnotesize
         \begin{itemize}
             \item Gleiches Beispiel, Mathe statt grafisch
             \item Hier für 010 "Mary ist die Mörderin" und 110 "Mary und John sind die Mörder"
@@ -735,6 +741,7 @@
 \end{frame}
 
 \begin{frame}{Properties of BM Revision Operators: Basic properties}
+    \label{slide:ast1-7}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\ast\arabic*$)]
         \item\label{AST1} $\qquad \leq_{\alpha}^{\ast} \textrm{ is a tpo over } W$
         \item\label{AST2} $\qquad\alpha \equiv \gamma \textrm{ implies } \leq_{\alpha}^{\ast}=\leq_{\gamma}^{\ast}$
@@ -742,7 +749,10 @@
 
     \note{
         \begin{itemize}
-            \item \ref{AST1} and \ref{AST2} are considered basic properties: A revision of a tpo $\leq$ over $W$ must generate another tpo over $W$. In addition, the operator must return an equal revised tpo for semantically equivalent sentences, the so called syntax-irrelevance property.
+            \item Was sind Eigenschaften von BM revisions operatoren? Diese Eigenschaften sind gruppiert, ich werde sie durchgehen und am Ende werden sie die Familie von operatoren kategorisieren/einschränken über die BM reden
+            \item \ref{AST1} und \ref{AST2} sind basis Eigenschaften
+            \item Eine revision einer tpo über W muss wieder eine tpo über W sein
+            \item Für semantisch äquivalente Sätze muss der operator die gleiche neue tpo erzeugen, so genannte syntax irrelevance property
         \end{itemize}
     }
 \end{frame}
@@ -756,11 +766,14 @@
     \end{enumerate}
 
     \note{
+        \footnotesize
         \begin{itemize}
-            \item The next group of properties, \ref{AST3}-\ref{AST5} are common rules in iterated belief change. Booth and Meyer themselves consider them characteristic for admissible revision operators, a class of operators that requires new evidence to not be ignored completely \cite{Booth2006a}. This is in contrast to revision strategies like natural revision by Boutilier \cite{Boutilier1996}, which minimises change in conditional beliefs.
-            \item If revising a tpo by a sentence $\alpha$, the relative ordering of worlds that are either both $\modelsOf{\alpha}$- or $\modelsOf{\neg\alpha}$-worlds, must stay the same (\ref{AST3}/\ref{AST4}). These properties were already part of the semantic postulates \ref{CR1} and \ref{CR2}, by Darwiche and Pearl \cite{Darwiche1997}, discussed in section \ref{chapter:dp-agm-postulates}.
-            \item In a similar way, \ref{AST5} is a stronger requirement than the other two Darwiche and Pearl postulates \ref{CR3} and \ref{CR4}. It means the following: When a world $x$ is considered at least as plausible as a world $y$ before a revision by new information $\alpha$, if $\alpha$ makes $x$ more plausible ($x \in \modelsOf{\alpha}$) and $y$ less plausible ($y \in \modelsOf{\neg\alpha}$), then after revision by $\alpha$, $x$ should be considered strictly more plausible than $y$. This property was not only proposed by Booth and Meyer \cite{Booth2006a}, but also by Jin und Thielscher in \cite{Jin2007} (as the postulate of independence).
-            \item These properties define tpo-revision with one input sentence. Booth and Meyer relate them to the AGM postulates for belief set revision \cite{Alchourron1985} as basic postulates for tpo-revision \cite{Booth2011}.
+            \item 3-5 regeln für iterated belief change mit einem input alpha
+            \item BM vergleichen sie mit den AGM postulaten, AGM postulate für revision von belief sets, postulate 1-5 für revision von tpos
+            \item charakteristisch für "admissible revision operators" die eingaben nicht ignorieren, selbst wenn es nicht zu Änderungen am belief set führt (siehe 5)
+            \item (im gegensatz zu e.g. natural revision von boutilier die Änderungen in conditional beliefs minimiert)
+            \item 3 und 4: die relative Ordnung für Welten die entweder beide Modelle für die Eingabe sind oder nicht muss gleich bleiben (schon gegeben in conditional belief revision postulates CR1/CR2 von Darwiche and pearl)
+            \item 5: wenn eine welt x mindestens so plausibel ist wie eine Welt y soll x nach einer Eingabe für die x ein model ist und y nicht strikt plausibler sein (ähnlich wie CR3/4 von DP aber strenger)
         \end{itemize}
     }
 \end{frame}
@@ -774,20 +787,23 @@
 
     \note{
         \begin{itemize}
-            \item With \ref{AST6} and \ref{AST7}, Booth and Meyer aim to add supplementary rationality properties to keep revision with different sentences coherent. These properties are largely ignored in other literature on iterated belief change \cite{Booth2011}. \ref{AST6} means that if, after revision by evidence $\alpha$ that makes a world $x$ more plausible than $y$, $y$ is still considered at least as plausible as $x$, then for revision by any possible evidence $\gamma$, $y$ must still be at least as plausible as $x$. \ref{AST7} is the equivalent property for strict preference.
-                  %\item so far each of our rules mention onlyonerevision input sentenceα(modulo logical equivalence).  Byanalogy  with the AGM postulates  forbelief setrevision ,  we might consider them as the set ofbasicpostulates  for  tpo-revision.   One  thing  largely  missing  from  the  literature  on  iterated  belief  change  is  aserious study ofsupplementaryrationality properties which bestow a certain amount of coherence on theresults of revising bydifferentsentences.  The last couple of properties do this.
+            \item vorher nur eine eingabe, diese zusätzlichen postulate um revision mit unterschiedlichen eingaben stimmig zu halten
+            \item 6: wenn nach einer revision mit alpha die welt y mindestens so plausibel ist wie x obwohl x ein model für alpha ist und y nicht, dann ist y für jede eingabe gamme mindestens so plausibel wie x
+            \item 7: gleich, nur für die strikt plausiblere version
         \end{itemize}
     }
 \end{frame}
 
 \begin{frame}{Family of BM Revision Operators}
+    \label{slide:theorem1}
     \begin{theorem}
         \label{theorem:revision-operator}Let $\ast$ be any revision operator for $\leq$. Then $\ast$ is generated from some $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ iff $\ast$ satisfies \ref{AST1}-\ref{AST7}. \cite{Booth2011}
     \end{theorem}
 
     \note{
         \begin{itemize}
-            \item theorem 1
+            \item theorem 1 als definition der funktionen/revisionsoperatoren für eine tpo die BM diskutieren/vorschlagen
+            \item erinnern an faithful tpo, W+-, 1-7
         \end{itemize}
     }
 \end{frame}
@@ -850,11 +866,13 @@
     \end{figure}
 
     \note{
+        \footnotesize
         \begin{itemize}
             \item Es gibt postulate die erfordern, dass neuen Informationen immer geglaubt wird und sie in das belief set aufgenommen werden, e.g. \ref{E2} als $\alpha \in B(\mathbb{E}\ast\alpha)$
-            \item BM revision operatoren sind "non priotized revision", d.h. neue informationen müssen nicht teil des belief sets werden wie hier gezeigt
-            \item aber auch erinnerung: admissible revision von BM erfordert (\ref{AST3} - \ref{AST5}), dass neue informationen nicht ignoriert werden, hier r verändert die conditional beliefs
-            \item das im gegensatz zu natural revision by boutilier welches minimal change für conditional beliefs fordert
+            \item hier im Beispiel revision mit p "das Opfer ist ein Alien", modelle/nicht modelle jeweils mit positiver/negativer representation identifizieren (schwarzer punkt), neue tpo ablesen. hier trotz evidenz "das opfer ist ein alien", min worlds 010, 100 aka teil des belief sets ist "das opfer ist KEIN alien"
+            \item BM revision operatoren sind "non priotized revision", d.h. neue informationen müssen nicht teil des belief sets werden
+            \item aber auch erinnerung: admissible revision von BM erfordert (\ref{AST3} - \ref{AST5}), dass neue informationen nicht ignoriert werden, hier r verändert die conditional beliefs. das im gegensatz zu natural revision by boutilier welches minimal change für conditional beliefs fordert
+            \item Wann glaubt der Richter denn an aliens? Welche zusätzlichen beweise braucht er und wie iterieren wir ein weiteres mal jetzt? I am glad you asked!
         \end{itemize}
     }
 \end{frame}
@@ -872,14 +890,18 @@
 \begin{frame}{A concrete operator \footnote{as shown in \cite{Booth2011}}: Setup}
     \begin{itemize}
         \item Function p mapping worlds to real numbers: $p: W^{\pm} \mapsto \mathds{R}$
-        \item Interval representing a world: $(p(x^{+}), p(x^{-}))$
+        \item Interval representing a world $x$: $(p(x^{+}), p(x^{-}))$
         \item Distance between representations: $p(x^{-}) - p(x^{+}) = a > 0$
         \item Define a tpo from $p$: $x^{\epsilon} \preceq_{p} y^{\delta} \textrm{ iff } p(x^{\epsilon}) \leq p(y^{\delta})$
     \end{itemize}
 
     \note{
         \begin{itemize}
-            \item math for operator
+            \item explizit nur ein beispiel, nicht der einzige mögliche operator
+            \item definiert über eine funktion p die welten aus w+- echten zahlen zuweist (je kleiner desto plausibler)
+            \item damit wird ein interval für eine welt x aus W zu einem intervall von echten zahlen
+            \item aufgrund der faithful tpo definition (slide 20) postulat 4 ist x+ < x-, daher distanz a des intervals > 0
+            \item jetzt kann man mit p eine tpo definieren indem man welten in der tpo nach ihrer zahl in p anordnet
         \end{itemize}
     }
 \end{frame}
@@ -905,13 +927,17 @@
 
     \note{
         \begin{itemize}
-            \item math for operator
+            \item revision der übergeordneten tpo ist jetzt ein zwei schritt prozess:
+            \item 1. schritt: mit der funktion p kann man eine tpo definieren, wähle p so das die damit definierte tpo = unserer übergeordneten tpo auf w+- ist
+            \item 2. schritt: p mit alpha zu p alpha ändern indem man alle welten die ein model von alpha sind unverändert lässt und alle anderen um a "zurückschiebt" (x+ wird zur gleichen zahl wie x- da um a zurückgeschoben und x- zu x- + a)
+            \item von der neuen funktion p alpha kann man jetzt eine neue übergeordnete tpo ablesen
         \end{itemize}
     }
 \end{frame}
 
 \begin{frame}{Courtroom Example: A concrete operator}
     \begin{itemize}
+        \item $\preceq_{p \ast \alpha}$ for $\alpha = p$
         \item Choose initial $p$ so that $\preceq_{p} = \preceq$
               \begin{itemize}
                   \item $010 \textrm{ : } (p(010^{+}), p(010^{-})) = (0, a)$.
@@ -926,7 +952,12 @@
 
     \note{
         \begin{itemize}
-            \item math for example with operator
+            \item hier an unserem beispiel für alpha "John ist der mörderer"
+            \item initial hat der richter keine präferenz welcher verdächtige der mörder ist, die welten 010 und 100 sind am plausibelsten (am weitesten links) und haben das gleiche interval. hier mit p zu 0 im positiven fall und a im negativen fall abgebildet.
+            \item nachdem wir p zu p alpha verändern sind die intervalle:
+            \item für das nicht model 010 vom START p(010+) + a = p(010-) zum ENDE p(010-) + a, also (a, 2a) "um a zurück geschoben"
+            \item für das model 100 unverändert als (0, a)
+            \item das kann man nun für alle welten machen und die neue übergeordnete tpo von p ableiten
         \end{itemize}
     }
 \end{frame}
@@ -998,9 +1029,12 @@
 
     \note{
         \begin{itemize}
-            \item figure 7
-            \item maybe put the figure 5 from paper (original revision of <=) before this
-            \item maybe put slides for complete example in here going from tpo to revision once, to revision twice
+            \item hier visualisiert revision der übergeordneten tpo auf w+- mit alpha = p = John ist der mörderer
+            \item intervalle der welten in der tpo p sternchen alpha dargestellt wie vorher
+            \item alte positive repräsentationen vor der revision von nicht modellen markiert als x
+            \item alle nicht modelle von p um a zurück geschoben, alle modelle bleiben gleich
+            \item damit neue tpo ablesbar, minimale welt 100, neues belief set "John ist der mörderer" wie vorher und intuitiv
+            \item was hat sich jetzt geändert? die konditionalen annahmen, was der agent bereit ist zu akzeptieren mit neuen beweisen
         \end{itemize}
     }
 \end{frame}
@@ -1072,7 +1106,9 @@
 
     \note{
         \begin{itemize}
-            \item figure 8
+            \item hier, revision mit alpha = r = "Das opfer war ein alien"
+            \item wie vorher besprochen, trotz der evidenz ist "das opfer ist ein alien" nicht teil der minimalen welten und damit nicht teil des belief sets (non priotized revision)
+            \item aber die konditionalen annahmen haben sich jetzt verändert, der abstand zwischen den alien welten und nicht alien welten ist weg
         \end{itemize}
     }
 \end{frame}
@@ -1145,7 +1181,10 @@
 
     \note{
         \begin{itemize}
-            \item figure 9
+            \item jetzt revision mit beta "der mörder hat alleine gehandelt" nachdem wir vorher mit alpha "das opfer war ein alien" revision betrieben haben
+            \item jetzt sind die welten mit dem opfer als alien und einem einzeltäter plausibler als die welten ohne alien aber ohne mörder/mit zwei mördern!
+            \item hätten wir direkt mit beta revision betrieben wäre das nicht passiert, iterated belief revision am werk
+            \item allerdings hier: die welten mit einem einzeltäter und ohne alien (010 und 100) sind immernoch die minimalen welten und damit ist r "das opfer ist ein alien" nicht teil des belief sets
         \end{itemize}
     }
 \end{frame}
@@ -1158,6 +1197,14 @@
     \begin{itemize}
         \item Vorher: Revision der neuen Struktur $\preceq$, ein möglicher konkreter Beispieloperator + Visualisierung
         \item Jetzt: Fragen? Diskussion
+        \item Example setup: \pageref{slide:example-setup} - 1
+        \item Visualisierung ranks: \pageref{slide:vis-ranks} -1
+        \item E1-8: \pageref{slide:e1-8} -1
+        \item CR1-4: \pageref{slide:cr1-4} -1
+        \item faithful-tpo: \pageref{slide:faithful-tpo} -1
+        \item bm-revision-operator: \pageref{slide:bm-revision-operator} -1
+        \item ast1-7: \pageref{slide:ast1-7} -1
+        \item theorem1: \pageref{slide:theorem1} -1
     \end{itemize}
 }
 
