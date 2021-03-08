@@ -29,30 +29,30 @@
 \begin{document}
 
 \begin{titlepage}
-\pagenumbering{gobble}
-  {\centering
-  \vskip 30 pt
-  \LARGE Synopsis of "How to Revise a Total Preorder" \cite{Booth2011} for seminar 1901 - "Representation and processing of uncertain knowledge with logic-based methods" \par
-  \vskip 1.5em
-  \large Philip Heltweg, matriculation number 3230880 \par
-  \vskip 1.5em}
-  
-  Ich erkläre, dass ich die schriftliche Ausarbeitung zum Seminar selbstständig und ohne unzulässige Inanspruchnahme Dritter verfasst habe. Ich habe dabei nur die angegebenen Quellen und Hilfsmittel verwendet und die aus diesen wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht. Die Versicherung selbstständiger Arbeit gilt auch für enthaltene Zeichnungen, Skizzen oder graphische Darstellungen. Die Ausarbeitung wurde bisher in gleicher oder ähnlicher Form weder derselben noch einer anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht. Mit der Abgabe der elektronischen Fassung der endgültigen Version der Ausarbeitung nehme ich zur Kenntnis, dass diese mit Hilfe eines Plagiatserkennungsdienstes auf enthaltene Plagiate geprüft werden kann und ausschließlich für Prüfungszwecke gespeichert wird.
+    \pagenumbering{gobble}
+    {\centering
+        \vskip 30 pt
+        \LARGE Synopsis of "How to Revise a Total Preorder" \cite{Booth2011} for seminar 1901 - "Representation and processing of uncertain knowledge with logic-based methods" \par
+        \vskip 1.5em
+        \large Philip Heltweg, matriculation number 3230880 \par
+        \vskip 1.5em}
+
+    Ich erkläre, dass ich die schriftliche Ausarbeitung zum Seminar selbstständig und ohne unzulässige Inanspruchnahme Dritter verfasst habe. Ich habe dabei nur die angegebenen Quellen und Hilfsmittel verwendet und die aus diesen wörtlich oder sinngemäß entnommenen Stellen als solche kenntlich gemacht. Die Versicherung selbstständiger Arbeit gilt auch für enthaltene Zeichnungen, Skizzen oder graphische Darstellungen. Die Ausarbeitung wurde bisher in gleicher oder ähnlicher Form weder derselben noch einer anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht. Mit der Abgabe der elektronischen Fassung der endgültigen Version der Ausarbeitung nehme ich zur Kenntnis, dass diese mit Hilfe eines Plagiatserkennungsdienstes auf enthaltene Plagiate geprüft werden kann und ausschließlich für Prüfungszwecke gespeichert wird.
 \end{titlepage}
 \pagenumbering{arabic}
 
 \title{Of judges, aliens and total preorders}
 \author{
-	Heltweg, Philip \\
-	University of Hagen \\
-	pheltweg@gmail.com
+    Heltweg, Philip \\
+    University of Hagen \\
+    pheltweg@gmail.com
 }
 \date{\today}
 \maketitle
 
 \abstract{Adapting one's world view in the light of new information is a central skill of intelligent agents. Total preorders are a common tool to model plausibility orderings over possible worlds in the research field of belief change. In their paper "How to Revise a Total Preorder", Booth and Meyer present an approach to revising preorders for iterated belief revision. Their operator is based on assigning abstract intervals of plausibility to worlds, depending on new evidence supporting them or not.
 
-This synopsis presents part of their work in tpo-revision operators and their properties with the help of an accompanying example and additional visualisation.}
+    This synopsis presents part of their work in tpo-revision operators and their properties with the help of an accompanying example and additional visualisation.}
 
 \newpage
 
@@ -92,20 +92,20 @@ A helpful visualisation for tpos is described in \cite{Booth2006}. It uses the f
 
 \begin{example}
     \label{example:example-introduction}
-    As an accompanying example, consider the following situation from a courtroom, closely aligned to Booth and Meyer \cite{Booth2011}, as well as to Darwiche and Pearl \cite{Darwiche1997}: 
-    
+    As an accompanying example, consider the following situation from a courtroom, closely aligned to Booth and Meyer \cite{Booth2011}, as well as to Darwiche and Pearl \cite{Darwiche1997}:
+
     Our agent is a judge in a murder trial. John and Mary are suspects. $p$ represents "John is the murderer", $q$ represents "Mary is the murderer" and $r$ represents "the victim is an alien". Possible propositional worlds will be denoted as triplets of 0s and 1s denoting $p$, $q$ and $r$ to be true or false. For example the $101$-world stands for John being the murderer and the victim being an alien.
-    
+
     To start the agent believes it is reasonable to assume the murderer acted alone (but is not ruling out both conspiring). In addition they consider it extremely unlikely, but not impossible, for the victim to be an alien.
-    
+
     Consider the propositional worlds $W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$. A tpo representing the judges assumptions would be $\leq$ with $010 \sim 100 < 000 \sim 110 < 011 \sim 101 < 001 \sim 111$. The equivalent representation as a linearly ordered set of ranks is shown in Table \ref{tab:visualising-a-tpo-example}.
 
     \begin{table}[H]
-         \centering
+        \centering
         \begin{tabular}{llll}
-        $R_{1}$                      & $R_{2}$                                                                   & $R_{3}$ & $R_{4}$                      \\ \hline
-        \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
-            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}} \\ \hline
+            $R_{1}$                                         & $R_{2}$                                        & $R_{3}$                                        & $R_{4}$ \\ \hline
+            \multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}$010$\\ $100$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$000$\\ $110$\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$011$\\ $101$\end{tabular}} &
+            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}$001$\\ $111$\end{tabular}}                                                                                                              \\ \hline
         \end{tabular}
         \caption{Visualizing a tpo as a linearly ordered set of ranks, as done in \cite{Booth2006}}.
         \label{tab:visualising-a-tpo-example}
@@ -126,19 +126,19 @@ Belief sets can be extracted from epistemic states. The belief set extracted fro
 
 \begin{example}
     Continuing Example \ref{example:example-introduction}, it is possible to model an epistemic state $\mathbb{E}$ with the tpo $\leq_{\mathbb{E}}$.
-    
+
     $min(\top, \leq_{\mathbb{E}})$ is the set of worlds on the lowest rank, $\{010, 100\}$. A possible belief set is $B(\mathbb{E}) = \{p \vee q, \neg p \vee \neg q, \neg r\}$ as $\modelsOf{B(\mathbb{E})} = \{010, 100\} = min(\top, \leq_{\mathbb{E}})$. Intuitively this makes sense, with the initial assumption that John or Mary are the suspects ($p \vee q$), have acted alone ($\neg p \vee \neg q$) and the victim is not an alien ($\neg r$).
 \end{example}
 
 \subsection{Belief revision postulates}
 \label{chapter:dp-agm-postulates}
-A well established set of postulates for revision are the AGM postulates \cite{Alchourron1985}. In this text, a reformulation for epistemic states by Darwiche and Pearl \cite{Darwiche1997} is used, presented in the following. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ its associated belief set and $B(\mathbb{E}) + \alpha$ is the expansion of $B(\mathbb{E})$ by $\alpha$, with $\ast$ being a belief change operator on epistemic states. 
+A well established set of postulates for revision are the AGM postulates \cite{Alchourron1985}. In this text, a reformulation for epistemic states by Darwiche and Pearl \cite{Darwiche1997} is used, presented in the following. $\mathbb{E}$ denotes an epistemic state, $B(\mathbb{E})$ its associated belief set and $B(\mathbb{E}) + \alpha$ is the expansion of $B(\mathbb{E})$ by $\alpha$, with $\ast$ being a belief change operator on epistemic states.
 
 \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
     \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
     \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
     \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
-    \item\label{E4} $\qquad \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
+    \item\label{E4} $\qquad \textrm{If } \neg \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
     \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
     \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \models \neg \alpha$
     \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
@@ -161,7 +161,7 @@ Darwiche and Pearl also define postulates that restrict how the rest of the new 
 \ref{CR1} and \ref{CR2} mean that the relative ordering of worlds following a revision by $\alpha$ stays the same if the worlds are either both $\alpha$- or $\neg\alpha$- worlds. \ref{CR3} and \ref{CR4} require that $\alpha$-worlds that are strictly/weakly more plausible than $\neg\alpha$-worlds are still strictly/weakly more plausible than them after an $\alpha$-revision.
 
 \section{Additional metadata for tpo revision}
-After discussing notation and previous research, the following sections present an excerpt of the new work done by Booth and Meyer in \cite{Booth2011}. To support their approach to tpo revision, Booth and Meyer propose inserting additional metadata in epistemic states. 
+After discussing notation and previous research, the following sections present an excerpt of the new work done by Booth and Meyer in \cite{Booth2011}. To support their approach to tpo revision, Booth and Meyer propose inserting additional metadata in epistemic states.
 
 \subsection{Enriching epistemic states}
 Based on DP-AGM and the postulates $(CR1)$-$(CR4)$, Booth and Meyer assume a fixed tpo $\leq$ over a set of worlds $W$ that acts as a plausibility ordering. The goal of their paper is the discussion of functions $\ast$ that return a new ordering $\leq_{\alpha}^{\ast}$ for every $\alpha \in L$. These functions are referred to as revision operators for $\leq$.
@@ -174,50 +174,50 @@ For the ordering on $W^{\pm}$, Booth and Meyer suppose an additional relation, d
 \begin{example}
     \label{example:example-intervals}
     Recall that tpos can be equivalently thought of as a linearly ordered set of ranks (Example \ref{example:example-introduction}). Therefore, a tpo over $W$ can be visualized by displaying every $w \in W$ in a table that has one column for every rank (like in Table \ref{tab:visualising-a-tpo-example}). To visualize the ordering introduced by $\preceq$, Booth and Meyer use an interval with the endpoints defined as $w^{+}$/$w^{-}$ respectively. This type of visualisation was first introduced in a previous paper by Booth and Meyer themselves \cite{Booth2007} and is shown in Figure \ref{fig:example-visualisation-scatterplot}.
-        
+
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[scale=1.5]
             \begin{axis}[
-                  yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
-                  xticklabels={,,},
-                  ytick style={draw=none},
-                  xtick style={draw=none},
-                  axis line style={draw=none}
-            ]
-            \addplot[
-                scatter,
-                scatter src=explicit symbolic,
-                mark size=3,
-                scatter/classes={
-                    empty={mark=*, fill=white},
-                    filled={mark=*, fill=black}
-                },
-                nodes near coords*={\Label},
-                visualization depends on={value \thisrow{label} \as \Label}
-            ]
-            table [meta=class] {
-                    x y class label
-                    
-                    3 1 empty $x_{4}^{+}$
-                    6 1 empty $x_{4}^{-}$
-                                        
-                    2 2 empty $x_{3}^{+}$
-                    5 2 empty $x_{3}^{-}$
-                    
-                    1 3 empty $x_{2}^{+}$
-                    3 3 empty $x_{2}^{-}$
-                    
-                    1 4 empty $x_{1}^{+}$
-                    3 4 empty $x_{1}^{-}$
+                    yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
+                    xticklabels={,,},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+
+                        3 1 empty $x_{4}^{+}$
+                        6 1 empty $x_{4}^{-}$
+
+                        2 2 empty $x_{3}^{+}$
+                        5 2 empty $x_{3}^{-}$
+
+                        1 3 empty $x_{2}^{+}$
+                        3 3 empty $x_{2}^{-}$
+
+                        1 4 empty $x_{1}^{+}$
+                        3 4 empty $x_{1}^{-}$
                     };
             \end{axis}
         \end{tikzpicture}
         \caption{Representation of $\preceq$ over $W^{\pm}$ using intervals}
         \label{fig:example-visualisation-scatterplot}
     \end{figure}
-    
-   The worlds on lower ranks (more on the left) are preferred and assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{3}^{+}$ and $x_{1}^{-} \sim x_{4}^{+}$. Note, even though all intervals have the same length in this example, that is not required.
+
+    The worlds on lower ranks (more on the left) are preferred and assumed to be more plausible. Here for example $x_{1}^{+} \prec x_{3}^{+}$ and $x_{1}^{-} \sim x_{4}^{+}$. Note, even though all intervals have the same length in this example, that is not required.
 \end{example}
 
 To characterise the relations between $\preceq$ and $\leq$, Booth and Meyer define a list of conditions.
@@ -232,7 +232,7 @@ To characterise the relations between $\preceq$ and $\leq$, Booth and Meyer defi
 The choice between positive or negative representations of two worlds should be the same as under $\leq$ (due to \ref{PREQ2} and \ref{PREQ3}). According to \ref{PREQ4}, there has to be a difference between a positive representation and a negative representation of the same world. Given the choice between both, the positive representation has to be chosen.
 
 \begin{definition}[$\leq$-faithful tpo over $W^{\pm}$ \cite{Booth2011}]
-\label{definition:faithful-tpo}Let $\preceq \subseteq W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4}, we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
+    \label{definition:faithful-tpo}Let $\preceq \subseteq W^{\pm} \times W^{\pm}$. If $\preceq$ satisfies \ref{PREQ1}-\ref{PREQ4}, we say $\preceq$ is a $\leq$-faithful tpo (over $W^{\pm}$).
 \end{definition}
 
 Because of \ref{PREQ2} and \ref{PREQ3}, it is sufficient to only include $\preceq$ in the epistemic state. The tpo $\leq$ over $W$ can be determined from $\preceq$ by restricting it to only $\{ x^{+} \mid x \in W\}$ or $\{ x^{-} \mid x \in W\}$, respectively.
@@ -240,112 +240,112 @@ Because of \ref{PREQ2} and \ref{PREQ3}, it is sufficient to only include $\prece
 \begin{example}
     \label{example:example-faithful-tpo}
     Consider the following tpo $\preceq$ over $W^{\pm}$.
-        
+
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[scale=1.5]
             \begin{axis}[
-                  yticklabels={,,},
-                  xticklabels={,,},
-                  ytick style={draw=none},
-                  xtick style={draw=none},
-                  axis line style={draw=none}
-            ]
-            \addplot[
-                scatter,
-                scatter src=explicit symbolic,
-                mark size=3,
-                scatter/classes={
-                    empty={mark=*, fill=white},
-                    filled={mark=*, fill=black}
-                },
-                nodes near coords*={\Label},
-                visualization depends on={value \thisrow{label} \as \Label}
-            ]
-            table [meta=class] {
-                    x y class label
-                                        
-                    3 1 empty $x_{3}^{+}$
-                    5 1 empty $x_{3}^{-}$
-                    
-                    2 2 empty $x_{2}^{+}$
-                    3 2 empty $x_{2}^{-}$
-                    
-                    1 3 empty $x_{1}^{+}$
-                    4 3 empty $x_{1}^{-}$
-                    };
-            \end{axis}
-        \end{tikzpicture}
-        \caption{A tpo $\preceq$ over $W^{\pm}$}
-        \label{fig:example-not-tpo}
-    \end{figure}
-    
-    Even though \ref{PREQ1} and \ref{PREQ4} are satisfied, $\preceq$ is not a $\leq$-faithful tpo: From \ref{PREQ2} and $x_{1}^{+} \prec x_{2}^{+}$, follows $x_{1} < x_{2}$. That means \ref{PREQ3} can not hold as $x_{2}^{-} \prec x_{1}^{-}$ which would require $x_{2} < x_{3}$ to be true.
-    
-    As demonstrated here, even though the intervals do not need to be the same size for all worlds (they just must exist due to \ref{PREQ4}), they need to be the same size for worlds that share a rank for their corresponding representations. They can not overlap other intervals completely to continue to satisfy \ref{PREQ2} and \ref{PREQ3}.
-\end{example}
-
-\begin{example}
-    \label{example:example-tpo-initial}
-    Continuing the courtroom demonstration, introduced in Example \ref{example:example-introduction}, of a judge deciding on a verdict on the suspects John and Mary, Figure \ref{fig:example-tpo-initial} shows a possible version of a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ from which the tpo $\leq$ from Table \ref{tab:visualising-a-tpo-example} can be reconstructed.
-        
-    
-    \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1.5]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+                    yticklabels={,,},
+                    xticklabels={,,},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
+                        3 1 empty $x_{3}^{+}$
+                        5 1 empty $x_{3}^{-}$
+
+                        2 2 empty $x_{2}^{+}$
+                        3 2 empty $x_{2}^{-}$
+
+                        1 3 empty $x_{1}^{+}$
+                        4 3 empty $x_{1}^{-}$
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{A tpo $\preceq$ over $W^{\pm}$}
+        \label{fig:example-not-tpo}
+    \end{figure}
+
+    Even though \ref{PREQ1} and \ref{PREQ4} are satisfied, $\preceq$ is not a $\leq$-faithful tpo: From \ref{PREQ2} and $x_{1}^{+} \prec x_{2}^{+}$, follows $x_{1} < x_{2}$. That means \ref{PREQ3} can not hold as $x_{2}^{-} \prec x_{1}^{-}$ which would require $x_{2} < x_{3}$ to be true.
+
+    As demonstrated here, even though the intervals do not need to be the same size for all worlds (they just must exist due to \ref{PREQ4}), they need to be the same size for worlds that share a rank for their corresponding representations. They can not overlap other intervals completely to continue to satisfy \ref{PREQ2} and \ref{PREQ3}.
+\end{example}
+
+\begin{example}
+    \label{example:example-tpo-initial}
+    Continuing the courtroom demonstration, introduced in Example \ref{example:example-introduction}, of a judge deciding on a verdict on the suspects John and Mary, Figure \ref{fig:example-tpo-initial} shows a possible version of a $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ from which the tpo $\leq$ from Table \ref{tab:visualising-a-tpo-example} can be reconstructed.
+
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+
                         1 8 empty \empty
                         3 8 empty
-                        
-                        1 7 empty 
+
+                        1 7 empty
                         3 7 empty
-                        
-                        2 6 empty 
+
+                        2 6 empty
                         4 6 empty
-                        
-                        2 5 empty 
+
+                        2 5 empty
                         4 5 empty
-                        
-                        5 4 empty 
+
+                        5 4 empty
                         7 4 empty
-                        
-                        5 3 empty 
+
+                        5 3 empty
                         7 3 empty
-                        
-                        6 2 empty 
+
+                        6 2 empty
                         8 2 empty
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{Representation of $\preceq$ over $W^{\pm}$ for the courtroom Example \ref{example:example-introduction}}
-            \label{fig:example-tpo-initial}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Representation of $\preceq$ over $W^{\pm}$ for the courtroom Example \ref{example:example-introduction}}
+        \label{fig:example-tpo-initial}
     \end{figure}
-    
+
     Notice the "gap" between the $\modelsOf{r}$-worlds that include the victim being an alien. Even in their positive representations they are not as plausible as negative representations of $\modelsOf{\neg r}$-worlds. That fact will be discussed more in section \ref{section:non-prioritised-revision} and Example \ref{example:example-non-prio-revision}.
 \end{example}
 
@@ -356,17 +356,17 @@ Booth and Meyer discuss tpo revision operators, functions $\ast$ that return a n
 \begin{definition}[Revision operator $\ast_{\preceq}$ for $\leq$ generated by $\preceq$ \cite{Booth2011}]
     \label{definition:revision-operator}
     For each $\leq$-faithful tpo $\preceq$ over $W^{\pm}$, refer to $\ast_{\preceq}$ as the revision operator for $\leq$ generated by $\preceq$, defined by:
-    
+
     Set for any $\alpha \in L$ and $x \in W$:
     \begin{equation*}
         r_{\alpha}(x) = \left\{
-                    \begin{array}{ll}
-                      x^{+} \textrm{ if } x \in \modelsOf{\alpha}\\
-                      x^{-} \textrm{ if } x \in \modelsOf{\neg\alpha}
-                    \end{array}
-                  \right.
+        \begin{array}{ll}
+            x^{+} \textrm{ if } x \in \modelsOf{\alpha} \\
+            x^{-} \textrm{ if } x \in \modelsOf{\neg\alpha}
+        \end{array}
+        \right.
     \end{equation*}
-    
+
     The revised tpo $\leq_{\alpha}^{\ast}$ is defined by setting, for each $x, y \in W$,
 
     \begin{equation*}
@@ -384,120 +384,120 @@ Intuitively, new evidence $\alpha$ makes worlds that satisfy $\alpha$ more plaus
         \centering
         \begin{tikzpicture}[scale=1.5]
             \begin{axis}[
-                  yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
-                  xticklabels={,,},
-                  ytick style={draw=none},
-                  xtick style={draw=none},
-                  axis line style={draw=none}
-            ]
-            \addplot[
-                scatter,
-                scatter src=explicit symbolic,
-                mark size=3,
-                scatter/classes={
-                    empty={mark=*, fill=white},
-                    filled={mark=*, fill=black}
-                },
-                nodes near coords*={\Label},
-                visualization depends on={value \thisrow{label} \as \Label}
-            ]
-            table [meta=class] {
-                    x y class label
-                    
-                    3 1 filled $x_{4}^{+}$
-                    6 1 empty $x_{4}^{-}$
-                                        
-                    2 2 empty $x_{3}^{+}$
-                    5 2 filled $x_{3}^{-}$
-                    
-                    1 3 empty $x_{2}^{+}$
-                    3 3 filled $x_{2}^{-}$
-                    
-                    1 4 empty $x_{1}^{+}$
-                    3 4 filled $x_{1}^{-}$
-                    };
-            \end{axis}
-        \end{tikzpicture}
-        \caption{Associating worlds with their positive/negative representations}
-        \label{fig:example-updated-tpo}
-    \end{figure}
-    
-    The updated tpo $\leq_{\alpha}^{\ast}$ can now be inferred from Figure \ref{fig:example-updated-tpo}. It is the ordering of the filled dots, representing the new assignment for the respective world: $x_{1} \sim x_{2} \sim x_{4} < x_{3}$.
-\end{example}
-
-\begin{example}
-    \label{example:example-tpo-revised}
-    A more complex example is the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ (of the courtroom Example \ref{example:example-introduction}), using the $\leq$-faithful tpo $\preceq$ introduced in Example \ref{example:example-tpo-initial} and shown in Figure \ref{fig:example-tpo-revised}. In this case, the new evidence received points to John being the murderer so $\alpha = p$.
-    
-    \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1.5]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+                    yticklabels={,,$x_{4}$,$x_{3}$,$x_{2}$,$x_{1}$},
+                    xticklabels={,,},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
+                        3 1 filled $x_{4}^{+}$
+                        6 1 empty $x_{4}^{-}$
+
+                        2 2 empty $x_{3}^{+}$
+                        5 2 filled $x_{3}^{-}$
+
+                        1 3 empty $x_{2}^{+}$
+                        3 3 filled $x_{2}^{-}$
+
+                        1 4 empty $x_{1}^{+}$
+                        3 4 filled $x_{1}^{-}$
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Associating worlds with their positive/negative representations}
+        \label{fig:example-updated-tpo}
+    \end{figure}
+
+    The updated tpo $\leq_{\alpha}^{\ast}$ can now be inferred from Figure \ref{fig:example-updated-tpo}. It is the ordering of the filled dots, representing the new assignment for the respective world: $x_{1} \sim x_{2} \sim x_{4} < x_{3}$.
+\end{example}
+
+\begin{example}
+    \label{example:example-tpo-revised}
+    A more complex example is the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ (of the courtroom Example \ref{example:example-introduction}), using the $\leq$-faithful tpo $\preceq$ introduced in Example \ref{example:example-tpo-initial} and shown in Figure \ref{fig:example-tpo-revised}. In this case, the new evidence received points to John being the murderer so $\alpha = p$.
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
+                ]
+                \addplot[
+                    scatter,
+                    scatter src=explicit symbolic,
+                    mark size=3,
+                    scatter/classes={
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
+                    nodes near coords*={\Label},
+                    visualization depends on={value \thisrow{label} \as \Label}
+                ]
+                table [meta=class] {
+                        x y class label
+
                         1 8 empty \empty
                         3 8 filled
-                        
-                        1 7 filled 
+
+                        1 7 filled
                         3 7 empty
-                        
-                        2 6 empty 
+
+                        2 6 empty
                         4 6 filled
-                        
-                        2 5 filled 
+
+                        2 5 filled
                         4 5 empty
-                        
-                        5 4 empty 
+
+                        5 4 empty
                         7 4 filled
-                        
-                        5 3 filled 
+
+                        5 3 filled
                         7 3 empty
-                        
-                        6 2 empty 
+
+                        6 2 empty
                         8 2 filled
-                        
-                        6 1 filled 
+
+                        6 1 filled
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{Associating positive and negative representations of worlds after receiving evidence $\alpha=p$}
-            \label{fig:example-tpo-revised}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Associating positive and negative representations of worlds after receiving evidence $\alpha=p$}
+        \label{fig:example-tpo-revised}
     \end{figure}
-    
+
     For the worlds $010, 110 \in W$, $010 < 110$ was true. To rank them with the revised tpo $\leq_{\alpha}^{\ast}$, calculate:
-    
+
     \begin{equation*}
         010 \in \modelsOf{\neg\alpha} \textrm{ : } r_{\alpha}(010) = 010^{-}
     \end{equation*}
     \begin{equation*}
         110 \in \modelsOf{\alpha} \textrm{ : } r_{\alpha}(110) = 110^{+}
     \end{equation*}
-    
+
     and, as $110^{+} \prec 010^{-}$ is true, set $110 <_{\alpha}^{\ast} 010$.
-    
+
     Repeating for every world in $W$, the new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$. Unsurprisingly, the belief set associated with the new epistemic state is $Th(min(\top, \leq_{\mathbb{E}})) = Th(\{100\})$: "John is the only murderer and the victim is not an alien".
-    
+
     As $\leq_{\alpha}^{\ast}$ is a representation of the conditional beliefs of the agent, it is also interesting to look at how they changed: Initially the judge thought both suspects being the murderers ($110$) was less plausible than only Mary being the murderer ($010$). Now they have updated their conditional beliefs to think only Mary being the murderer less plausible than both conspiring.
 \end{example}
 
@@ -511,65 +511,65 @@ The operators characterised by Booth and Meyer do not require new evidence $\alp
 A demonstration is already provided with Example \ref{example:example-updated-tpo} and Figure \ref{fig:example-updated-tpo}. The most plausible worlds in the new epistemic state $\mathbb{E}$, $min(\top, \leq_{\alpha}^{\ast})$, include the $\modelsOf{\neg\alpha}$-worlds $x_{1}$ and $x_{2}$. Therefore, $Th(min(\top, \leq_{\alpha}^{\ast}))$ does not include the new evidence $\alpha$.
 
 \begin{example}
-    \label{example:example-non-prio-revision} 
-    
+    \label{example:example-non-prio-revision}
+
     Using the $\leq$-faithful tpo $\preceq$ already established for the courtroom Example \ref{example:example-introduction} the revision by $\alpha = r$ ("the victim was an alien") is shown in Figure \ref{fig:example-non-prio-revision}.
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1.5]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 empty \empty
                         3 8 filled
-                        
-                        1 7 empty 
+
+                        1 7 empty
                         3 7 filled
-                        
-                        2 6 empty 
+
+                        2 6 empty
                         4 6 filled
-                        
-                        2 5 empty 
+
+                        2 5 empty
                         4 5 filled
-                        
-                        5 4 filled 
+
+                        5 4 filled
                         7 4 empty
-                        
-                        5 3 filled 
+
+                        5 3 filled
                         7 3 empty
-                        
-                        6 2 filled 
+
+                        6 2 filled
                         8 2 empty
-                        
-                        6 1 filled 
+
+                        6 1 filled
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{Non-prioritised revision by $\alpha = r$}
-            \label{fig:example-non-prio-revision}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Non-prioritised revision by $\alpha = r$}
+        \label{fig:example-non-prio-revision}
     \end{figure}
-    
+
     Because the agent considered the victim being an alien very unlikely, even the positive representations of worlds in $\modelsOf{\alpha}$ are on higher ranks (so considered less plausible) than negative representations of worlds in $\modelsOf{\neg\alpha}$.
     The belief set $B(\mathbb{E})$ of the agent is unchanged under $\leq_{\alpha}^{\ast}$, since $\{010, 100\}$ are still the most plausible worlds, and does not include $r$ "the victim is an alien".
 \end{example}
@@ -607,7 +607,7 @@ With \ref{AST6} and \ref{AST7}, Booth and Meyer aim to add supplementary rationa
 With these properties for $\ast$ outlined, Booth and Meyer define the family of operators they are discussing with Theorem \ref{theorem:revision-operator}.
 
 \begin{theorem}
-\label{theorem:revision-operator}Let $\ast$ be any revision operator for $\leq$. Then $\ast$ is generated from some $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ iff $\ast$ satisfies \ref{AST1}-\ref{AST7}. \cite{Booth2011}
+    \label{theorem:revision-operator}Let $\ast$ be any revision operator for $\leq$. Then $\ast$ is generated from some $\leq$-faithful tpo $\preceq$ over $W^{\pm}$ iff $\ast$ satisfies \ref{AST1}-\ref{AST7}. \cite{Booth2011}
 \end{theorem}
 
 \section{Iterating: $\preceq$-revision}
@@ -638,14 +638,14 @@ Using $p$, a $\leq$-faithful tpo $\preceq_{p}$ satisfying \ref{PREQ1}-\ref{PREQ4
 Revision of $\preceq$ becomes a two step process: First, choose a function $p$ so that $\preceq_{p} = \preceq$; Then revise $p$ to get a new assignment $p \ast \alpha$ that defines a new $\leq$-faithful tpo $\preceq_{p \ast \alpha}$.
 
 Booth and Meyer propose an operator that keeps worlds that satisfy $\alpha$ constant and moves $\neg\alpha$-worlds "back" by $a$. Other operators are possible and an area of further research \cite{Booth2011}. They achieve this by setting $p$, for every $x^{\epsilon} \in W^{\pm}$, as:
-    
+
 \begin{equation*}
     (p \ast \alpha)(x^{\epsilon}) = \left\{
-                    \begin{array}{ll}
-                      p(x^{\epsilon}) \textrm{ if } x \in \modelsOf{\alpha}\\
-                      p(x^{\epsilon}) + a \textrm{ if } x \in \modelsOf{\neg\alpha}
-                    \end{array}
-                  \right.
+    \begin{array}{ll}
+        p(x^{\epsilon}) \textrm{ if } x \in \modelsOf{\alpha} \\
+        p(x^{\epsilon}) + a \textrm{ if } x \in \modelsOf{\neg\alpha}
+    \end{array}
+    \right.
 \end{equation*}
 
 By this definition, the interval representing $\alpha$-worlds stays the same as $(p(x^{+}), p(x^{-}))$, while intervals of $\neg\alpha$-worlds become $(p(x^{-}), p(x^{-}) + a)$.
@@ -653,83 +653,83 @@ By this definition, the interval representing $\alpha$-worlds stays the same as 
 \begin{example}
     \label{example:example-preceq-revised}
     For the courtroom Example \ref{example:example-introduction}, the revision of $\leq$ to $\leq_{\alpha}^{\ast}$ for $\alpha = p$ ("John is the murderer") was already done in Example \ref{example:example-tpo-revised}. The next step is revising $\preceq$ by $\alpha$. Figure \ref{fig:example-preceq-revised} shows the revised tpo $\preceq_{\alpha}$ with $\neg\alpha$-worlds moved back by $a$. The position of their previous positive representation is displayed as a cross.
-    
+
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1.5]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        old={mark=x, fill=white}
-                    },
+                            empty={mark=*, fill=white},
+                            old={mark=x, fill=white}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 old \empty
-                        
+
                         3 8 empty
-                        5 8 empty 
-                        
-                        1 7 empty 
+                        5 8 empty
+
+                        1 7 empty
                         3 7 empty
-                        
-                        2 6 old 
-                        
+
+                        2 6 old
+
                         4 6 empty
                         6 6 empty
-                        
-                        2 5 empty 
+
+                        2 5 empty
                         4 5 empty
-                        
-                        5 4 old 
-                        
+
+                        5 4 old
+
                         7 4 empty
                         9 4 empty
-                        
-                        5 3 empty 
+
+                        5 3 empty
                         7 3 empty
-                        
-                        6 2 old 
-                        
+
+                        6 2 old
+
                         8 2 empty
                         10 2 empty
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = p$}
-            \label{fig:example-preceq-revised}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\preceq_{p \ast \alpha}$ for $\alpha = p$}
+        \label{fig:example-preceq-revised}
     \end{figure}
-    
+
     As first step, a function $p$ is chosen so that $\preceq_{p} = \preceq$ and the intervals for all worlds $x \in W^{\pm}$ can be defined using $p$.
-    
+
     For example, the interval representing world $010$ is $(010^{+}, 010^{-})$ and becomes $(p(010^{+}), p(010^{-})) = (0, a)$. Initially, the world $100$ is represented by the same interval $(100^{+}, 100^{-})$, which now becomes $(p(100^{+}), p(100^{-})) = (0, a)$.
-    
+
     \bigskip
-    
+
     In the second step, $p$ is revised by $\alpha$ to $p \ast \alpha$. The $\neg\alpha$-world $010$ is moved back by $a$, while the $\alpha$-world $100$ is unchanged:
-    
+
     \begin{equation*}
         010 \in \modelsOf{\neg\alpha} \textrm{ : } (p(010^{-}), p(010^{-}) + a) = (a, 2a)
     \end{equation*}
-    
+
     \begin{equation*}
         100 \in \modelsOf{\alpha} \textrm{ : } (p(100^{+}), p(100^{-})) = (0, a)
     \end{equation*}
@@ -738,143 +738,143 @@ By this definition, the interval representing $\alpha$-worlds stays the same as 
 \begin{example}
     \label{example:example-preceq-revised-alien}
     For an example that demonstrates the impact that the revision of $\preceq$ has on the acceptance of conditional beliefs, consider again the courtroom Example \ref{example:example-introduction}. The fact that the victim is an alien ($r=\textrm{true}$) seems very unlikely, which is modelled by the gap between $\modelsOf{r}$-worlds and $\modelsOf{\neg r}$-worlds mentioned in Example \ref{example:example-tpo-initial}.
-    
+
     When evidence $\alpha = r$ arrives, there seems to be little change in the epistemic state of the judge: $\leq_{\alpha}^{\ast}$ is unchanged, as, even considering the negative representations of $\modelsOf{\neg r}$-worlds, they rank lower than $\modelsOf{r}$-worlds. An unchanged tpo $\leq_{\alpha}^{\ast}$ also means the believe set $B(\mathbb{E})$ stays the same and does not include $r$ (a property of non-prioritised revision, as described in item \ref{section:non-prioritised-revision}). What did change is the willingness of the agent to accept conditional beliefs about $r$ being true in light of future evidence. This is reflected by the revised structure $\preceq_{p \ast \alpha}$ shown in Figure \ref{fig:example-preceq-revised-alien}.
 
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1.5]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        old={mark=x, fill=white}
-                    },
+                            empty={mark=*, fill=white},
+                            old={mark=x, fill=white}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 old \empty
-                        
+
                         3 8 empty
-                        5 8 empty 
-                        
+                        5 8 empty
+
                         1 7 old
-                        
-                        3 7 empty 
+
+                        3 7 empty
                         5 7 empty
-                        
-                        2 6 old 
-                        
+
+                        2 6 old
+
                         4 6 empty
                         6 6 empty
-                        
+
                         2 5 old
-                        
-                        4 5 empty 
+
+                        4 5 empty
                         6 5 empty
-                        
+
                         5 4 empty
                         7 4 empty
-                        
-                        5 3 empty 
+
+                        5 3 empty
                         7 3 empty
-                        
+
                         6 2 empty
                         8 2 empty
-                        
-                        6 1 empty 
+
+                        6 1 empty
                         8 1 empty
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{$\preceq_{p \ast \alpha}$ for $\alpha = r$}
-            \label{fig:example-preceq-revised-alien}
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\preceq_{p \ast \alpha}$ for $\alpha = r$}
+        \label{fig:example-preceq-revised-alien}
     \end{figure}
-    
+
     Notice how the gap between $\modelsOf{\neg r}$- and $\modelsOf{r}$-worlds has now closed. After revising $\preceq_{p \ast \alpha}$ for a second piece of evidence $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$ ("the murderer was either John or Mary, not both"), the new tpo $\leq_{\alpha \ast \beta}^{\ast}$ can be read from the filled dots in Figure \ref{fig:example-preceq-revised-alien2}.
-    
+
     \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}[scale=1.5]
-                \begin{axis}[
-                        xticklabels={},
-                        yticklabels={},
-                        extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
-                        extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
-                        ytick style={draw=none},
-                        xtick style={draw=none},
-                        axis line style={draw=none}
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \begin{axis}[
+                    xticklabels={},
+                    yticklabels={},
+                    extra y ticks={1, 2, 3, 4, 5, 6, 7, 8},
+                    extra y tick labels={$111$, $001$, $101$, $011$, $110$, $000$, $100$, $010$},
+                    ytick style={draw=none},
+                    xtick style={draw=none},
+                    axis line style={draw=none}
                 ]
                 \addplot[
                     scatter,
                     scatter src=explicit symbolic,
                     mark size=3,
                     scatter/classes={
-                        empty={mark=*, fill=white},
-                        filled={mark=*, fill=black},
-                        old={mark=x, fill=white}
-                    },
+                            empty={mark=*, fill=white},
+                            filled={mark=*, fill=black},
+                            old={mark=x, fill=white}
+                        },
                     nodes near coords*={\Label},
                     visualization depends on={value \thisrow{label} \as \Label}
                 ]
                 table [meta=class] {
                         x y class label
-                        
+
                         1 8 old \empty
-                        
+
                         3 8 filled
-                        5 8 empty 
-                        
+                        5 8 empty
+
                         1 7 old
-                        
-                        3 7 filled 
+
+                        3 7 filled
                         5 7 empty
-                        
-                        2 6 old 
-                        
+
+                        2 6 old
+
                         4 6 empty
                         6 6 filled
-                        
+
                         2 5 old
-                        
-                        4 5 empty 
+
+                        4 5 empty
                         6 5 filled
-                        
+
                         5 4 filled
                         7 4 empty
-                        
-                        5 3 filled 
+
+                        5 3 filled
                         7 3 empty
-                        
+
                         6 2 empty
                         8 2 filled
-                        
-                        6 1 empty 
-                        8 1 filled
-                        };
-                \end{axis}
-            \end{tikzpicture}
-            \caption{$\leq_{\alpha \ast \beta}^{\ast}$ for $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$}
-            \label{fig:example-preceq-revised-alien2}
-    \end{figure}
-    
-For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where they are not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that, even after direct evidence for alien life, did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$, the evidence $\alpha$ changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$, the judge even considers the $\modelsOf{r}$-worlds $\{011, 101\}$ more likely than the $\modelsOf{\neg r}$-worlds $\{000, 110\}$!
 
-(Luckily, due to the existence of $\modelsOf{\beta}$-worlds $\{010, 100\}$, the belief set of the judge still does not include $r$ and rationality prevails.)
+                        6 1 empty
+                        8 1 filled
+                    };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{$\leq_{\alpha \ast \beta}^{\ast}$ for $\beta = (p \vee q) \wedge (\neg p \vee \neg q)$}
+        \label{fig:example-preceq-revised-alien2}
+    \end{figure}
+
+    For the initial tpo $\leq$ there was no possible evidence that would change the plausibility ordering between worlds where the victim is an alien and worlds where they are not. That was reflected by the new tpo $\leq_{\alpha}^{\ast}$ that, even after direct evidence for alien life, did not change the judges plausibility orderings. But because of the revision of $\preceq$ to $\preceq_{p \ast \alpha}$, the evidence $\alpha$ changed the acceptance of the judge to belief we are not alone in the universe. After receiving $\beta$, the judge even considers the $\modelsOf{r}$-worlds $\{011, 101\}$ more likely than the $\modelsOf{\neg r}$-worlds $\{000, 110\}$!
+
+    (Luckily, due to the existence of $\modelsOf{\beta}$-worlds $\{010, 100\}$, the belief set of the judge still does not include $r$ and rationality prevails.)
 \end{example}
 
 \section{Final remarks}
