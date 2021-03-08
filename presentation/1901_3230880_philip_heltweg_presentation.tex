@@ -275,12 +275,18 @@
     \end{itemize}
     \note{
         \begin{itemize}
-            \item NOTE
+            \item Erklärung TPO, ein Mörderer und kein Alien gleich plausibel, dann kein/beide, dann jeweils mit Alien
         \end{itemize}
     }
 \end{frame}
 
 \begin{frame}{Preorder visualisation}
+
+    \begin{itemize}
+        \item $[[x]]_{\sim} = \{y \mid y \sim x\}$
+        \item $[[x]] \leq [[y]]$ iff $x \leq y$
+    \end{itemize}
+
     \begin{table}[H]
         \centering
         \begin{tabular}{llll}
@@ -291,9 +297,12 @@
         \caption{Visualizing a tpo as a linearly ordered set of ranks, as done in \cite{booth2006bad}}.
         \label{tab:visualising-a-tpo-example}
     \end{table}
+
     \note{
         \begin{itemize}
-            \item It uses the fact that tpos can be represented as a linearly ordered set of ranks. Each rank of a tpo $\leq$ is defined as the equivalence classes modulo the symmetric closure of $\leq$: $[[x]]_{\sim} = \{y \mid y \sim x\}$. These equivalence classes are then ordered by the relation $[[x]] \leq [[y]]$ iff $x \leq y$.
+            \item TPOs können visualisiert werden als geordnete Liste von Rängen auf denen die Welten sind
+            \item Die Ränge enthalten jeweils Welten mit gleicher Plausibilität
+            \item Mathematisch ausgedrückt sind sie die Äquivalenzklassen zur Symmetrie (teilt die Welten in disjunkte Teilmengen ein)
         \end{itemize}
     }
 \end{frame}
@@ -318,7 +327,7 @@
 \begin{frame}{Epistemic States}
     \begin{itemize}
         \item abstract entity $\mathbb{E}$ that contain all information an agent need for their reasoning \cite{Darwiche1997}
-        \item commonly used: tpo $\leq_{\mathbb{E}}$
+        \item strategy for reasoning can be modeled as tpo $\leq_{\mathbb{E}}$ over worlds
         \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states as all sentences true in the most plausible worlds
               \begin{itemize}
                   \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
@@ -330,7 +339,7 @@
     \note{
         \begin{itemize}
             \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind. Die Postulate von AGM definieren nur wie sich belief sets ändern (principle of least change) aber conditional beliefs können sich ändern wie sie wollen. Epistemic states enthalten die Strategie des Agenten wie er seinen Glauben ändert, damit auch die conditional beliefs.
-            \item "commonly used" does not mean has to be used, abstract
+            \item ("commonly used" does not mean has to be used, abstract) - BM nehmen es aber an in ihrem paper
         \end{itemize}
     }
 \end{frame}
@@ -340,7 +349,7 @@
         \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
         \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
         \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
-        \item\label{E4} $\qquad \textrm{If } \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
+        \item\label{E4} $\qquad \textrm{If } \neg \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
         \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
         \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \models \neg \alpha$
         \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
@@ -352,14 +361,12 @@
             \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
             \item Postulates
                   \begin{itemize}
-                      \item 1: deduktiv abgeschlossen
-                      \item 2: neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
-                      \item 3: % TODO
-                      \item 4:
+                      \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
+                      \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
+                      \item 3 und 4: "Inclusion" und "Vacuity": zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
                       \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
-                      \item 6: Das belief set enthält elementaren widerspruch nach revision mit inkonsistenten informationen (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
-                      \item 7: % TODO
-                      \item 8: % TODO
+                      \item 6: Das belief set enthält elementaren widerspruch NUR nach revision mit inkonsistenten informationen, konsistenz "at all costs" (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
+                      \item 7 und 8: Wenn ein belief set nach revision mit alpha konsistent ist mit beta dann kann kann man das belief set von alpha und beta durch expansion mit beta erreichen (revision nicht nötig), wieder minimal change
                   \end{itemize}
         \end{itemize}
     }
@@ -741,6 +748,7 @@
     \note{
         \begin{itemize}
             \item With \ref{AST6} and \ref{AST7}, Booth and Meyer aim to add supplementary rationality properties to keep revision with different sentences coherent. These properties are largely ignored in other literature on iterated belief change \cite{Booth2011}. \ref{AST6} means that if, after revision by evidence $\alpha$ that makes a world $x$ more plausible than $y$, $y$ is still considered at least as plausible as $x$, then for revision by any possible evidence $\gamma$, $y$ must still be at least as plausible as $x$. \ref{AST7} is the equivalent property for strict preference.
+                  %\item so far each of our rules mention onlyonerevision input sentenceα(modulo logical equivalence).  Byanalogy  with the AGM postulates  forbelief setrevision ,  we might consider them as the set ofbasicpostulates  for  tpo-revision.   One  thing  largely  missing  from  the  literature  on  iterated  belief  change  is  aserious study ofsupplementaryrationality properties which bestow a certain amount of coherence on theresults of revising bydifferentsentences.  The last couple of properties do this.
         \end{itemize}
     }
 \end{frame}
