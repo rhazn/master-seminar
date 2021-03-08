@@ -422,8 +422,7 @@
 
     \note{
         \begin{itemize}
-            \item what is it
-            \item say that the original tpo can be reconstructed from it
+            \item zusätzlich zu der neuen Repräsentation von Welten eine neue Ordnung über diese Intervalle
         \end{itemize}
     }
 \end{frame}
@@ -441,8 +440,11 @@
     \end{definition}
     \note{
         \begin{itemize}
-            \item characteristics + definition
-            \item original tpo can be reconstructed from this
+            \item 1. basic, preceq ist eine tpo über die neue intervall Struktur
+            \item 2/3 faithful zur orginalen tpo, positive representation precqe iff es auch so in der originalen tpo ist
+            \item das bedeutet die originale tpo kann von der faithful tpo rekonstruiert werden (einfach nur auf + oder - einschränken und alte tpo ablesen)
+            \item daher muss man nur neue tpo und W+- speichern im epistemischen Zustand
+            \item 4 bedeutet es muss einen unterschied geben zwischen den representation, interval kann nicht länge 0 haben
         \end{itemize}
     }
 \end{frame}
@@ -492,7 +494,10 @@
 
     \note{
         \begin{itemize}
-            \item example with sticks
+            \item beispielvisualisierung, x1+- hier zusätzlich dran geschrieben zur einführung, wird nachher weggelassen
+            \item zeilen sind die welten, spalten kann man sich als Ränge in der TPO vorstellen
+            \item je weiter links desto plausibler
+            \item Interval zwischen + und - ergibt sich aus proposition 4 vorher, muss nicht gleich sein aber größer als 0
         \end{itemize}
     }
 \end{frame}
@@ -556,7 +561,9 @@
 
     \note{
         \begin{itemize}
-            \item example for courtroom
+            \item Visualisierung für unser Beispiel
+            \item Erinnerung an die vier Äquivalenzklassen von vorher: 1 Mörderer, kein/zwei Mörderer und beides jeweils mit Alien
+            \item Anmerken: Überlappung zwischen den positiven/negativen Repräsentationen im nicht Alien Fall und Abstand zwischen Alien und nicht Alien, gehen wir nachher noch drauf ein aber hätte man vorher nur mit W nicht modellieren können, Unterschiedlich unwahrscheinliche Welten
         \end{itemize}
     }
 \end{frame}
@@ -594,7 +601,11 @@
 
     \note{
         \begin{itemize}
-            \item definition
+            \item Definition eines BM revisions operators
+            \item Funktion * von tpo und satz alpha aus L zu neuer tpo auf W, basierend auf unserer extra struktur auf W+-
+            \item Damit operator basierte belief revision, konditionale glauben (strategie) in form der tpo und glaubensset weil man es aus der tpo extrahieren kann
+            \item Prinzip einfach: Für jeden satz alpha und welt x, setze x auf ihre positive representation x+ in w+ wenn x ein model von alpha ist und auf ihre negative representation x- wenn sie kein model von alpha ist
+            \item Die neue TPO ergibt sich dann aus der Ordnung auf den jeweiligen postiven/negativen representationen
         \end{itemize}
     }
 \end{frame}
@@ -659,7 +670,13 @@
 
     \note{
         \begin{itemize}
-            \item example 7, figure 4
+            \item Hier beispiel von vorher mit alpha gleich p "John ist der Mörderer"
+            \item r subskript alpha von x ist hier jeweils als schwarzer Punkt markiert
+            \item Für Welten die Modelle von alpha sind (wie 100 oder 110) wird ihre positive representation gewählt
+            \item Für Welten die keine Modelle sind (wie 010 "Mary ist die Mörderin") die negative representation
+            \item Anmerkung: Welten die keine Modelle sind können trotzdem noch plausibler sein, siehe 010 und 101.
+            \item Es macht intuitiv Sinn: Ein Richter würde eher annehmen, dass Mary die Mörderin ist obwohl es Indizien für John gibt als zu akzeptieren, dass das Opfer ein Alien ist
+            \item Das wird noch kommen als "non-priotized revision"
         \end{itemize}
     }
 \end{frame}
@@ -684,7 +701,14 @@
 
     \note{
         \begin{itemize}
-            \item example 7, math
+            \item Gleiches Beispiel, Mathe statt grafisch
+            \item Hier für 010 "Mary ist die Mörderin" und 110 "Mary und John sind die Mörder"
+            \item Vorher: Zwei Mörderer sind unwahrscheinlich, daher ist nur Mary ist die Mörderin plausibler
+            \item Evidenz für p "John ist der Mörder"
+            \item 010 "Mary ist die Mörderin" ist kein Model also wird ihr die negative Representation 010- zugewiesen
+            \item 110 "Mary und John sind die Mörder" ist ein Model also wird ihr die positive Representation 110+ zugewiesen
+            \item Da die positive Representation 110+ für "Mary und John sind die Mörderer" plausibler ist als die negative Representation von 010- Mary ist die Mörderin ist nach der Evidenz 110 (beide sind Mörderer) plausibler
+            \item neue TPO nachdem man diesen Prozess für alle Welten macht
         \end{itemize}
     }
 \end{frame}
@@ -702,7 +726,10 @@
 
     \note{
         \begin{itemize}
-            \item example 7, math
+            \item Das belief set hat sich geändert: Das belief set der neuen tpo ist nun alle sätze die wahr sind in der plausibelsten welt: "John ist der mörderer und das opfer ist kein alien"
+            \item Macht intuitiv Sinn
+            \item Auch die conditional beliefs des agenten haben sich geändert mit der TPO: Vorher beide Mörderer nicht so plausibel wie nur Mary, jetzt beide Mörderer plausibler als nur Mary (weil wir ja evidenz haben das zumindest John ein Mörderer ist)
+            \item Macht intuitiv auch Sinn
         \end{itemize}
     }
 \end{frame}
