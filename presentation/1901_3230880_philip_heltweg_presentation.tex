@@ -237,16 +237,19 @@
               \end{itemize}
         \item  $Int({\Sigma}) = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$
         \item $Mod(p) = \modelsOf{p} = \{ 100, 101, 110, 111\}$, $100 \in \modelsOf{p}$
+        \item Lower case greek letters often used for propositional sentences $\alpha$
     \end{itemize}
 
     \note{
+        \footnotesize
         \begin{itemize}
-            \item Konsistentes Beispiel in der Präsentation, gut aufpassen
+            \item Konsistentes Beispiel in der Präsentation, der Agent ist ein Richter in einem Mörderprozess vor Gericht, John und Marry sind verdächtige und das Opfer könnte ein alien sein
             \item Beispiel inspiriert aus der Literatur
             \item Aussagenlogik, Aussagenlogische Signatur mit Aussagenvariablen p, q, r
             \item "Mögliche Welt" als aussagenlogische Interpretationen/Belegungen, damit 2 hoch 3 = 8 mögliche Alternativen hier
             \item Kodierung der Welt als Tupel von Wahrheitswerten (0 = false, 1 = true)
             \item models of syntax, modelle von p
+            \item Aussagenlogische formeln als griechische buchstaben
             \item Beispiele für 1-2 Welten durchgehen: 010 = Mary ist Mörderin, Opfer ist kein Alien, 111 = John und Mary sind die Mörder, haben ein Alien getötet
         \end{itemize}
     }
@@ -336,17 +339,19 @@
     \begin{itemize}
         \item abstract entity $\mathbb{E}$ that contain all information an agent need for their reasoning \cite{Darwiche1997}
         \item strategy for reasoning can be modeled as tpo $\leq_{\mathbb{E}}$ over worlds
-        \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states as all sentences true in the most plausible worlds
+        \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states
               \begin{itemize}
                   \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
-                  \item Set of worlds that are models of the belief set of the agent $\modelsOf{B(\mathbb{E})} = min(\top, \leq_{\mathbb{E}})$
+                  \item Set of most plausible worlds $min(\top, \leq_{\mathbb{E}})$
                   \item All sentences true in those worlds: $Th(min(\top, \leq_{\mathbb{E}}))$
               \end{itemize}
     \end{itemize}
     % TODO very complex, make shorter?
     \note{
         \begin{itemize}
-            \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind. Die Postulate von AGM definieren nur wie sich belief sets ändern (principle of least change) aber conditional beliefs können sich ändern wie sie wollen. Epistemic states enthalten die Strategie des Agenten wie er seinen Glauben ändert, damit auch die conditional beliefs.
+            \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind.
+            \item Die Postulate von AGM definieren nur wie sich belief sets ändern (prinzip of least change/geringste änderung) aber conditional beliefs können sich ändern wie sie wollen.
+            \item Epistemic states enthalten die Strategie des Agenten wie er seinen Glauben ändert, damit auch die conditional beliefs.
             \item ("commonly used" does not mean has to be used, abstract) - BM nehmen es aber an in ihrem paper
         \end{itemize}
     }
@@ -416,7 +421,7 @@
     \end{itemize}
     \note{
         \begin{itemize}
-            \item Additional structure of plausibility of worlds under new evidence  W+-
+            \item zusätzliche struktur um plausibilität von welten in W nach neuer information zu modelieren
             \item "A bad day surfing is better than a good day working" als idee das eine Welt sogar unter evidenz die sie nicht supported mehr plausibel bleiben kann, e.g. aliens tendenziell nicht so einfach zu glauben
         \end{itemize}
     }
@@ -612,11 +617,11 @@
     \note{
         \begin{itemize}
             \item Definition eines BM revisions operators
-            \item Funktion * von tpo und satz alpha aus L zu neuer tpo auf W, basierend auf unserer extra struktur auf W+-
+            \item Funktion * von tpo und satz $\alpha$ aus L zu neuer tpo auf W, basierend auf unserer extra struktur auf W+-
             \item Syntax: neue tpo als tpo subscript alpha, generiert mit superskript *
             \item Damit operatorbasierte belief revision, konditionale glauben (strategie) in form der tpo und glaubensset weil man es aus der tpo extrahieren kann
-            \item Prinzip einfach: Für jeden satz alpha und welt x, setze x auf ihre positive representation x+ in w+ wenn x ein model von alpha ist und auf ihre negative representation x- wenn sie kein model von alpha ist
-            \item Die neue TPO ergibt sich dann aus der Ordnung auf den jeweiligen postiven/negativen representationen
+            \item Prinzip einfach: Für jeden satz alpha und welt x, ASSOZIIERE x mit ihrer positive representation x+ in w+ wenn x ein model von alpha ist und auf ihre negative representation x- wenn sie kein model von alpha ist
+            \item Die neue TPO ergibt sich dann aus der Ordnung auf den jeweiligen positiven/negativen representationen
         \end{itemize}
     }
 \end{frame}
@@ -729,10 +734,10 @@
 \begin{frame}{Courtroom example: Revision 2}
     \begin{itemize}
         \item new tpo $\leq_{\alpha}^{\ast}$ is: $100 <_{\alpha}^{\ast} 110 <_{\alpha}^{\ast} 010 <_{\alpha}^{\ast} 000 <_{\alpha}^{\ast} 101 <_{\alpha}^{\ast} 111 <_{\alpha}^{\ast} 011 <_{\alpha}^{\ast} 001$
-        \item $min(\top, \leq_{\mathbb{E}}) = \{100\}$: "John is the murderer and the victim is not an alien".
+        \item $min(\top, \leq_{\alpha}^{\ast} ) = \{100\}$: "John is the murderer and the victim is not an alien".
         \item $\leq_{\alpha}^{\ast}$ as representation of the conditional beliefs
               \begin{itemize}
-                  \item before $010 \leq 110$: "Both suspects being the murderer is less plausible than only Mary being the murderer"
+                  \item before $010 < 110$: "Both suspects being the murderer is less plausible than only Mary being the murderer"
                   \item now $110 <_{\alpha}^{\ast} 010$: "Only Mary being the murderer less plausible than both conspiring".
               \end{itemize}
     \end{itemize}
