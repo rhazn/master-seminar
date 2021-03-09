@@ -119,6 +119,7 @@
 \frame{\titlepage}
 \note{
     \begin{itemize}
+        \item Paper "How to Revise a Total Preorder" von booth and meyer
         \item Folien sind nummeriert unten rechts, bei Fragen am besten Nummer aufschreiben
     \end{itemize}
 }
@@ -149,6 +150,7 @@
     \note{
         \begin{itemize}
             \item Beispiel Frage zur Motivation, wird unser Beispiel sein. Wir haben zwei Verdächtige und diverse Beweise und Indizien, wie bilden wir uns ein Bild über die Welt?
+            \item Iterierte Information: Immer wieder neue Informationen nacheinander mit der wir unseren GLauben immer wieder anpassen müssen.
             \item Unvollständige Information: Kein gesichertes Wissen sondern Glauben und Annahmen aus Zeugenaussagen/Indizien
             \item Inkonsistente Information: Zeugen können lügen, Indizien falsch sein, Informationen können mit dem aktuellen Glauben inkonsistent sein
             \item Keine reine richtig/falsch Frage. Soll neuer Information immer geglaubt werden? Wie sollen Konflikte gelöst werden? Wie kann man abbilden, dass der Richter mit Indizien für einen Sachverhalt immer mehr bereit ist an diesen Sachverhalt zu glauben?
@@ -170,11 +172,11 @@
 
     \note{
         \begin{itemize}
-            \item Belief change, adapting one's world view under imperfect information
-            \item Agent can be human or machine -> major areas philosophy and AI
-            \item Different approaches, nonmonotonic logic known from beierle courses (truth maintenance systems, default logic like reiter or pool), probabilistic reasoning (also known from beierle course 1845),
-            \item Belief revision: operator based. Define and discuss operators that transition agent state from one to the next for new evidence
-            \item One step vs iterated depending on how many consecutive new information it handels
+            \item Belief change, Glaubens änderung, Veränderung der Weltansicht mit neuen, unsicheren informationen
+            \item Agent kann mensch oder maschine sein, phylosophie oder KI
+            \item Unterschiedliche Lösungsansätze, nichtmonotone logik bekannt aus lehrstuhl kursen (truth maintenance systems, default logic wie reiter), probabilistisches denken (auch in Lehrstuhl kursen),
+            \item Belief revision: operator basiert. Operatoren die einen Agentenstatus in einen neuen überführen mit neuen infromationen: definieren und Eigenschaften diskutieren
+            \item One step vs iterated depending: Je nachdem ob man eine neue information betrachtet oder eine Reihe von neuen informationen
             \item Booth and Meyer: iterated belief revision
         \end{itemize}
     }
@@ -189,9 +191,9 @@
 
     \note{
         \begin{itemize}
-            \item Belief sets as what an agent currently accepts as true (AGM theory: How is a belief set defined and how does the belief set change with new evidence?)
-            \item Conditional beliefs as what an agent is prepared to accept as true depending on future evidence? (Darwiche and Pearl: In addition to how does the belief set change, what is the "strategy" for future belief set change? How do conditional beliefs change?)
-            \item Booth and Meyer: Change of conditional beliefs: If conditional beliefs are the strategy to change belief sets with future evidence, how can we change conditional beliefs with new evidence?
+            \item Glaubensmengen sind was ein agent aktuell als wahr akzeptiert (AGM theory: Wie ist eine glaubensmenge definiert und wie kann sie sich mit neuen informationen ändern?)
+            \item Konditionale annahmen sind was ein agent bereit ist zu akzeptieren mit neuen informationen? (Darwiche and Pearl: Was ist die "strategie" für zukünftige glaubensmengen änderungen? Wie ändern sich konditionale glauben?)
+            \item Booth and Meyer: Änderung in konditionalen glauben: Wenn konditionale glauben die strategie der änderung ist, wie können wir unsere strategie ändern?
         \end{itemize}
     }
 \end{frame}
@@ -205,10 +207,10 @@
 
     \note{
         \begin{itemize}
-            \item Conditional beliefs/Conditional belief revision: Indizien für Sachverhalt = Sachverhalt nicht direkt glauben aber bei mehr Indizien immer mehr daran glauben/immer mehr bereit sein es zu akzeptieren.
-            \item paper goal/focus of this talk revision operators for conditional belief structure (not mention tpo yet)
-            \item postulates for operators to restrict them, define a family of operators (axiomatisation) by doing that
-            \item properties are not "correct" but has to be done to reasonably talk about those operators and narrow down possibilities, compare to other properties/edge cases to branch out
+            \item Konditionaler Glauben Ändern: Indizien für Sachverhalt = Sachverhalt nicht direkt glauben aber bei mehr Indizien immer mehr daran glauben/immer mehr bereit sein es zu akzeptieren.
+            \item Ziel des Papiers: Revisionsoperatoren besprechen für die änderung von konditionalen glauben
+            \item Wie? über die definition von postulaten die diese operatoren einschränken und damit eine familie von operatoren definieren über die wir reden können
+            \item postulate sind nicht zwingend, nur zur einschränkung damit wir über diese operatoren reden können
         \end{itemize}
     }
 \end{frame}
@@ -234,16 +236,18 @@
                   \item r = "The victim is an alien"
               \end{itemize}
         \item  $Int({\Sigma}) = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$
+        \item $Mod(p) = \modelsOf{p} = \{ 100, 101, 110, 111\}$, $100 \in \modelsOf{p}$
     \end{itemize}
 
     \note{
         \begin{itemize}
             \item Konsistentes Beispiel in der Präsentation, gut aufpassen
             \item Beispiel inspiriert aus der Literatur
-            \item Aussagenlogik, Aussagenvariablen p, q, r
+            \item Aussagenlogik, Aussagenlogische Signatur mit Aussagenvariablen p, q, r
             \item "Mögliche Welt" als aussagenlogische Interpretationen/Belegungen, damit 2 hoch 3 = 8 mögliche Alternativen hier
             \item Kodierung der Welt als Tupel von Wahrheitswerten (0 = false, 1 = true)
-            \item Beispiel für 1-2 Welten durchgehen: 010 = Mary ist Mörderin, Opfer ist kein Alien, 111 = John und Mary sind die Mörder, haben ein Alien getötet
+            \item models of syntax, modelle von p
+            \item Beispiele für 1-2 Welten durchgehen: 010 = Mary ist Mörderin, Opfer ist kein Alien, 111 = John und Mary sind die Mörder, haben ein Alien getötet
         \end{itemize}
     }
 \end{frame}
@@ -256,11 +260,12 @@
     \end{itemize}
     \note{
         \begin{itemize}
+            \item übliches werkzeug um präferenzen von möglichen welten zu modellieren
             \item total (for all $x, y \in W$ either $x \leq y$ or $y \leq x$)
             \item reflexive ($x \leq x$ for all $x \in W$)
             \item transitive (if $x \leq y$ and $y \leq z$ then $x \leq z$)
             \item  $<$ strict part of $\leq$
-            \item $\sim$ symmetric closure of $\leq$ (i.e. $x \sim y$ iff $x \leq y$ and $y \leq x$)
+            \item $\sim$ (tilde) symmetrische relation auf of $\leq$ (i.e. $x \sim y$ iff $x \leq y$ and $y \leq x$)
         \end{itemize}
     }
 \end{frame}
@@ -276,7 +281,8 @@
     \end{itemize}
     \note{
         \begin{itemize}
-            \item Erklärung TPO, ein Mörderer und kein Alien gleich plausibel, dann kein/beide, dann jeweils mit Alien
+            \item Beispiel TPO anhand des richters der denkt einer der angeklagten ist wahrscheinlich der mörderer und hat alleine gehandelt. sehr unwahrscheinliche aber möglich, opfer ist ein alien.
+            \item ein Mörderer und kein Alien gleich plausibel, dann kein/beide, dann jeweils mit Alien
         \end{itemize}
     }
 \end{frame}
@@ -318,8 +324,9 @@
 
     \note{
         \begin{itemize}
-            \item Belief sets als aktuell akzeptierte Sätze eines Agenten
-            \item Gegensatz zu conditional beliefs: Sätze im Belief set werden als war angenommen.
+            \item Belief sets als aktuell als wahr akzeptierte Sätze eines Agenten
+            \item deduktiv abgeschlossen
+            \item Gegensatz zu konditionalen glauben: Sätze im Belief set werden als war angenommen.
             \item Betrachtungsgegenstand von AGM-Theorie \cite{Alchourron1985} die Postulate definiert haben um Belief set revision einzuschränken, rationale revision, wir sprechen das allerdings später an weil wir die neu formulierten Postulates von \cite{Darwiche1997} nutzen
         \end{itemize}
     }
@@ -336,7 +343,7 @@
                   \item All sentences true in those worlds: $Th(min(\top, \leq_{\mathbb{E}}))$
               \end{itemize}
     \end{itemize}
-
+    % TODO very complex, make shorter?
     \note{
         \begin{itemize}
             \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind. Die Postulate von AGM definieren nur wie sich belief sets ändern (principle of least change) aber conditional beliefs können sich ändern wie sie wollen. Epistemic states enthalten die Strategie des Agenten wie er seinen Glauben ändert, damit auch die conditional beliefs.
@@ -707,13 +714,13 @@
     \note{
         \footnotesize
         \begin{itemize}
-            \item Gleiches Beispiel, Mathe statt grafisch
-            \item Hier für 010 "Mary ist die Mörderin" und 110 "Mary und John sind die Mörder"
+            \item Hier für 010 "Nur Mary ist die Mörderin" und 110 "Mary und John sind die Mörder"
             \item Vorher: Zwei Mörderer sind unwahrscheinlich, daher ist nur Mary ist die Mörderin plausibler
-            \item Evidenz für p "John ist der Mörder"
-            \item 010 "Mary ist die Mörderin" ist kein Model also wird ihr die negative Representation 010- zugewiesen
+            \item Evidenz für p "Nur John ist der Mörder"
+            \item 010 "Nur Mary ist die Mörderin" ist kein Model also wird ihr die negative Representation 010- zugewiesen
             \item 110 "Mary und John sind die Mörder" ist ein Model also wird ihr die positive Representation 110+ zugewiesen
-            \item Da die positive Representation 110+ für "Mary und John sind die Mörderer" plausibler ist als die negative Representation von 010- Mary ist die Mörderin ist nach der Evidenz 110 (beide sind Mörderer) plausibler
+            \item zurückgehen zur grafik und zeigen
+            \item Da die positive Representation 110+ für "Mary und John sind die Mörderer" plausibler ist als die negative Representation von 010- Nur  Mary ist die Mörderin ist nach der Evidenz 110 (beide sind Mörderer) plausibler
             \item neue TPO nachdem man diesen Prozess für alle Welten macht
         \end{itemize}
     }
@@ -725,7 +732,7 @@
         \item $min(\top, \leq_{\mathbb{E}}) = \{100\}$: "John is the murderer and the victim is not an alien".
         \item $\leq_{\alpha}^{\ast}$ as representation of the conditional beliefs
               \begin{itemize}
-                  \item before $010 \leq 110$: "Both suspects being the murderer is less plausible than Mary being the murderer"
+                  \item before $010 \leq 110$: "Both suspects being the murderer is less plausible than only Mary being the murderer"
                   \item now $110 <_{\alpha}^{\ast} 010$: "Only Mary being the murderer less plausible than both conspiring".
               \end{itemize}
     \end{itemize}
@@ -769,11 +776,11 @@
         \footnotesize
         \begin{itemize}
             \item 3-5 regeln für iterated belief change mit einem input alpha
+            \item 3 und 4: die relative Ordnung für Welten die entweder beide Modelle für die Eingabe sind oder nicht muss gleich bleiben (schon gegeben in conditional belief revision postulates CR1/CR2 von Darwiche and pearl)
+            \item 5: wenn eine welt x mindestens so plausibel ist wie eine Welt y soll x nach einer Eingabe für die x ein model ist und y nicht strikt plausibler sein (ähnlich wie CR3/4 von DP aber strenger)
             \item BM vergleichen sie mit den AGM postulaten, AGM postulate für revision von belief sets, postulate 1-5 für revision von tpos
             \item charakteristisch für "admissible revision operators" die eingaben nicht ignorieren, selbst wenn es nicht zu Änderungen am belief set führt (siehe 5)
             \item (im gegensatz zu e.g. natural revision von boutilier die Änderungen in conditional beliefs minimiert)
-            \item 3 und 4: die relative Ordnung für Welten die entweder beide Modelle für die Eingabe sind oder nicht muss gleich bleiben (schon gegeben in conditional belief revision postulates CR1/CR2 von Darwiche and pearl)
-            \item 5: wenn eine welt x mindestens so plausibel ist wie eine Welt y soll x nach einer Eingabe für die x ein model ist und y nicht strikt plausibler sein (ähnlich wie CR3/4 von DP aber strenger)
         \end{itemize}
     }
 \end{frame}
@@ -1109,6 +1116,7 @@
             \item hier, revision mit alpha = r = "Das opfer war ein alien"
             \item wie vorher besprochen, trotz der evidenz ist "das opfer ist ein alien" nicht teil der minimalen welten und damit nicht teil des belief sets (non priotized revision)
             \item aber die konditionalen annahmen haben sich jetzt verändert, der abstand zwischen den alien welten und nicht alien welten ist weg
+            \item 1. tpo revision, 1. neue tpo ablesbar
         \end{itemize}
     }
 \end{frame}
@@ -1184,6 +1192,7 @@
             \item jetzt revision mit beta "der mörder hat alleine gehandelt" nachdem wir vorher mit alpha "das opfer war ein alien" revision betrieben haben
             \item jetzt sind die welten mit dem opfer als alien und einem einzeltäter plausibler als die welten ohne alien aber ohne mörder/mit zwei mördern!
             \item hätten wir direkt mit beta revision betrieben wäre das nicht passiert, iterated belief revision am werk
+            \item 2. tpo revision, 2. tpo
             \item allerdings hier: die welten mit einem einzeltäter und ohne alien (010 und 100) sind immernoch die minimalen welten und damit ist r "das opfer ist ein alien" nicht teil des belief sets
         \end{itemize}
     }
