@@ -130,10 +130,10 @@
     \note{
         \begin{itemize}
             \item Einführung mit Motivation, Forschungskontext und Beispiel
-            \item Hintergrund: Festlegen Notation, was sind TPOs überhaupt, vorherige Arbeit von Alchouron et al, Darwiche und Pearl
-            \item Metadata: Wie bauen Booth und Meyer auf der vorherigen Arbeit auf, Erklärung des Ansatzes zur TPO revision
-            \item BM operators: Wie benutzen BM die vorher besprochenen Metadaten für belief revision, Definition von Eigenschaften ihrer Operatoren
-            \item Iteration: Ausblick, wenn wir tpos mit der neuen Struktur anpassen können müssen wir auch die neue Struktur anpassen, ansonsten kann man nicht mehrere neue Informationen einpflegen. Hier haben BM sehr viel mehr geschrieben als hier vorgestellt aber ein konkreter Operator wird hier vorgestellt.
+            \item Formaler Hintergrund: Festlegen Notation, was sind TPOs überhaupt
+            \item Dann: Wie bauen Booth und Meyer auf der vorherigen Arbeit auf um tpos zu ändern
+            \item BM operatoren: Wie benutzen BM die vorher besprochenen Metadaten, Definition von Eigenschaften ihrer Operatoren
+            \item Iteration: Ausblick auf mehr als einen Änderungsschritt + konkreter Operator
         \end{itemize}
     }
 \end{frame}
@@ -149,11 +149,10 @@
     How should a judge change their worldview when presented with new information?
     \note{
         \begin{itemize}
-            \item Beispiel Frage zur Motivation, wird unser Beispiel sein. Wir haben zwei Verdächtige und diverse Beweise und Indizien, wie bilden wir uns ein Bild über die Welt?
+            \item Beispiel Frage zur Motivation, wird unser Beispiel sein. Unser Agent ist ein Richter in einem Mordprozess, wir haben zwei Verdächtige und diverse Beweise und Indizien, wie bilden wir uns ein Bild über die Welt?
             \item Iterierte Information: Immer wieder neue Informationen nacheinander mit der wir unseren GLauben immer wieder anpassen müssen.
-            \item Unvollständige Information: Kein gesichertes Wissen sondern Glauben und Annahmen aus Zeugenaussagen/Indizien
-            \item Inkonsistente Information: Zeugen können lügen, Indizien falsch sein, Informationen können mit dem aktuellen Glauben inkonsistent sein
-            \item Keine reine richtig/falsch Frage. Soll neuer Information immer geglaubt werden? Wie sollen Konflikte gelöst werden? Wie kann man abbilden, dass der Richter mit Indizien für einen Sachverhalt immer mehr bereit ist an diesen Sachverhalt zu glauben?
+            \item Nicht perfekte Information: Kein gesichertes Wissen sondern Zeugenaussagen/Indizien, können falsch sein, können unserem aktuellem Weltbild widersprechen
+            \item Keine Frage mit richtig/falsch Antwort. Soll neuer Information immer geglaubt werden? Wie sollen Konflikte gelöst werden?
         \end{itemize}
     }
 \end{frame}
@@ -172,11 +171,12 @@
 
     \note{
         \begin{itemize}
+            \item Einordnung des Papiers in einen Kontext
             \item Belief change, Glaubens änderung, Veränderung der Weltansicht mit neuen, unsicheren informationen
-            \item Agent kann mensch oder maschine sein, phylosophie oder KI
+            \item Agent kann mensch oder maschine sein, Philosophie oder KI
             \item Unterschiedliche Lösungsansätze, nichtmonotone logik bekannt aus lehrstuhl kursen (truth maintenance systems, default logic wie reiter), probabilistisches denken (auch in Lehrstuhl kursen),
             \item Belief revision: operator basiert. Operatoren die einen Agentenstatus in einen neuen überführen mit neuen infromationen: definieren und Eigenschaften diskutieren
-            \item One step vs iterated depending: Je nachdem ob man eine neue information betrachtet oder eine Reihe von neuen informationen
+            \item One step vs iterated: Je nachdem ob man eine neue information betrachtet oder eine Reihe von neuen informationen
             \item Booth and Meyer: iterated belief revision
         \end{itemize}
     }
@@ -207,10 +207,10 @@
 
     \note{
         \begin{itemize}
-            \item Konditionaler Glauben Ändern: Indizien für Sachverhalt = Sachverhalt nicht direkt glauben aber bei mehr Indizien immer mehr daran glauben/immer mehr bereit sein es zu akzeptieren.
-            \item Ziel des Papiers: Revisionsoperatoren besprechen für die änderung von konditionalen glauben
-            \item Wie? über die definition von postulaten die diese operatoren einschränken und damit eine familie von operatoren definieren über die wir reden können
-            \item postulate sind nicht zwingend, nur zur einschränkung damit wir über diese operatoren reden können
+            \item Forschungsfrage des papiers
+            \item Wie kann man konditionalen Glauben ändern mithilfe von Revisionsoperatoren
+            \item Definition von postulaten die alle möglichen operatoren einschränken und damit eine familie von operatoren definieren über die wir reden können
+            \item Konkreten beispieloperator definieren der diese Postulate erfüllt
         \end{itemize}
     }
 \end{frame}
