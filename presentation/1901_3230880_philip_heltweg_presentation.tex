@@ -142,6 +142,8 @@
 \note{
     \begin{itemize}
         \item Jetzt: Verstehen der Forschungsfrage, Einordnung des Papiers in einen Forschungskontext und Aufsetzen des begleitenden Beispiels ohne Formalisierung
+        \item TIME: ~2
+        \item TAKES: 5-6
     \end{itemize}
 }
 
@@ -222,6 +224,8 @@
         \item Jetzt: Formalisierung des Beispiels, Etablieren was eine total preorder ist.
         \item Jetzt: Einführung von Formalisierungen zu Glaubensmengen/Annahmen und wie preorders dort benutzt werden
         \item Jetzt: Postulate um Änderungen dieser Glaubensmengen/Annahmen mit neuen Informationen einzuschränken
+        \item TIME: ~7
+        \item TAKES: 10-11
     \end{itemize}
 }
 
@@ -237,20 +241,58 @@
               \end{itemize}
         \item  $Int({\Sigma}) = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$
         \item $Mod(p) = \modelsOf{p} = \{ 100, 101, 110, 111\}$, $100 \in \modelsOf{p}$
-        \item Lower case greek letters often used for propositional sentences $\alpha$
+        \item Lower case greek letters used for propositional sentences $\alpha$
     \end{itemize}
 
     \note{
         \footnotesize
         \begin{itemize}
-            \item Konsistentes Beispiel in der Präsentation, der Agent ist ein Richter in einem Mörderprozess vor Gericht, John und Marry sind verdächtige und das Opfer könnte ein alien sein
-            \item Beispiel inspiriert aus der Literatur
-            \item Aussagenlogik, Aussagenlogische Signatur mit Aussagenvariablen p, q, r
-            \item "Mögliche Welt" als aussagenlogische Interpretationen/Belegungen, damit 2 hoch 3 = 8 mögliche Alternativen hier
+            \item Der Agent ist ein Richter in einem Mordprozess vor Gericht, John und Marry sind verdächtige und das Opfer könnte ein alien sein
+            \item Beispiel inspiriert aus der Literatur, "übersetzt" in Syntax die evtl bekannt ist
+            \item Logische Sprache, Aussagenlogik, Aussagenlogische Signatur mit Aussagenvariablen p, q, r
+            \item "Mögliche Welt" als aussagenlogische Interpretationen/Belegungen, damit 8 Alternativen hier
             \item Kodierung der Welt als Tupel von Wahrheitswerten (0 = false, 1 = true)
-            \item models of syntax, modelle von p
-            \item Aussagenlogische formeln als griechische buchstaben
             \item Beispiele für 1-2 Welten durchgehen: 010 = Mary ist Mörderin, Opfer ist kein Alien, 111 = John und Mary sind die Mörder, haben ein Alien getötet
+            \item models of syntax, modelle von p
+            \item Aussagenlogische formeln als kleine griechische buchstaben
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Belief Sets}
+    \begin{itemize}
+        \item Set of propositions the agent accepts as true at any point in time \cite{Ferme2011}
+        \item Deductively closed
+        \item Possible for example: $Cn(\{ p \vee q, \neg(p \wedge q), \neg r \})$
+    \end{itemize}
+
+    \note{
+        \begin{itemize}
+            \item Glaubensmengen als aktuell als wahr akzeptierte Sätze eines Agenten
+            \item deduktiv abgeschlossen, d.h. alle formeln und logische folgerungen aus ihnen
+            \item Betrachtungsgegenstand von AGM-Theorie \cite{Alchourron1985}, wie kann man sie ändern mit neuen informationen
+            \item Zusätzlich bei menschlichem Schließen: Für wie wahrscheinlich halte ich etwas, wann wäre ich bereit es zu akzeptieren? -> Konditionale annahmen/glauben
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Epistemic States}
+    \begin{itemize}
+        \item abstract entity $\mathbb{E}$ that contain all information an agent need for their reasoning \cite{Darwiche1997}
+        \item strategy for reasoning can be modeled as tpo $\leq_{\mathbb{E}}$ over worlds
+        \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states
+              \begin{itemize}
+                  \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
+                  \item Set of most plausible worlds $min(\top, \leq_{\mathbb{E}})$
+                  \item All sentences true in those worlds: $Th(min(\top, \leq_{\mathbb{E}}))$
+              \end{itemize}
+    \end{itemize}
+
+    \note{
+        \begin{itemize}
+            \item  Strategie des Agenten wie er seinen Glauben ändert, damit auch die konditionalen annahmen.
+            \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind, schlagen epistemische staten vor, abstrakt und enthalten glaubensmenge und strategie.
+            \item Strategie kann in form einer tpo über die welten definiert werden
         \end{itemize}
     }
 \end{frame}
@@ -317,46 +359,6 @@
     }
 \end{frame}
 
-\begin{frame}{Belief Sets}
-    \begin{itemize}
-        \item Set of propositions the agent accepts as true at any point in time \cite{Ferme2011}
-        \item Deductively closed
-        \item Possible for example: $Cn(\{ p \vee q, \neg(p \wedge q), \neg r \})$
-    \end{itemize}
-    % TODO: Cn here good?
-
-    \note{
-        \begin{itemize}
-            \item Belief sets als aktuell als wahr akzeptierte Sätze eines Agenten
-            \item deduktiv abgeschlossen
-            \item Gegensatz zu konditionalen glauben: Sätze im Belief set werden als war angenommen.
-            \item Betrachtungsgegenstand von AGM-Theorie \cite{Alchourron1985} die Postulate definiert haben um Belief set revision einzuschränken, rationale revision, wir sprechen das allerdings später an weil wir die neu formulierten Postulates von \cite{Darwiche1997} nutzen
-        \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{Epistemic States}
-    \begin{itemize}
-        \item abstract entity $\mathbb{E}$ that contain all information an agent need for their reasoning \cite{Darwiche1997}
-        \item strategy for reasoning can be modeled as tpo $\leq_{\mathbb{E}}$ over worlds
-        \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states
-              \begin{itemize}
-                  \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
-                  \item Set of most plausible worlds $min(\top, \leq_{\mathbb{E}})$
-                  \item All sentences true in those worlds: $Th(min(\top, \leq_{\mathbb{E}}))$
-              \end{itemize}
-    \end{itemize}
-    % TODO very complex, make shorter?
-    \note{
-        \begin{itemize}
-            \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind.
-            \item Die Postulate von AGM definieren nur wie sich belief sets ändern (prinzip of least change/geringste änderung) aber conditional beliefs können sich ändern wie sie wollen.
-            \item Epistemic states enthalten die Strategie des Agenten wie er seinen Glauben ändert, damit auch die conditional beliefs.
-            \item ("commonly used" does not mean has to be used, abstract) - BM nehmen es aber an in ihrem paper
-        \end{itemize}
-    }
-\end{frame}
-
 \begin{frame}{Belief Set Revision Postulates\footnote{AGM postulates \cite{Alchourron1985}, reformulated for epistemic states by Darwiche and Pearl \cite{Darwiche1997}}}
     \label{slide:e1-8}
     \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
@@ -373,6 +375,7 @@
     \note{
         \begin{itemize}
             \tiny
+            \item AGM postulate für belief set änderung nach dem prinzip des minimal change, neu formuliert mit der epistemischen stati sicht
             \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
             \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
             \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
@@ -394,11 +397,11 @@
     \end{enumerate}
     \note{
         \begin{itemize}
-            \item Zusätzliche postulate von DP um conditional belief revision einzuschränken
+            \item Zusätzliche postulate von DP um die änderung von konditionalen annahmen einzuschränken
             \item Semantische version aka wie sich die Ordnung der Welten ändert mit v,w in W
-            \item CR1/2: Relative Ordnung der alpha/not alpha welten bleibt gleich bei alpha/not alpha revision
-            \item CR3 wenn eine alpha welt strikt bevorzugt wurde vor einer not alpha welt dann muss das auch nach einer revision mit alpha gelten
-            \item CR4 wie CR3 nur für "weak preference"
+            \item CR1/2: Relative Ordnung der welten die alpha modelle/nicht alpha modelle sind bleibt gleich bei revision mit alpha (minimal change)
+            \item CR3 wenn eine welt die ein alpha model ist strikt bevorzugt wurde vor einem nicht model dann muss das auch nach einer revision mit alpha gelten
+            \item CR4 wie CR3 nur für schwache ordnung
         \end{itemize}
     }
 \end{frame}
@@ -409,6 +412,8 @@
         \item Vorher: Formalisierung des Beispiels/Glaubensmengen/Epistemischen Zuständen, Etablieren was eine total preorder ist, Postulate für Revision von Glaubensmengen und Annahmen
         \item Jetzt: BM wollen revision von tpos besprechen und führen dafür neue Metadaten und Strukturen im epistemischen Zustand ein, wir stellen diese nun vor bevor wir im nächsten Schritt die Änderung selbst besprechen
         \item Jetzt: Einführung einer intuitiven Visualisierung der neuen Struktur die wir im weiteren Verlauf nutzen
+        \item TIME: ~17
+        \item TAKES:
     \end{itemize}
 }
 
