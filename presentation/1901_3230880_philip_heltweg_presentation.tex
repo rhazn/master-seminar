@@ -143,7 +143,6 @@
 \note{
     \begin{itemize}
         \item Jetzt: Verstehen der Forschungsfrage, Einordnung des Papiers in einen Forschungskontext und Aufsetzen des begleitenden Beispiels ohne Formalisierung
-        \item TIME: ~2
         \item TAKES: 5-6
     \end{itemize}
 }
@@ -189,7 +188,7 @@
     \begin{itemize}
         \item Belief set \cite{Alchourron1985}
         \item Conditional beliefs \cite{Darwiche1997}
-        \item Change of conditional beliefs \cite{Booth2011}
+        \item Strategy to change conditional beliefs \cite{Booth2011}
     \end{itemize}
 
     \note{
@@ -225,8 +224,7 @@
         \item Jetzt: Formalisierung des Beispiels, Etablieren was eine total preorder ist.
         \item Jetzt: Einführung von Formalisierungen zu Glaubensmengen/Annahmen und wie preorders dort benutzt werden
         \item Jetzt: Postulate um Änderungen dieser Glaubensmengen/Annahmen mit neuen Informationen einzuschränken
-        \item TIME: ~7
-        \item TAKES: 10-11
+        \item TAKES: 6-11
     \end{itemize}
 }
 
@@ -242,7 +240,7 @@
               \end{itemize}
         \item  $Int({\Sigma}) = W = \{ 000, 001, 010, 011, 100, 101, 110, 111\}$
         \item $Mod(p) = \modelsOf{p} = \{ 100, 101, 110, 111\}$, $100 \in \modelsOf{p}$
-        \item Lower case greek letters used for propositional sentences $\alpha$
+        \item Lower case greek letters used for formulas $\alpha$
     \end{itemize}
 
     \note{
@@ -283,7 +281,6 @@
         \item strategy for reasoning can be modeled as tpo $\leq_{\mathbb{E}}$ over worlds
         \item belief sets $B(\mathbb{E})$ can be extracted from epistemic states
               \begin{itemize}
-                  \item set of minimal worlds in which $\alpha$ is true: $min(\alpha, \leq_{\mathbb{E}})$, set of most plausible worlds:  $min(\top, \leq_{\mathbb{E}})$
                   \item Set of most plausible worlds $min(\top, \leq_{\mathbb{E}})$
                   \item All sentences true in those worlds: $Th(min(\top, \leq_{\mathbb{E}}))$
               \end{itemize}
@@ -291,8 +288,10 @@
 
     \note{
         \begin{itemize}
-            \item  Strategie des Agenten wie er seinen Glauben ändert, damit auch die konditionalen annahmen.
+            \item Strategie des Agenten wie er seinen Glauben ändert, damit auch die konditionalen annahmen.
             \item Darwiche and Pearl argumentieren das Belief sets nicht ausreichend sind, schlagen epistemische staten vor, abstrakt und enthalten glaubensmenge und strategie.
+            \item Belief sets können von epistemischen Staten extrahiert werden als formeln die in allen plausibelsten Welten wahr sind
+            \item Was sind plausibelste welten? tpo!
             \item Strategie kann in form einer tpo über die welten definiert werden
         \end{itemize}
     }
@@ -380,7 +379,7 @@
             \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
             \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
             \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
-            \item 3 und 4: "Inclusion" und "Vacuity": zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
+            \item 3 und 4: zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
             \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
             \item 6: Das belief set enthält elementaren widerspruch NUR nach revision mit inkonsistenten informationen, konsistenz "at all costs" (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
             \item 7 und 8: Wenn ein belief set nach revision mit alpha konsistent ist mit beta dann kann kann man das belief set von alpha und beta durch expansion mit beta erreichen (revision nicht nötig), wieder minimal change
@@ -413,8 +412,7 @@
         \item Vorher: Formalisierung des Beispiels/Glaubensmengen/Epistemischen Zuständen, Etablieren was eine total preorder ist, Postulate für Revision von Glaubensmengen und Annahmen
         \item Jetzt: BM wollen revision von tpos besprechen und führen dafür neue Metadaten und Strukturen im epistemischen Zustand ein, wir stellen diese nun vor bevor wir im nächsten Schritt die Änderung selbst besprechen
         \item Jetzt: Einführung einer intuitiven Visualisierung der neuen Struktur die wir im weiteren Verlauf nutzen
-        \item TIME: ~17
-        \item TAKES: 9-10
+        \item TAKES: 9-15
     \end{itemize}
 }
 
@@ -594,8 +592,7 @@
         \item Vorher: Neue Metadaten/Strukturen im epistemischen Zustand und Visualisierung
         \item Jetzt: Nutzen dieser neuen Strukturen für tpo revision, Postulates für BM revision operatoren und Definition der Familie von BM revisons operatoren
         \item Jetzt: Abstrakte tpo revision am Beispiel
-        \item TIME: ~26
-        \item TAKES: 19
+        \item TAKES: 11-19
     \end{itemize}
 }
 
@@ -790,7 +787,7 @@
         \begin{itemize}
             \item 3-5 regeln für iterated belief change mit einem input alpha
             \item 3 und 4: die relative Ordnung für Welten die entweder beide Modelle für die Eingabe sind oder nicht muss gleich bleiben (schon gegeben in conditional belief revision postulates CR1/CR2 von Darwiche and pearl)
-            \item 5: wenn eine welt x mindestens so plausibel ist wie eine Welt y soll x nach einer Eingabe für die x ein model ist und y nicht strikt plausibler sein (ähnlich wie CR3/4 von DP aber strenger)
+            \item 5: eine welt x ist mindestens so plausibel ist wie eine Welt y. x soll nach einer Eingabe, für die x ein model ist und y nicht model ist, strikt plausibler sein (ähnlich wie CR3/4 von DP aber strenger)
             \item BM vergleichen sie mit den AGM postulaten, AGM postulate für revision von belief sets, postulate 1-5 für revision von tpos
             \item (charakteristisch für "admissible revision operators" die eingaben nicht ignorieren, selbst wenn es nicht zu Änderungen am belief set führt (siehe 5))
             \item (im gegensatz zu e.g. natural revision von boutilier die Änderungen in conditional beliefs minimiert)
@@ -822,8 +819,9 @@
 
     \note{
         \begin{itemize}
-            \item theorem 1 als definition der funktionen/revisionsoperatoren für eine tpo die BM diskutieren/vorschlagen
-            \item erinnern an faithful tpo, W+-, 1-7
+            \item theorem definiert die familie von operatoren die booth und meyer diskutieren
+            \item funktionen * die aus einer tpo und einer formel in L eine neue tpo erzeugen
+            \item generiert aus den vorgestellten strukturen wenn sie postulate erfüllt
         \end{itemize}
     }
 \end{frame}
@@ -888,6 +886,7 @@
     \note{
         \footnotesize
         \begin{itemize}
+            \item (OPTIONAL oder sehr schnell)
             \item Es gibt postulate die erfordern, dass neuen Informationen immer geglaubt wird und sie in das belief set aufgenommen werden, e.g. \ref{E2} als $\alpha \in B(\mathbb{E}\ast\alpha)$
             \item hier im Beispiel revision mit p "das Opfer ist ein Alien", modelle/nicht modelle jeweils mit positiver/negativer representation identifizieren (schwarzer punkt), neue tpo ablesen. hier trotz evidenz "das opfer ist ein alien", min worlds 010, 100 aka teil des belief sets ist "das opfer ist KEIN alien"
             \item BM revision operatoren sind "non priotized revision", d.h. neue informationen müssen nicht teil des belief sets werden
@@ -903,9 +902,8 @@
         \item Vorher: BM revisions operatoren definition, Revision der tpo am Beispiel
         \item Jetzt: Revision der neuen Struktur $\preceq$, ansonsten Problem mehrmaliger Revision nur "hochgeschoben"
         \item Jetzt: Ein möglicher konkreter Beispieloperator + Visualisierung
-        \item Jetzt: Wie die Revision von Annahmen funktioniert für mehr als einen Input
-        \item TIME: ~45
-        \item TAKES: 15
+        \item Jetzt: Wie die Revision von Annahmen funktioniert für mehr als einen Input, iterated tpo revision!
+        \item TAKES: 10-15
     \end{itemize}
 }
 
@@ -1056,7 +1054,8 @@
             \item alte positive repräsentationen vor der revision von nicht modellen markiert als x
             \item alle nicht modelle von p um a zurück geschoben, alle modelle bleiben gleich
             \item damit neue tpo ablesbar, minimale welt 100, neues belief set "John ist der mörderer" wie vorher und intuitiv
-            \item was hat sich jetzt geändert? die konditionalen annahmen, was der agent bereit ist zu akzeptieren mit neuen beweisen
+            \item was hat sich jetzt geändert? die konditionalen annahmen, tpo revision was der agent bereit ist zu akzeptieren mit neuen beweisen
+            \item aber auch: die strategie für zukünftige tpo revision (W+- und faithful tpo)
         \end{itemize}
     }
 \end{frame}
@@ -1129,8 +1128,8 @@
     \note{
         \begin{itemize}
             \item hier, revision mit alpha = r = "Das opfer war ein alien"
-            \item wie vorher besprochen, trotz der evidenz ist "das opfer ist ein alien" nicht teil der minimalen welten und damit nicht teil des belief sets (non priotized revision)
-            \item aber die konditionalen annahmen haben sich jetzt verändert, der abstand zwischen den alien welten und nicht alien welten ist weg
+            \item trotz der evidenz ist "das opfer ist ein alien" nicht teil der minimalen welten und damit nicht teil des belief sets (non priotized revision)
+            \item aber die strategie für konditionalen annahmen revision hat sich jetzt verändert, der abstand zwischen den alien welten und nicht alien welten ist weg
             \item 1. tpo revision, 1. neue tpo ablesbar
         \end{itemize}
     }
