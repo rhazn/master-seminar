@@ -120,7 +120,7 @@
 \note{
     \begin{itemize}
         \item Paper "How to Revise a Total Preorder" von booth and meyer
-        \item Das papier bespricht vieles, wir konzentrieren uns auf: operatoren die die weltanschauung eines agenten unter neuen informationen anpassen
+        \item Das papier bespricht vieles, wir konzentrieren uns auf: operatoren die die weltanschauung eines agenten unter neuen informationen anpassen, nur tpo revision an sich
         \item Folien sind nummeriert unten rechts, bei Fragen am besten Nummer aufschreiben
     \end{itemize}
 }
@@ -130,11 +130,13 @@
 
     \note{
         \begin{itemize}
+            \item Zentral informal: Funktion * die für einen Status und neue Informationen einen neuen Status ermitteln
             \item Einführung mit Motivation, Forschungskontext und Beispiel
             \item Formaler Hintergrund: Festlegen Notation, was sind TPOs überhaupt
-            \item Dann: Wie bauen Booth und Meyer auf der vorherigen Arbeit auf um tpos zu ändern
+            \item Benötigte neue Metadaten, Operator für tpo revision definieren, besprechen wie man diese neuen strukturen anpassen kann
+            \item Dann: Wie bauen Booth und Meyer auf der vorherigen Arbeit auf um tpos zu ändern, welche neuen metadaten/strukturen brauche sie dafür?
             \item BM operatoren: Wie benutzen BM die vorher besprochenen Metadaten, Definition von Eigenschaften ihrer Operatoren
-            \item Iteration: Ausblick auf mehr als einen Änderungsschritt + konkreter Operator
+            \item Iteration: Ausblick auf mehr als einen Änderungsschritt + konkreter Operator für die änderung der neuen struktur
         \end{itemize}
     }
 \end{frame}
@@ -202,7 +204,7 @@
 
 \begin{frame}{Research question}
     \begin{itemize}
-        \item "conditional belief" revision operators
+        \item conditional belief revision operators
         \item axiomatisation of a family of operators by defining properties
         \item discuss properties and define concrete example
     \end{itemize}
@@ -210,6 +212,7 @@
     \note{
         \begin{itemize}
             \item Forschungsfrage des papiers
+            \item "conditional belief revision  operators" = tpo revision operatoren
             \item Wie kann man konditionalen Glauben ändern mithilfe von Revisionsoperatoren
             \item Definition von postulaten die alle möglichen operatoren einschränken und damit eine familie von operatoren definieren über die wir reden können
             \item Konkreten beispieloperator definieren der diese Postulate erfüllt
@@ -271,6 +274,39 @@
             \item deduktiv abgeschlossen, d.h. alle formeln und logische folgerungen aus ihnen
             \item Betrachtungsgegenstand von AGM-Theorie \cite{Alchourron1985}, wie kann man sie ändern mit neuen informationen
             \item Zusätzlich bei menschlichem Schließen: Für wie wahrscheinlich halte ich etwas, wann wäre ich bereit es zu akzeptieren? -> Konditionale annahmen/glauben
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Belief Set Revision Postulates\footnote{AGM postulates \cite{Alchourron1985}}}
+    \label{slide:e1-8}
+    \begin{itemize}
+        \item AGM theory for belief set revision
+        \item minimal change for belief set with new information
+        \item no restrictions on the changes in conditional beliefs
+    \end{itemize}
+    %\begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
+    %    \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
+    %    \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
+    %    \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
+    %    \item\label{E4} $\qquad \textrm{If } \neg \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
+    %    \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
+    %    \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \models \neg \alpha$
+    %    \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
+    %    \item\label{E8} $\qquad \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta))$
+    %\end{enumerate}
+
+    \note{
+        \begin{itemize}
+            \tiny
+            \item AGM postulate für belief set änderung nach dem prinzip des minimal change, neu formuliert mit der epistemischen stati sicht
+            \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
+            \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
+            \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
+            \item 3 und 4: zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
+            \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
+            \item 6: Das belief set enthält elementaren widerspruch NUR nach revision mit inkonsistenten informationen, konsistenz "at all costs" (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
+            \item 7 und 8: Wenn ein belief set nach revision mit alpha konsistent ist mit beta dann kann man das belief set von alpha und beta durch expansion mit beta erreichen (revision nicht nötig), wieder minimal change
         \end{itemize}
     }
 \end{frame}
@@ -355,34 +391,6 @@
             \item TPOs können visualisiert werden als geordnete Liste von Rängen auf denen die Welten sind
             \item Die Ränge enthalten jeweils Welten mit gleicher Plausibilität
             \item Mathematisch ausgedrückt sind sie die Äquivalenzklassen zur Symmetrie (teilt die Welten in disjunkte Teilmengen ein)
-        \end{itemize}
-    }
-\end{frame}
-
-\begin{frame}{Belief Set Revision Postulates\footnote{AGM postulates \cite{Alchourron1985}, reformulated for epistemic states by Darwiche and Pearl \cite{Darwiche1997}}}
-    \label{slide:e1-8}
-    \begin{enumerate}[wide=0pt, widest=99,leftmargin=\parindent,label = ($\mathbb{E}\!*\!\arabic*$)]
-        \item\label{E1} $\qquad B(\mathbb{E}\ast\alpha) = Cn(B(\mathbb{E}\ast\alpha))$
-        \item\label{E2} $\qquad \alpha \in B(\mathbb{E}\ast\alpha)$
-        \item\label{E3} $\qquad B(\mathbb{E}\ast\alpha)  \subseteq B(\mathbb{E})+\alpha$
-        \item\label{E4} $\qquad \textrm{If } \neg \alpha \notin B(\mathbb{E}) \textrm{ then } B(\mathbb{E}) + \alpha \subseteq B(\mathbb{E} \ast \alpha)$
-        \item\label{E5} $\qquad \textrm{If } \mathbb{E} = \mathbb{F} \textrm{ and } \alpha \equiv \beta \textrm{ then } B(\mathbb{E} \ast \alpha) = B(\mathbb{F} \ast \beta)$
-        \item\label{E6} $\qquad \bot \in B(\mathbb{E} \ast \alpha) \textrm{ iff } \models \neg \alpha$
-        \item\label{E7} $\qquad B(\mathbb{E} \ast (\alpha \wedge \beta)) \subseteq B(\mathbb{E} \ast \alpha) + \beta$
-        \item\label{E8} $\qquad \textrm{If } \neg \beta \notin B(\mathbb{E} \ast \alpha) \textrm{ then } B(\mathbb{E} \ast \alpha) + \beta \subseteq B(\mathbb{E} \ast (\alpha \wedge \beta))$
-    \end{enumerate}
-
-    \note{
-        \begin{itemize}
-            \tiny
-            \item AGM postulate für belief set änderung nach dem prinzip des minimal change, neu formuliert mit der epistemischen stati sicht
-            \item $\mathbb{E}$ als epistemischer status, $B(\mathbb{E})$ belief set des status, $B(\mathbb{E}) + \alpha$ ist die expansion $B(\mathbb{E})$ mit $\alpha$ ($\alpha$ hinzufügen. $CN(B(\mathbb{E}) \cup \alpha)$), $\ast$ being a belief change operator on epistemic states
-            \item 1: "Closure": deduktiv abgeschlossen, ist ein belief set
-            \item 2: "Success": neue information ist immer teil des belief sets nach revision. Das muss nicht so sein, für BM tpo revision operatoren die wir hier betrachten gilt dies z.b. nicht. Wird "non-priotized revision" genannt
-            \item 3 und 4: zusammen, wenn neues belief ist konsistent mit dem vorherigen belief set dann gibt es keinen grund beliefs zu entfernen. das neue belief set wird vorheriges belief set + alpha + was aus alpha und belief set folgt sein, minimal change wenn alpha konsistent mit belief set
-            \item 5: Syntax irrelevanz für information mit der revision betrieben wird. Epistemische zustände müssen gleich sein hier, im AGM original muss nur das belief set der zustände gleich sein. Also ist E5 schwächer als das Original von AGM.
-            \item 6: Das belief set enthält elementaren widerspruch NUR nach revision mit inkonsistenten informationen, konsistenz "at all costs" (alpha wärend not alpha eine tautologie ist). BM bestehen auf konsistente Eingaben damit sie immer ein belief set aus dem epistemischen status ableiten können. Daher nehmen sie E6 nicht an und nur E1-5, E7-8 als "DP-AGM"
-            \item 7 und 8: Wenn ein belief set nach revision mit alpha konsistent ist mit beta dann kann man das belief set von alpha und beta durch expansion mit beta erreichen (revision nicht nötig), wieder minimal change
         \end{itemize}
     }
 \end{frame}
@@ -589,6 +597,7 @@
 \note{
     \begin{itemize}
         \item Vorher: Neue Metadaten/Strukturen im epistemischen Zustand und Visualisierung
+        \item Uns interessieren funktionen * die für eine tpo und alle alpha aus L eine neue tpo generieren
         \item Jetzt: Nutzen dieser neuen Strukturen für tpo revision, Postulates für BM revision operatoren und Definition der Familie von BM revisons operatoren
         \item Jetzt: Abstrakte tpo revision am Beispiel
         \item TAKES: 11-19
@@ -818,9 +827,10 @@
 
     \note{
         \begin{itemize}
-            \item theorem definiert die familie von operatoren die booth und meyer diskutieren
+            \item theorem charakterisiert die familie von operatoren die booth und meyer diskutieren
             \item funktionen * die aus einer tpo und einer formel in L eine neue tpo erzeugen
-            \item generiert aus den vorgestellten strukturen wenn sie postulate erfüllt
+            \item erfüllt immer die postulate wenn sie aus den vorgegebenen strukturen generiert wird
+            \item für jeden revisionsoperator * für eine tpo kann man eine faithful tpo generieren die den gleichen operator erzeugt nach der definition hier
         \end{itemize}
     }
 \end{frame}
