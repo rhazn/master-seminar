@@ -16,13 +16,10 @@ jobs:
         with:
           working_directory: presentation
           root_file: 1901_3230880_philip_heltweg_presentation.tex
-      - name: Upload Paper
+      - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: 1901_3230880_philip_heltweg.pdf
-          path: paper/1901_3230880_philip_heltweg.pdf
-      - name: Upload Presentation
-        uses: actions/upload-artifact@v2
-        with:
-          name: 1901_3230880_philip_heltweg_presentation.pdf
-          path: presentation/1901_3230880_philip_heltweg_presentation.pdf
+          name: PDF
+          path:  |
+            paper/1901_3230880_philip_heltweg.pdf
+            presentation/1901_3230880_philip_heltweg_presentation.pdf
