@@ -6,12 +6,16 @@ jobs:
     steps:
       - name: Set up
         uses: actions/checkout@v2
-      - name: Compile
+      - name: Compile Paper
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: |
-            paper/1901_3230880_philip_heltweg.tex
-            presentation/1901_3230880_philip_heltweg_presentation.tex
+          working_directory: paper
+          root_file: 1901_3230880_philip_heltweg.tex
+      - name: Compile Presentation
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: presentation
+          root_file: 1901_3230880_philip_heltweg_presentation.tex
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
